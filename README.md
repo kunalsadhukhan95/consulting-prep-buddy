@@ -1,0 +1,1 @@
+# consulting-prep-buddy
