@@ -1,0 +1,2615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Consulting Preparation Buddy</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #1a2744;
+  --blue: #2563c8;
+  --light-blue: #3b82f6;
+  --accent: #4f46e5;
+  --bg: #f0f2f8;
+  --bg2: #e8ecf5;
+  --white: #ffffff;
+  --text: #1e293b;
+  --text-light: #64748b;
+  --gold: #f59e0b;
+  --border: #cbd5e1;
+  --card-shadow: 0 4px 24px rgba(26,39,68,0.10);
+  --radius: 16px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* ── NAVBAR ── */
+.navbar {
+  background: var(--white);
+  box-shadow: 0 2px 16px rgba(26,39,68,0.10);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 0 2rem;
+}
+.nav-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--navy);
+  white-space: nowrap;
+}
+.nav-logo span { color: var(--blue); }
+.nav-tabs {
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+  flex-wrap: wrap;
+}
+.nav-tab {
+  padding: 0.45rem 0.75rem;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-light);
+  cursor: pointer;
+  border-radius: 8px;
+  border: none;
+  background: none;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.nav-tab:hover { background: var(--bg); color: var(--navy); }
+.nav-tab.active { background: var(--navy); color: var(--white); }
+
+/* ── CHATBOT BANNER ── */
+.chatbot-banner {
+  background: linear-gradient(135deg, var(--navy) 0%, #2c3e7a 60%, #3b5bdb 100%);
+  color: white;
+  padding: 1rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.chatbot-banner::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 160px; height: 160px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 50%;
+}
+.chatbot-banner-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.chatbot-banner h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+.chatbot-banner p { font-size: 0.88rem; opacity: 0.85; }
+.open-chat-btn {
+  background: var(--gold);
+  color: var(--navy);
+  border: none;
+  padding: 0.7rem 1.6rem;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  animation: pulse-gold 2s infinite;
+}
+.open-chat-btn:hover { transform: scale(1.05); background: #fbbf24; }
+@keyframes pulse-gold {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(245,158,11,0.4); }
+  50% { box-shadow: 0 0 0 10px rgba(245,158,11,0); }
+}
+
+/* ── SECTIONS ── */
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+.section-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+/* ── HERO ── */
+.hero {
+  background: var(--white);
+  padding: 5rem 2rem 4rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(37,99,200,0.06) 0%, transparent 70%);
+}
+.hero-eyebrow {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--blue);
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+}
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.18;
+  margin-bottom: 1.4rem;
+}
+.hero p {
+  font-size: 1.1rem;
+  color: var(--text-light);
+  max-width: 680px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.7;
+}
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--navy);
+  color: white;
+  padding: 1rem 2.4rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  transition: all 0.25s;
+}
+.hero-cta:hover { background: var(--blue); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,99,200,0.3); }
+
+/* ── ABOUT ── */
+.about-section {
+  background: var(--bg);
+  padding: 4rem 2rem;
+}
+.about-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+.about-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 0.8rem;
+}
+.about-left h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.25;
+}
+.about-right p {
+  color: var(--text-light);
+  line-height: 1.8;
+  margin-bottom: 1.2rem;
+  font-size: 0.97rem;
+}
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--card-shadow);
+}
+.stat-item { text-align: center; }
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+.stat-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin-top: 0.3rem;
+}
+.learn-more-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1.5px solid var(--navy);
+  color: var(--navy);
+  padding: 0.7rem 1.6rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.88rem;
+  cursor: pointer;
+  background: none;
+  margin-top: 1.5rem;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+.learn-more-btn:hover { background: var(--navy); color: white; }
+
+/* ── OFFERINGS ── */
+.offerings-section {
+  background: var(--white);
+  padding: 4rem 2rem;
+}
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.section-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  color: var(--navy);
+  margin-bottom: 0.8rem;
+}
+.section-header p { color: var(--text-light); max-width: 580px; margin: 0 auto; line-height: 1.7; }
+.offerings-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.offering-card {
+  background: var(--bg);
+  border-radius: var(--radius);
+  padding: 2rem 1.8rem;
+  border: 1px solid var(--border);
+  transition: all 0.25s;
+  cursor: pointer;
+}
+.offering-card:hover { transform: translateY(-4px); box-shadow: var(--card-shadow); border-color: var(--blue); }
+.offering-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  color: var(--navy);
+  margin-bottom: 0.8rem;
+}
+.offering-card p { color: var(--text-light); font-size: 0.9rem; line-height: 1.65; margin-bottom: 1.2rem; }
+.read-more-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--blue);
+  font-size: 0.83rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  border: 1px solid var(--blue);
+  padding: 0.3rem 0.9rem;
+  border-radius: 4px;
+  cursor: pointer;
+  background: none;
+  transition: all 0.18s;
+}
+.read-more-link:hover { background: var(--blue); color: white; }
+
+/* ── WHY CHOOSE US ── */
+.why-section {
+  background: var(--bg);
+  padding: 4rem 2rem;
+}
+.why-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+}
+.why-card {
+  padding: 2rem 2.5rem;
+  border-left: 3px solid var(--navy);
+}
+.why-card:not(:first-child) { border-left: 3px solid var(--border); }
+.why-card h3 { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: var(--navy); margin-bottom: 0.8rem; }
+.why-card p { color: var(--text-light); font-size: 0.9rem; line-height: 1.65; margin-bottom: 1.2rem; }
+
+/* ── TESTIMONIALS ── */
+.testimonials-section {
+  background: var(--white);
+  padding: 4rem 2rem;
+}
+.testimonials-layout {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.8fr;
+  gap: 4rem;
+  align-items: center;
+}
+.testimonials-left h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  color: var(--navy);
+  line-height: 1.3;
+}
+.testimonials-left::before {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 3px;
+  background: var(--navy);
+  margin-bottom: 1.5rem;
+}
+.testimonial-cards { display: flex; flex-direction: column; gap: 1.2rem; }
+.testimonial-card {
+  background: var(--bg);
+  border-radius: var(--radius);
+  padding: 1.8rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border: 1px solid var(--border);
+}
+.t-header { display: flex; align-items: center; gap: 1rem; }
+.t-avatar {
+  width: 54px; height: 54px;
+  border-radius: 50%;
+  background: var(--navy);
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 1.3rem; font-weight: 700;
+  flex-shrink: 0;
+}
+.t-stars { color: var(--gold); font-size: 1.05rem; margin-bottom: 0.2rem; }
+.t-name { font-weight: 700; font-size: 0.88rem; letter-spacing: 0.05em; text-transform: uppercase; }
+.t-company { font-size: 0.82rem; color: var(--text-light); }
+.t-text { color: var(--text); font-size: 0.93rem; line-height: 1.65; }
+
+/* ── CALLOUT BANNER ── */
+.callout-banner {
+  background: linear-gradient(135deg, var(--navy), #2c3e7a);
+  color: white;
+  text-align: center;
+  padding: 3.5rem 2rem;
+}
+.callout-banner h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  font-weight: 700;
+  max-width: 800px;
+  margin: 0 auto 0.8rem;
+  line-height: 1.4;
+}
+.callout-banner p { font-size: 1.05rem; opacity: 0.88; margin-top: 0.5rem; }
+
+/* ── INDUSTRY SECTORS ── */
+.industry-section { padding: 3rem 2rem; max-width: 1200px; margin: 0 auto; }
+.industry-intro { text-align: center; margin-bottom: 2.5rem; }
+.industry-intro h2 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--navy); margin-bottom: 0.6rem; }
+.industry-intro p { color: var(--text-light); max-width: 600px; margin: 0 auto; }
+
+.sector-tabs-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  justify-content: center;
+}
+.sector-tab-btn {
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  border: 1.5px solid var(--border);
+  background: var(--white);
+  color: var(--text-light);
+  font-size: 0.83rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+.sector-tab-btn.active, .sector-tab-btn:hover {
+  background: var(--navy);
+  color: white;
+  border-color: var(--navy);
+}
+
+.sector-panel { display: none; }
+.sector-panel.active { display: block; }
+
+.sector-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 2.5rem;
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--border);
+}
+.sector-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  color: var(--navy);
+  margin-bottom: 0.5rem;
+}
+.sector-badge {
+  display: inline-block;
+  background: var(--bg2);
+  color: var(--blue);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.2rem 0.7rem;
+  border-radius: 50px;
+  margin-bottom: 1.2rem;
+}
+.sector-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+.sector-block h4 {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--blue);
+  margin-bottom: 0.8rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--bg2);
+}
+.sector-block ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.sector-block ul li {
+  font-size: 0.87rem;
+  color: var(--text);
+  padding-left: 1rem;
+  position: relative;
+  line-height: 1.5;
+}
+.sector-block ul li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--blue);
+  font-size: 0.7rem;
+  top: 0.18rem;
+}
+.sector-overview {
+  color: var(--text-light);
+  font-size: 0.92rem;
+  line-height: 1.75;
+  margin-bottom: 0.5rem;
+}
+.key-metrics-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin: 1.2rem 0;
+}
+.metric-chip {
+  background: var(--bg2);
+  border-radius: 8px;
+  padding: 0.45rem 0.9rem;
+  font-size: 0.82rem;
+  color: var(--navy);
+}
+.metric-chip strong { font-weight: 700; }
+
+/* ── FRAMEWORKS ── */
+.framework-wrap { max-width: 1100px; margin: 0 auto; padding: 2rem; }
+.fw-intro { text-align: center; margin-bottom: 2.5rem; }
+.fw-intro h2 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--navy); margin-bottom: 0.6rem; }
+.fw-intro p { color: var(--text-light); max-width: 620px; margin: 0 auto; line-height: 1.7; }
+
+.fw-tabs-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2.5rem;
+  background: var(--white);
+  padding: 0.7rem;
+  border-radius: var(--radius);
+  box-shadow: var(--card-shadow);
+}
+.fw-tab-btn {
+  flex: 1;
+  min-width: 120px;
+  padding: 0.65rem 1rem;
+  border-radius: 10px;
+  border: none;
+  background: transparent;
+  color: var(--text-light);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+}
+.fw-tab-btn.active {
+  background: var(--navy);
+  color: white;
+}
+.fw-tab-btn:hover:not(.active) { background: var(--bg2); color: var(--navy); }
+
+.fw-panel { display: none; }
+.fw-panel.active { display: block; }
+
+.fw-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 2.5rem;
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--border);
+}
+.fw-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  color: var(--navy);
+  margin-bottom: 0.6rem;
+}
+.fw-desc { color: var(--text-light); font-size: 0.95rem; line-height: 1.7; margin-bottom: 2rem; }
+
+.fw-tree {
+  background: var(--bg);
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 1.5rem 0;
+  border-left: 4px solid var(--blue);
+}
+.fw-tree h4 { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--blue); margin-bottom: 1rem; }
+
+.fw-branch {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.fw-node {
+  background: var(--white);
+  border-radius: 10px;
+  padding: 1rem 1.5rem;
+  border: 1px solid var(--border);
+}
+.fw-node-title {
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: var(--navy);
+  margin-bottom: 0.4rem;
+}
+.fw-node-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+.fw-chip {
+  background: var(--bg2);
+  color: var(--text);
+  font-size: 0.78rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 50px;
+  border: 1px solid var(--border);
+}
+
+.fw-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+.fw-step {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+.fw-step-num {
+  width: 32px; height: 32px;
+  min-width: 32px;
+  background: var(--navy);
+  color: white;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+.fw-step-body h5 { font-size: 0.93rem; font-weight: 700; color: var(--navy); margin-bottom: 0.3rem; }
+.fw-step-body p { font-size: 0.87rem; color: var(--text-light); line-height: 1.6; }
+
+.fw-questions { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; margin: 1.5rem 0; }
+.fw-q {
+  background: var(--bg2);
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  font-size: 0.86rem;
+  color: var(--text);
+  border-left: 3px solid var(--blue);
+}
+
+.fw-box {
+  background: var(--bg2);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+}
+.fw-box h4 { font-weight: 700; color: var(--navy); font-size: 0.9rem; margin-bottom: 0.8rem; }
+.fw-box ul { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+.fw-box ul li { font-size: 0.86rem; color: var(--text); padding-left: 1rem; position: relative; }
+.fw-box ul li::before { content: '•'; position: absolute; left: 0; color: var(--blue); font-weight: 700; }
+
+.fw-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 1.5rem 0; }
+.fw-col-card {
+  background: var(--bg2);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border-top: 3px solid var(--blue);
+}
+.fw-col-card h4 { font-weight: 700; color: var(--navy); font-size: 0.9rem; margin-bottom: 0.8rem; }
+.fw-col-card ul { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+.fw-col-card ul li { font-size: 0.84rem; color: var(--text); padding-left: 0.9rem; position: relative; }
+.fw-col-card ul li::before { content: '▸'; position: absolute; left: 0; color: var(--blue); font-size: 0.7rem; top: 0.15rem; }
+
+.tip-box {
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: 10px;
+  padding: 1rem 1.2rem;
+  font-size: 0.86rem;
+  color: #92400e;
+  line-height: 1.6;
+  margin-top: 1.5rem;
+}
+.tip-box strong { color: #b45309; }
+
+/* ── PERSONALIZED GUIDANCE ── */
+.guidance-hero {
+  background: linear-gradient(135deg, var(--navy) 0%, #2c3e7a 100%);
+  color: white;
+  text-align: center;
+  padding: 5rem 2rem;
+}
+.guidance-hero h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+.guidance-hero p { font-size: 1.05rem; opacity: 0.88; max-width: 600px; margin: 0 auto 2rem; line-height: 1.7; }
+.guidance-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--gold);
+  color: var(--navy);
+  padding: 1.1rem 2.8rem;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all 0.25s;
+}
+.guidance-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(245,158,11,0.4); }
+.guidance-cards {
+  max-width: 1100px;
+  margin: 3rem auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.guidance-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 2rem;
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--border);
+}
+.guidance-card-icon { font-size: 2rem; margin-bottom: 1rem; }
+.guidance-card h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--navy); margin-bottom: 0.6rem; }
+.guidance-card p { color: var(--text-light); font-size: 0.88rem; line-height: 1.65; }
+
+/* ── CHATBOT ── */
+#chat-widget {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.8rem;
+}
+#chat-bubble {
+  width: 62px; height: 62px;
+  background: linear-gradient(135deg, var(--navy), var(--blue));
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(26,39,68,0.35);
+  transition: all 0.25s;
+  position: relative;
+}
+#chat-bubble:hover { transform: scale(1.1); }
+#chat-bubble svg { width: 28px; height: 28px; fill: white; }
+.chat-ping {
+  position: absolute;
+  top: 0; right: 0;
+  width: 16px; height: 16px;
+  background: var(--gold);
+  border-radius: 50%;
+  border: 2px solid white;
+  animation: ping 1.5s infinite;
+}
+@keyframes ping {
+  0% { transform: scale(1); opacity: 1; }
+  70% { transform: scale(1.5); opacity: 0; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+#chat-window {
+  width: 380px;
+  max-width: calc(100vw - 2rem);
+  height: 540px;
+  background: var(--white);
+  border-radius: 20px;
+  box-shadow: 0 8px 48px rgba(26,39,68,0.25);
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+#chat-window.open { display: flex; }
+
+.chat-header {
+  background: linear-gradient(135deg, var(--navy), var(--blue));
+  color: white;
+  padding: 1rem 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.chat-header-info { display: flex; align-items: center; gap: 0.8rem; }
+.chat-avatar {
+  width: 38px; height: 38px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem;
+}
+.chat-header h4 { font-size: 0.95rem; font-weight: 700; }
+.chat-header p { font-size: 0.75rem; opacity: 0.8; }
+.chat-close {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.7);
+  font-size: 1.3rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0.2rem;
+}
+.chat-close:hover { color: white; }
+
+#chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  background: var(--bg);
+}
+
+.chat-msg {
+  max-width: 85%;
+  padding: 0.75rem 1rem;
+  border-radius: 14px;
+  font-size: 0.87rem;
+  line-height: 1.55;
+}
+.chat-msg.bot {
+  background: var(--white);
+  color: var(--text);
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+}
+.chat-msg.user {
+  background: var(--navy);
+  color: white;
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+}
+.chat-msg.typing { opacity: 0.7; font-style: italic; }
+
+.chat-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding: 0.5rem 1rem;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+}
+.chat-sug {
+  font-size: 0.75rem;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  padding: 0.3rem 0.75rem;
+  cursor: pointer;
+  color: var(--navy);
+  transition: all 0.15s;
+  font-weight: 500;
+}
+.chat-sug:hover { background: var(--navy); color: white; border-color: var(--navy); }
+
+.chat-input-row {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.8rem;
+  background: var(--white);
+  border-top: 1px solid var(--border);
+}
+#chat-input {
+  flex: 1;
+  border: 1.5px solid var(--border);
+  border-radius: 50px;
+  padding: 0.6rem 1rem;
+  font-size: 0.85rem;
+  font-family: 'DM Sans', sans-serif;
+  outline: none;
+  transition: border-color 0.2s;
+}
+#chat-input:focus { border-color: var(--blue); }
+#chat-send {
+  width: 38px; height: 38px;
+  background: var(--navy);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+#chat-send:hover { background: var(--blue); }
+#chat-send svg { width: 16px; height: 16px; fill: white; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .about-inner, .testimonials-layout { grid-template-columns: 1fr; gap: 2rem; }
+  .offerings-grid, .why-grid, .guidance-cards { grid-template-columns: 1fr; }
+  .sector-grid, .fw-two-col, .fw-questions { grid-template-columns: 1fr; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .navbar { padding: 0 1rem; }
+  .nav-inner { height: auto; padding: 0.5rem 0; }
+  .section-wrap { padding: 2rem 1rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <div class="nav-logo">Your <span>Consulting</span> Preparation Buddy</div>
+    <div class="nav-tabs">
+      <button class="nav-tab active" onclick="showTab('home')">🏠 Home</button>
+      <button class="nav-tab" onclick="showTab('industry')">🏭 Industry Sectors</button>
+      <button class="nav-tab" onclick="showTab('frameworks')">📐 Case Frameworks</button>
+      <button class="nav-tab" onclick="showTab('practice')" style="color:#2563c8;font-weight:700">📋 Case Practice</button>
+      <button class="nav-tab" onclick="showTab('guesstimate')" style="color:#2563c8;font-weight:700">🔢 Guesstimate</button>
+      <button class="nav-tab" onclick="showTab('tips')">💡 Tips & Tricks</button>
+      <button class="nav-tab" onclick="showTab('guidance')">🎯 Personalized Guidance</button>
+    </div>
+  </div>
+</nav>
+
+<!-- CHATBOT BANNER (visible on all tabs) -->
+<div class="chatbot-banner">
+  <div class="chatbot-banner-inner">
+    <div>
+      <h3>🤖 Consulting Prep Assistant — AI Powered</h3>
+      <p>Your 24/7 AI coach for case interviews, guesstimates, frameworks & career advice</p>
+    </div>
+    <button class="open-chat-btn" onclick="openChat()">Chat with AI Coach →</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ HOME TAB ═══════════════════════════ -->
+<div id="tab-home" class="tab-content active">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">Unlock Your Potential</div>
+    <h1>Master the Art of<br>Consulting Interviews</h1>
+    <p>Empower your consulting journey with tailored resources, expert insights, and interactive practice to excel in interviews and land your dream role.</p>
+    <button class="hero-cta" onclick="openChat()">GET STARTED →</button>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about-section">
+    <div class="about-inner">
+      <div class="about-left">
+        <div class="about-label">About Us</div>
+        <h2>Your dedicated partner in consulting success and preparation</h2>
+      </div>
+      <div class="about-right">
+        <p>Your Consulting Preparation Buddy is an e-learning platform designed specifically for aspiring consultants. We provide essential resources, individualized guidance, and a vibrant community to ensure you succeed in your consulting interviews.</p>
+        <p>Our platform offers tailored content on guesstimates, case interview frameworks, and industry insights, along with interactive practice sets and one-on-one guidance for interview preparation and CV reviews.</p>
+        <p>We are the ultimate resource for aspiring management consultants, focused on your success through personalized support and expert insights.</p>
+        <a href="https://topmate.io/kunal_sadhukhan" target="_blank" class="learn-more-btn">LEARN MORE →</a>
+      </div>
+    </div>
+    <div style="max-width:1200px;margin:2.5rem auto 0;padding:0 0rem;">
+      <div class="stats-row">
+        <div class="stat-item"><div class="stat-num">100+</div><div class="stat-label">Consulting Interviews</div></div>
+        <div class="stat-item"><div class="stat-num">85</div><div class="stat-label">Consulting Prep Sessions</div></div>
+        <div class="stat-item"><div class="stat-num">50+</div><div class="stat-label">Mentorships</div></div>
+        <div class="stat-item"><div class="stat-num">20+</div><div class="stat-label">IIM Casebooks</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OFFERINGS -->
+  <section class="offerings-section">
+    <div class="section-header">
+      <h2>Explore Our Comprehensive Offerings</h2>
+    </div>
+    <div class="offerings-grid">
+      <div class="offering-card" onclick="showTab('guesstimate')">
+        <h3>Guesstimate Practice</h3>
+        <p>Master your guesstimate skills with our interactive practice sets tailored for consulting interviews.</p>
+        <button class="read-more-link">READ MORE →</button>
+      </div>
+      <div class="offering-card" onclick="showTab('frameworks')">
+        <h3>Case Interview Frameworks</h3>
+        <p>Learn essential frameworks that guide you through case interviews with clarity and confidence.</p>
+        <button class="read-more-link">READ MORE →</button>
+      </div>
+      <div class="offering-card" onclick="showTab('guidance')">
+        <h3>Personalized Guidance</h3>
+        <p>Receive one-on-one support for interview preparation and CV reviews tailored to your unique needs.</p>
+        <button class="read-more-link">READ MORE →</button>
+      </div>
+      <div class="offering-card" onclick="showTab('industry')">
+        <h3>Industry Sector Insights</h3>
+        <p>Detailed overview for major industry sectors with key drivers, trends, challenges and value chains.</p>
+        <button class="read-more-link">READ MORE →</button>
+      </div>
+      <div class="offering-card" onclick="showTab('practice')">
+        <h3>Case Interview Practice</h3>
+        <p>50+ real case interview transcripts from IIM Ahmedabad, Calcutta, Lucknow and FMS Delhi.</p>
+        <button class="read-more-link">READ MORE →</button>
+      </div>
+      <div class="offering-card" onclick="showTab('tips')">
+        <h3>Tips & Tricks</h3>
+        <p>Curated insider tips from top consulting firms to help you stand out in every round of interviews.</p>
+        <button class="read-more-link">READ MORE →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE US -->
+  <section class="why-section">
+    <div class="section-header"><h2>Why Choose Us?</h2></div>
+    <div class="why-grid">
+      <div class="why-card">
+        <h3>Industry Sector Insights</h3>
+        <p>Detailed overview for major industry sectors including Automobile, Aviation, E-Commerce, Financial Services, Pharma, IT, Oil & Gas, and more — curated from top IIM casebooks.</p>
+        <button class="read-more-link" onclick="showTab('industry')">LEARN MORE →</button>
+      </div>
+      <div class="why-card">
+        <h3>Expert Guidance</h3>
+        <p>Personalized support from industry professionals. One-on-one coaching sessions, CV reviews and mock interview preparation led by Kunal Sadhukhan.</p>
+        <button class="read-more-link" onclick="showTab('guidance')">LEARN MORE →</button>
+      </div>
+      <div class="why-card">
+        <h3>Tailored Learning Experience</h3>
+        <p>Content customized for consulting aspirants — from first-time case crackers to experienced professionals targeting MBB and Big 4 firms.</p>
+        <button class="read-more-link" onclick="showTab('practice')">LEARN MORE →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials-section">
+    <div class="testimonials-layout">
+      <div class="testimonials-left">
+        <h2>Hear from Our Satisfied Users</h2>
+      </div>
+      <div class="testimonial-cards">
+        <div class="testimonial-card">
+          <div class="t-header">
+            <div class="t-avatar">R</div>
+            <div>
+              <div class="t-stars">★★★★★</div>
+              <div class="t-name">RIDDHI</div>
+              <div class="t-company">Accenture</div>
+            </div>
+          </div>
+          <div class="t-text">Kunal was very helpful and informative. He gave me very insightful suggestions and guided me in the right direction. I would definitely recommend people connect with him for consulting case study preparation!</div>
+        </div>
+        <div class="testimonial-card">
+          <div class="t-header">
+            <div class="t-avatar">J</div>
+            <div>
+              <div class="t-stars">★★★★★</div>
+              <div class="t-name">JOHN BARROT</div>
+              <div class="t-company">Deloitte</div>
+            </div>
+          </div>
+          <div class="t-text">With the help of this platform, I gained confidence and honed my skills. The interactive practice sets were incredibly useful, allowing me to tackle interviews with ease.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALLOUT BANNER -->
+  <div class="callout-banner">
+    <h2>20,000+ Indian College Students and Experienced Professionals start their consulting career every year.</h2>
+    <p>The next one can be you too! 🚀</p>
+  </div>
+
+</div><!-- /home -->
+
+<!-- ═══════════════════════════ INDUSTRY SECTORS TAB ═══════════════════════════ -->
+<div id="tab-industry" class="tab-content">
+  <div style="padding:3rem 2rem 1rem;max-width:1200px;margin:0 auto;">
+    <div class="industry-intro">
+      <h2>Know Industry Sectors</h2>
+      <p>Deep dives into major industry sectors — key data, drivers, trends, challenges and value chains. Sourced from IIM Ahmedabad, Calcutta, Lucknow and FMS Delhi casebooks.</p>
+    </div>
+    <div class="sector-tabs-bar">
+      <button class="sector-tab-btn active" onclick="showSector('automobile')">🚗 Automobile</button>
+      <button class="sector-tab-btn" onclick="showSector('aviation')">✈️ Aviation</button>
+      <button class="sector-tab-btn" onclick="showSector('ecommerce')">🛒 E-Commerce</button>
+      <button class="sector-tab-btn" onclick="showSector('financial')">🏦 Financial Services</button>
+      <button class="sector-tab-btn" onclick="showSector('fmcg')">🧴 FMCG</button>
+      <button class="sector-tab-btn" onclick="showSector('pharma')">💊 Pharma</button>
+      <button class="sector-tab-btn" onclick="showSector('itites')">💻 IT & ITeS</button>
+      <button class="sector-tab-btn" onclick="showSector('cement')">🧱 Cement</button>
+      <button class="sector-tab-btn" onclick="showSector('telecom')">📱 Telecom</button>
+      <button class="sector-tab-btn" onclick="showSector('oilgas')">⛽ Oil & Gas</button>
+      <button class="sector-tab-btn" onclick="showSector('power')">⚡ Power</button>
+      <button class="sector-tab-btn" onclick="showSector('steel')">🔩 Steel</button>
+      <button class="sector-tab-btn" onclick="showSector('retail')">🏪 Retail</button>
+      <button class="sector-tab-btn" onclick="showSector('realestate')">🏘️ Real Estate</button>
+    </div>
+
+    <!-- AUTOMOBILE -->
+    <div id="sector-automobile" class="sector-panel active">
+      <div class="sector-card">
+        <div class="sector-badge">Source: IIM Calcutta Casebook 2023-24 | IBEF</div>
+        <h3>Automobile Industry</h3>
+        <p class="sector-overview">The automobile industry is divided into four major business segments: two-wheelers, three-wheelers, commercial vehicles, and passenger vehicles. India is the <strong>5th largest automobile market globally</strong> with annual production of 23M vehicles in FY22, contributing 7.1% to GDP.</p>
+        <div class="key-metrics-row">
+          <div class="metric-chip"><strong>Industry Size:</strong> $222B</div>
+          <div class="metric-chip"><strong>CAGR (2022-27):</strong> 9%</div>
+          <div class="metric-chip"><strong>Units Produced:</strong> 23M/year</div>
+          <div class="metric-chip"><strong>Units Exported:</strong> 6M/year</div>
+          <div class="metric-chip"><strong>GDP Contribution:</strong> 7.1%</div>
+        </div>
+        <div class="sector-grid">
+          <div class="sector-block">
+            <h4>Business Segments</h4>
+            <ul>
+              <li>Two-Wheelers: Mopeds, Scooters, Motorcycles (77% of volume)</li>
+              <li>Three-Wheelers: Passenger & Goods</li>
+              <li>Commercial Vehicles: Light CV, Heavy CV</li>
+              <li>Passenger Vehicles: Cars, Utility, Multi-purpose (18%)</li>
+            </ul>
+          </div>
+          <div class="sector-block">
+            <h4>Key Revenue & Cost Drivers</h4>
+            <ul>
+              <li>Revenue: Sales Volume, Product Mix, After Sales Service, Financing</li>
+              <li>Cost: Commodities (Raw Material), R&D, Distribution, Compliance</li>
+              <li>Macro: Fuel Prices, Policy Support, Market Sentiment, Inflation</li>
+            </ul>
+          </div>
+          <div class="sector-block">
+            <h4>Trends & Opportunities</h4>
+            <ul>
+              <li>Electric Vehicles (EV) adoption accelerating under FAME scheme</li>
+              <li>Autonomous Driving technology development</li>
+              <li>In-Car Technologies (infotainment, connectivity)</li>
+              <li>Shared Mobility (ride-hailing, subscription models)</li>
+              <li>Industry 4.0 & Smart Manufacturing</li>
+            </ul>
+          </div>
+          <div class="sector-block">
+            <h4>Challenges & Policy Updates</h4>
+            <ul>
+              <li>EV adoption barriers (charging infra, range anxiety)</li>
+              <li>AV regulatory framework still evolving</li>
+              <li>Supply chain disruptions (semiconductors)</li>
+              <li>FAME, CAFÉ-2, BS-VI schemes promoting EVs</li>
+              <li>Automotive Mission Plan 2016–2026 (AMP 2026) targets</li>
+              <li>PV sales recovered to 3.1M in FY22 after COVID lows</li>
+            </ul>
+          </div>
+        </div>
+        <div class="fw-box" style="margin-top:1.5rem;">
+          <h4>Value Chain Analysis</h4>
+          <ul>
+            <li><strong>Pre-Production:</strong> R&D (designing, innovation), Raw Materials (commodities, technology), Inbound Logistics (mode, route)</li>
+            <li><strong>During Production:</strong> Manufacturing Equipment, Assembly, Quality Control, Utilities & Labour</li>
+            <li><strong>Post-Production:</strong> Outbound Logistics, Dealer Management, Salesforce, Advertising, Insurance, Repair & Rentals</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- AVIATION -->
+    <div id="sector-aviation" class="sector-panel">
+      <div class="sector-card">
+        <div class="sector-badge">Source: IIM Calcutta Casebook 2023-24 | IBEF</div>
+        <h3>Aviation Industry</h3>
+        <p class="sector-overview">India's aviation sector is the <strong>3rd largest globally</strong> in terms of handling domestic air-traffic. The sector encompasses airlines, airports, MRO & Ground Services, Aircraft Manufacturing, Air Traffic Control, and Aviation Education.</p>
+        <div class="key-metrics-row">
+          <div class="metric-chip"><strong>Domestic Passengers:</strong> 189M</div>
+          <div class="metric-chip"><strong>AAI Managed Airports:</strong> 125</div>
+          <div class="metric-chip"><strong>Market structure:</strong> Highly competitive, oligopoly</div>
+        </div>
+        <div class="sector-grid">
+          <div class="sector-block">
+            <h4>Revenue Drivers</h4>
+            <ul>
+              <li>Ticket sales (domestic & international routes)</li>
+              <li>Freight services</li>
+              <li>Ancillary revenues (baggage fees, upgrades)</li>
+              <li>Route & location optimization</li>
+            </ul>
+          </div>
+          <div class="sector-block">
+            <h4>Cost Drivers</h4>
+            <ul>
+              <li>Fuel costs (largest operating expense ~40%)</li>
+              <li>Airport charges & landing fees</li>
+              <li>MRO (Maintenance, Repair & Overhaul)</li>
+              <li>Wages & crew costs</li>
+              <li>Exchange rate fluctuations</li>
+            </ul>
+          </div>
+          <div class="sector-block">
+            <h4>Industry Trends</h4>
+            <ul>
+              <li>New route development to underserved regions (UDAN scheme)</li>
+              <li>Industry consolidation (Air India absorbing subsidiaries)</li>
+              <li>Sustainability (Sustainable Aviation Fuel — 1% mandate by 2025)</li>
+              <li>Digitalization of passenger experience</li>
+            </ul>
+          </div>
+          <div class="sector-block">
+            <h4>Key Challenges</h4>
+            <ul>
+              <li>High price sensitivity among Indian consumers</li>
+              <li>Traffic congestion at major hubs</li>
+              <li>Pilot retention & training costs</li>
+              <li>Fuel price volatility (USD denominated)</li>
+              <li>GoFirst & SpiceJet insolvency scenarios</li>
+            </ul>
+          </div>
+        </div>
+        <div class="fw-box" style="margin-top:1.5rem;">
+          <h4>Operational Value Chain</h4>
+          <ul>
+            <li><strong>Flight Operations:</strong> Scheduling, Rostering, Performance tracking</li>
+            <li><strong>Ground Operations:</strong> Passenger handling, Baggage, Ramp services</li>
+            <li><strong>MRO:</strong> Maintenance, Repair, Overhauling (major cost centre)</li>
+            <li><strong>Commercial:</strong> Fare management, Demand forecasting, Seat management</li>
+            <li><strong>Distribution:</strong> Ticketing, Advanced Information Systems, Ancillary sales</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- E-COMMERCE -->
+    <div id="sector-ecommerce" class="sector-panel">
+      <div class="sector-card">
+        <div class="sector-badge">Source: IIM Calcutta Casebook 2023-24 | IBEF</div>
+        <h3>E-Commerce Industry</h3>
+        <p class="sector-overview">India could outpace more mature markets to become the <strong>3rd largest e-commerce market globally</strong> with a $350B size by 2030. Current industry size is $75B with 21% CAGR (2022–30). Two dominant models: Marketplace Model (zero inventory) and Inventory-Led Model (e-tailers).</p>
+        <div class="key-metrics-row">
+          <div class="metric-chip"><strong>Industry Size:</strong> $75B</div>
+          <div class="metric-chip"><strong>CAGR (2022-30):</strong> 21%</div>
+          <div class="metric-chip"><strong>Internet Users:</strong> 780M</div>
+          <div class="metric-chip"><strong>E-Com Sales:</strong> 10% of retail</div>
+          <div class="metric-chip"><strong>GDP Contribution:</strong> 2.4%</div>
+        </div>
+        <div class="sector-grid">
+          <div class="sector-block">
+            <h4>Segment Sales Split</h4>
+            <ul>
+              <li>Electronics: 40% of e-commerce</li>
+              <li>Apparels: 40%</li>
+              <li>Food: 7%</li>
+              <li>Jewellery: 7%</li>
+              <li>Others: 6%</li>
+            </ul>
+          </div>
+          <div class="sector-block">
+            <h4>Key Revenue & Cost Drivers</h4>
+            <ul>
+              <li>Revenue: GMV, # transactions, AOV, Seller commissions</li>
+              <li>Cost: Fulfilment, Customer acquisition, Tech infrastructure, Advertising</li>
+              <li>Macro: Internet penetration, Payment infrastructure, Consumer spending</li>
+            </ul>
+          </div>
+          <div class="sector-block">
+            <h4>Industry Trends</h4>
+            <ul>
+              <li>Omnichannel sales integration (online + offline)</li>
+              <li>Ancillary revenues (financial services, ads)</li>
+              <li>Social commerce (influencer-led selling)</li>
+              <li>Personalized shopping experience via AI</li>
+              <li>Quick commerce (10-min delivery)</li>
+              <li>Subscription models (Prime-like services)</li>
+            </ul>
+          </div>
+          <div class="sector-block">
+            <h4>Key Challenges</h4>
+            <ul>
+              <li>Last-mile delivery costs in Tier 2/3 cities</li>
+              <li>Payment challenges & COD dependence</li>
+              <li>Counterfeit products & customer trust</li>
+              <li>Reverse logistics efficiency</li>
+              <li>100% FDI allowed only in marketplace model</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FINANCIAL SERVICES -->
+    <div id="sector-financial" class="sector-panel">
+      <div class="sector-card">
+        <div class="sector-badge">Source: IIM Calcutta Casebook 2023-24 | IBEF</div>
+        <h3>Financial Services Industry</h3>
+        <p class="sector-overview">India's financial services sector encompasses Banks, NBFCs, Insurance, Capital Markets, and Mutual Funds. India's stock market is expected to reach <strong>$5T surpassing UK</strong> to become the 5th largest by 2024 (Goldman Sachs). Regulated by RBI, SEBI, and IRDAI.</p>
+        <div class="key-metrics-row">
+          <div class="metric-chip"><strong>Banking Assets:</strong> $2.7T</div>
+          <div class="metric-chip"><strong>MF AUM:</strong> $478B</div>
+          <div class="metric-chip"><strong>Insurance AUM (est. 2025):</strong> $1T</div>
+          <div class="metric-chip"><strong>Total SCBs:</strong> ~1 Lakh</div>
+          <div class="metric-chip"><strong>Digital Transactions:</strong> 40% of world's total</div>
+        </div>
+        <div class="sector-grid">
+          <div class="sector-block">
+            <h4>Sub-Sectors</h4>
+            <ul>
+              <li>Banking: Public Sector Banks (PSBs), Private Banks, Foreign Banks, Cooperative Banks</li>
+              <li>Insurance: Life, Non-Life (General), Health</li>
+              <li>NBFCs: Asset Finance, Loan Companies, MFIs</li>
+              <li>Capital Markets: Broking, Investment Banking, Asset Management</li>
+              <li>Mutual Funds: Retail (33%), HNI (44%), Corporates (22%)</li>
+            </ul>
+          </div>
+          <div class="sector-block">
+            <h4>Key Drivers</h4>
+            <ul>
+              <li>Revenue: Client base, AUM, Cross-selling, Ancillary fees</li>
+              <li>Cost: Employee benefits, Tech infrastructure, Compliance, Rents</li>
+              <li>Macro: Economic stability, Interest rates, Exchange rates, Financial literacy</li>
+            </ul>
+          </div>
+          <div class="sector-block">
+            <h4>Industry Trends</h4>
+            <ul>
+              <li>Rapid digitalization (UPI, CBDC, Account Aggregator)</li>
+              <li>Rise of FinTech companies disrupting traditional banking</li>
+              <li>Financial inclusion through Jan Dhan, DBT</li>
+              <li>ESG investing gaining prominence</li>
+              <li>Open Banking & API economy</li>
+            </ul>
+          </div>
+          <div class="sector-block">
+            <h4>Key Challenges & Policy</h4>
+            <ul>
+              <li>Cybersecurity threats & data privacy</li>
+              <li>NPA (Non-Performing Assets) management</li>
+              <li>Debt market liquidity concerns</li>
+              <li>GoI approved 100% FDI for insurance intermediaries</li>
+              <li>CBDC pilot launched by RBI (Nov 2022)</li>
+              <li>Major M&As: HDFC-HDFC Bank, Axis-Citi Retail</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FMCG -->
+    <div id="sector-fmcg" class="sector-panel">
+      <div class="sector-card">
+        <div class="sector-badge">Source: IIM Calcutta Casebook 2023-24 | IBEF</div>
+        <h3>FMCG — Fast Moving Consumer Goods</h3>
+        <p class="sector-overview">The FMCG sector is one of India's largest sectors. Products include food & beverages, personal care, home care, and healthcare. India's FMCG market is driven by rural growth, premiumisation, and digital commerce. Companies compete heavily on distribution reach and brand equity.</p>
+        <div class="key-metrics-row">
+          <div class="metric-chip"><strong>Market Size:</strong> ~$167B (2023)</div>
+          <div class="metric-chip"><strong>Rural Contribution:</strong> ~36%</div>
+          <div class="metric-chip"><strong>Urban Contribution:</strong> ~64%</div>
+        </div>
+        <div class="sector-grid">
+          <div class="sector-block">
+            <h4>Key Product Categories</h4>
+            <ul>
+              <li>Food & Beverages: Biscuits, Noodles, Juices, Dairy</li>
+              <li>Personal Care: Soaps, Shampoos, Toothpaste, Deodorants</li>
+              <li>Home Care: Detergents, Surface cleaners</li>
+              <li>Healthcare OTC: Vitamins, Pain relief</li>
+            </ul>
+          </div>
+          <div class="sector-block">
+            <h4>Revenue & Cost Drivers</h4>
+            <ul>
+              <li>Revenue: Volume growth, Premiumisation, New categories, Distribution expansion</li>
+              <li>Cost: Raw materials (commodities), Advertising & promotions (~10-15% of revenue), Distribution, Manufacturing</li>
+              <li>Macro: Rural income levels, Monsoon, Commodity prices (palm oil, wheat)</li>
+            </ul>
+          </div>
+          <div class="sector-block">
+            <h4>Industry Trends</h4>
+            <ul>
+              <li>D2C (Direct-to-Consumer) channel growth</li>
+              <li>Premiumisation in urban markets</li>
+              <li>Health & wellness products boom post-COVID</li>
+              <li>Regional brands challenging national players</li>
+              <li>Quick commerce for instant FMCG delivery</li>
+            </ul>
+          </div>
+          <div class="sector-block">
+            <h4>Key Challenges</h4>
+            <ul>
+              <li>Raw material price volatility (edible oils, packaging)</li>
+              <li>Distribution in rural/Tier 3 markets</li>
+              <li>Competitive intensity from local brands (especially post-COVID)</li>
+              <li>Changing consumer preferences toward health & sustainability</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHARMA -->
+    <div id="sector-pharma" class="sector-panel">
+      <div class="sector-card">
+        <div class="sector-badge">Source: IIM Calcutta Casebook 2023-24 | IBEF | CARE</div>
+        <h3>Pharmaceutical Industry</h3>
+        <p class="sector-overview">India ranks <strong>3rd worldwide for pharmaceutical production by volume</strong> and 14th by value. The industry involves development, production, and commercialization of drugs. India is a global hub for generic drug manufacturing, supplying ~60% of global vaccines.</p>
+        <div class="key-metrics-row">
+          <div class="metric-chip"><strong>Industry Size:</strong> $50B</div>
+          <div class="metric-chip"><strong>CAGR (2021-30):</strong> 13%</div>
+          <div class="metric-chip"><strong>Total Exports:</strong> $25B</div>
+          <div class="metric-chip"><strong>Total Imports:</strong> $8B</div>
+          <div class="metric-chip"><strong>GDP Contribution:</strong> 1.7%</div>
+        </div>
+        <div class="sector-grid">
+          <div class="sector-block">
+            <h4>Business Segments</h4>
+            <ul>
+              <li>Active Pharmaceutical Ingredients (APIs) / Bulk Drugs</li>
+              <li>Formulations: Branded & Generics</li>
+              <li>OTC Medications</li>
+              <li>Biosimilars & Vaccines</li>
+              <li>Contract Manufacturing Organizations (CMOs)</li>
+            </ul>
+          </div>
+          <div class="sector-block">
+            <h4>Export Markets</h4>
+            <ul>
+              <li>America: 40% of exports</li>
+              <li>Europe: 23%</li>
+              <li>Asia: 19%</li>
+              <li>Africa: 16%</li>
+              <li>Rest of World: 2%</li>
+            </ul>
+          </div>
+          <div class="sector-block">
+            <h4>Industry Trends</h4>
+            <ul>
+              <li>Digitalization: AI for drug discovery & clinical trials</li>
+              <li>Personalized medicine & biologics</li>
+              <li>Generics exports growth (post-patent cliff)</li>
+              <li>Contract manufacturing growth</li>
+              <li>Green/sustainable pharma practices</li>
+            </ul>
+          </div>
+          <div class="sector-block">
+            <h4>Challenges & Policy</h4>
+            <ul>
+              <li>Price controls by NPPA (National Pharma Pricing Authority)</li>
+              <li>Low R&D investment vs global peers</li>
+              <li>Heavy reliance on China for APIs (70% import dependency)</li>
+              <li>Supply chain risks (COVID-19 exposed vulnerabilities)</li>
+              <li>PLI scheme (₹15,000 cr) for domestic API manufacturing</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- IT & ITES -->
+    <div id="sector-itites" class="sector-panel">
+      <div class="sector-card">
+        <div class="sector-badge">Source: IIM Calcutta Casebook 2023-24 | IIM Lucknow Casebook 2026</div>
+        <h3>IT & ITeS Industry</h3>
+        <p class="sector-overview">India's IT sector is a global powerhouse, contributing significantly to exports and employment. The industry spans IT Services, Business Process Management (BPM), Software Products, and Engineering R&D. India accounts for ~55% of the global IT outsourcing market.</p>
+        <div class="key-metrics-row">
+          <div class="metric-chip"><strong>Industry Size:</strong> ~$245B (FY23)</div>
+          <div class="metric-chip"><strong>IT Exports:</strong> ~$195B</div>
+          <div class="metric-chip"><strong>Employees:</strong> 5.4M+</div>
+          <div class="metric-chip"><strong>GDP Contribution:</strong> 7.5%</div>
+        </div>
+        <div class="sector-grid">
+          <div class="sector-block">
+            <h4>Sub-Sectors</h4>
+            <ul>
+              <li>IT Services: Application development, management, infrastructure</li>
+              <li>BPM: Customer service, Finance & Accounting, HR, Analytics</li>
+              <li>Software Products: SaaS, ERP, cybersecurity</li>
+              <li>Engineering & R&D: Product engineering, embedded systems</li>
+            </ul>
+          </div>
+          <div class="sector-block">
+            <h4>Revenue & Cost Drivers</h4>
+            <ul>
+              <li>Revenue: Billing rates, Utilization rates, Project portfolio mix, Deal TCV</li>
+              <li>Cost: Employee costs (65-70% of revenue), Travel, Infrastructure</li>
+              <li>Macro: Global IT spending, USD-INR exchange rate, Visa policies</li>
+            </ul>
+          </div>
+          <div class="sector-block">
+            <h4>Industry Trends</h4>
+            <ul>
+              <li>AI & Generative AI adoption (largest disruptor)</li>
+              <li>Cloud computing transformation (AWS, Azure, GCP)</li>
+              <li>Cybersecurity services boom</li>
+              <li>GCC (Global Capability Centres) expansion in India</li>
+              <li>Digital transformation mandates post-COVID</li>
+            </ul>
+          </div>
+          <div class="sector-block">
+            <h4>Key Challenges</h4>
+            <ul>
+              <li>Talent war & high attrition (15-25% annually)</li>
+              <li>Pricing pressure from global competition</li>
+              <li>Automation reducing headcount-driven growth model</li>
+              <li>Visa restrictions in US (H-1B) affecting onsite deployments</li>
+              <li>Revenue concentration risk (top clients)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CEMENT -->
+    <div id="sector-cement" class="sector-panel">
+      <div class="sector-card">
+        <div class="sector-badge">Source: IIM Calcutta Casebook 2023-24 | IBEF</div>
+        <h3>Cement Industry</h3>
+        <p class="sector-overview">India is the <strong>second largest cement producer worldwide</strong> with over 7% of global installed capacity. Total installed capacity exceeds 360 MT. Rural & urban housing accounts for 52% of cement demand.</p>
+        <div class="key-metrics-row">
+          <div class="metric-chip"><strong>Industry Size (2022):</strong> $143B</div>
+          <div class="metric-chip"><strong>CAGR (2021-29):</strong> 5.5%</div>
+          <div class="metric-chip"><strong>GDP Contribution:</strong> 4.5%</div>
+          <div class="metric-chip"><strong>Total Capacity:</strong> 360MT</div>
+          <div class="metric-chip"><strong>Top 4 Players:</strong> 75% market share</div>
+        </div>
+        <div class="sector-grid">
+          <div class="sector-block">
+            <h4>Demand Breakdown</h4>
+            <ul>
+              <li>Rural Housing: 29%</li>
+              <li>Urban Housing: 23%</li>
+              <li>Infrastructure: 25%</li>
+              <li>Commercial/Industrial: 23%</li>
+            </ul>
+          </div>
+          <div class="sector-block">
+            <h4>Process Flow</h4>
+            <ul>
+              <li>Raw Material Extraction (Limestone, Clay)</li>
+              <li>Raw Meal preparation & Kiln calcination (Clinker)</li>
+              <li>Cement grinding (Clinker + Gypsum)</li>
+              <li>Storage in silos → Packaging → Distribution</li>
+            </ul>
+          </div>
+          <div class="sector-block">
+            <h4>Trends & Challenges</h4>
+            <ul>
+              <li>Cement blending (PPC, PSC variants) for sustainability</li>
+              <li>Affordable housing push (PMAY scheme)</li>
+              <li>M&As: Adani's $6.5B acquisition of Ambuja & ACC</li>
+              <li>Environmental concerns (CO₂ intensive process)</li>
+              <li>Land acquisition challenges for new plants</li>
+            </ul>
+          </div>
+          <div class="sector-block">
+            <h4>Key Cost Drivers</h4>
+            <ul>
+              <li>Energy costs (coal/power) — ~30% of total cost</li>
+              <li>Raw material (limestone) — ~15%</li>
+              <li>Logistics & transportation — ~25%</li>
+              <li>Labour — ~10%</li>
+              <li>Government schemes: NIP, NMP, Smart Cities, AMRUT</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TELECOM -->
+    <div id="sector-telecom" class="sector-panel">
+      <div class="sector-card">
+        <div class="sector-badge">Source: IIM Calcutta Casebook 2023-24</div>
+        <h3>Telecommunication Industry</h3>
+        <p class="sector-overview">India's telecom sector is the <strong>second largest globally</strong> in subscriber base with 1.1 billion subscribers. The industry involves mobile (wireless), fixed-line (broadband), and internet services. India's urban tele-density is 131% while rural remains at 58%.</p>
+        <div class="key-metrics-row">
+          <div class="metric-chip"><strong>Industry Size:</strong> $37B</div>
+          <div class="metric-chip"><strong>CAGR (2023-28):</strong> 9.4%</div>
+          <div class="metric-chip"><strong>Total Subscribers:</strong> 1.1B</div>
+          <div class="metric-chip"><strong>GDP Contribution:</strong> 1.1%</div>
+          <div class="metric-chip"><strong>Urban Tele-density:</strong> 44%</div>
+        </div>
+        <div class="sector-grid">
+          <div class="sector-block">
+            <h4>Revenue Streams</h4>
+            <ul>
+              <li>Mobile (wireless) services: Voice, Data, SMS</li>
+              <li>Fixed-line & Broadband</li>
+              <li>Enterprise solutions (B2B)</li>
+              <li>Roaming charges</li>
+              <li>Value-added services (VAS)</li>
+            </ul>
+          </div>
+          <div class="sector-block">
+            <h4>Key Metrics to Know</h4>
+            <ul>
+              <li>ARPU: Average Revenue Per User (key KPI)</li>
+              <li>Churn Rate: Monthly subscriber losses</li>
+              <li>Spectrum: 4G, 5G spectrum allocation</li>
+              <li>EBITDA Margins: 30-40% for top players</li>
+            </ul>
+          </div>
+          <div class="sector-block">
+            <h4>Industry Trends</h4>
+            <ul>
+              <li>5G rollout — India's largest 5G deployment underway</li>
+              <li>Fiber broadband expansion (FTTH)</li>
+              <li>IoT & M2M connectivity growth</li>
+              <li>Industry consolidation (3 major players: Jio, Airtel, Vi)</li>
+            </ul>
+          </div>
+          <div class="sector-block">
+            <h4>Challenges</h4>
+            <ul>
+              <li>High spectrum acquisition costs (capital intensive)</li>
+              <li>AGR dues crisis (Vodafone-Idea survival)</li>
+              <li>ARPU monetization pressure (competitive pricing)</li>
+              <li>Rural connectivity gaps</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OIL & GAS -->
+    <div id="sector-oilgas" class="sector-panel">
+      <div class="sector-card">
+        <div class="sector-badge">Source: IIM Calcutta Casebook 2023-24 | IBEF</div>
+        <h3>Oil & Gas Industry</h3>
+        <p class="sector-overview">India is the <strong>3rd largest consumer of oil globally</strong> and heavily dependent on imports (85% of crude requirements). The sector has three segments: Upstream (exploration & production), Midstream (pipelines & storage), and Downstream (refining & distribution).</p>
+        <div class="key-metrics-row">
+          <div class="metric-chip"><strong>Import Dependence:</strong> 85%</div>
+          <div class="metric-chip"><strong>Refining Capacity:</strong> 250+ MMTPA</div>
+          <div class="metric-chip"><strong>Major Players:</strong> ONGC, IOC, BPCL, Reliance</div>
+        </div>
+        <div class="sector-grid">
+          <div class="sector-block">
+            <h4>Value Chain — Upstream</h4>
+            <ul>
+              <li>Geo-survey & Reserve estimation</li>
+              <li>Drilling (Wells design, Drilling rigs)</li>
+              <li>Field Development (Feasibility, Infrastructure)</li>
+              <li>Reservoir management</li>
+            </ul>
+          </div>
+          <div class="sector-block">
+            <h4>Value Chain — Midstream</h4>
+            <ul>
+              <li>Pipelines (Design, Construction, Pumping)</li>
+              <li>Storage (Tank farms, Loading/Unloading)</li>
+              <li>LNG Operations (Gas processing, Liquefication)</li>
+            </ul>
+          </div>
+          <div class="sector-block">
+            <h4>Value Chain — Downstream</h4>
+            <ul>
+              <li>Refining (Crude distillation, Petrochemicals)</li>
+              <li>Blending (Refined product blending, QC)</li>
+              <li>Distribution (Retail network, Pricing, Branding)</li>
+            </ul>
+          </div>
+          <div class="sector-block">
+            <h4>Recent Policy Updates</h4>
+            <ul>
+              <li>India diversified crude sourcing from Guyana (2021)</li>
+              <li>Russian crude imports surge post-Ukraine war</li>
+              <li>City Gas Distribution (CGD) network expansion</li>
+              <li>OALP (Open Acreage Licensing Policy) for exploration</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- POWER -->
+    <div id="sector-power" class="sector-panel">
+      <div class="sector-card">
+        <div class="sector-badge">Source: IIM Calcutta Casebook 2023-24 | IBEF</div>
+        <h3>Power Industry</h3>
+        <p class="sector-overview">India is the <strong>3rd largest producer and consumer of electricity</strong> worldwide behind China and USA. Total installed capacity is 411 GW with peak demand of 205 GW. Governed by the Electricity Act (2003). India targets 500 GW renewable energy capacity.</p>
+        <div class="key-metrics-row">
+          <div class="metric-chip"><strong>Total Capacity:</strong> 411 GW</div>
+          <div class="metric-chip"><strong>Peak Demand:</strong> 205 GW</div>
+          <div class="metric-chip"><strong>Thermal (Coal):</strong> 57% of capacity</div>
+          <div class="metric-chip"><strong>Renewables:</strong> 30%</div>
+          <div class="metric-chip"><strong>NTPC Capacity:</strong> 72 GW</div>
+        </div>
+        <div class="sector-grid">
+          <div class="sector-block">
+            <h4>Power Sources Breakdown</h4>
+            <ul>
+              <li>Thermal (Coal/Diesel): 57%</li>
+              <li>Renewables (Solar/Wind): 30%</li>
+              <li>Hydro: 11%</li>
+              <li>Nuclear: 2%</li>
+            </ul>
+          </div>
+          <div class="sector-block">
+            <h4>Industry Trends</h4>
+            <ul>
+              <li>Renewable energy capacity addition (Solar, Wind)</li>
+              <li>Smart grid development & IoT integration</li>
+              <li>Digitalization of DISCOM operations</li>
+              <li>Decentralized power generation (Rooftop solar)</li>
+            </ul>
+          </div>
+          <div class="sector-block">
+            <h4>Key Challenges</h4>
+            <ul>
+              <li>Financial viability of DISCOMs (distribution companies)</li>
+              <li>Aging infrastructure requiring upgrades</li>
+              <li>Energy theft & T&D losses (~20%)</li>
+              <li>Coal import dependency & price volatility</li>
+            </ul>
+          </div>
+          <div class="sector-block">
+            <h4>Policy Updates</h4>
+            <ul>
+              <li>81 thermal plants to be replaced by renewables by 2026</li>
+              <li>100% FDI available in power sector</li>
+              <li>UDAY, DDUGJY, IPDS schemes for electrification</li>
+              <li>EXIM Bank $100M credit to Sri Lanka for 70% renewable target</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEEL -->
+    <div id="sector-steel" class="sector-panel">
+      <div class="sector-card">
+        <div class="sector-badge">Source: IIM Ahmedabad Casebook 2022-23 | FMS Casebook 2023-24</div>
+        <h3>Steel Industry</h3>
+        <p class="sector-overview">India is the <strong>2nd largest steel producer globally</strong>. The industry is capital-intensive with complex value chains from iron ore extraction to finished steel products. Key players include Tata Steel, JSW, SAIL, and ArcelorMittal Nippon Steel India.</p>
+        <div class="key-metrics-row">
+          <div class="metric-chip"><strong>Production:</strong> 120+ MTPA</div>
+          <div class="metric-chip"><strong>Capacity Utilization:</strong> ~80%</div>
+          <div class="metric-chip"><strong>Key End-Users:</strong> Construction (65%), Automotive (12%)</div>
+        </div>
+        <div class="sector-grid">
+          <div class="sector-block">
+            <h4>Value Chain</h4>
+            <ul>
+              <li>Iron Ore Mining → Beneficiation → Pelletization</li>
+              <li>Blast Furnace / EAF (Electric Arc Furnace)</li>
+              <li>Hot Rolling / Cold Rolling</li>
+              <li>Finishing (Galvanizing, Coating)</li>
+              <li>Distribution to end-users</li>
+            </ul>
+          </div>
+          <div class="sector-block">
+            <h4>Cost Structure</h4>
+            <ul>
+              <li>Raw Materials (Iron Ore, Coking Coal): ~60%</li>
+              <li>Energy (Electricity, Fuel): ~15%</li>
+              <li>Labour & Overheads: ~10%</li>
+              <li>Logistics & Transportation: ~10%</li>
+              <li>Maintenance & Capex: ~5%</li>
+            </ul>
+          </div>
+          <div class="sector-block">
+            <h4>Key Challenges</h4>
+            <ul>
+              <li>Coking coal import dependency (China/Australia)</li>
+              <li>Price cyclicality linked to global demand</li>
+              <li>Carbon emission reduction mandates</li>
+              <li>Overcapacity concerns in China affecting global prices</li>
+            </ul>
+          </div>
+          <div class="sector-block">
+            <h4>Industry Trends</h4>
+            <ul>
+              <li>Green steel (hydrogen-based DRI)</li>
+              <li>Electric Arc Furnace (EAF) adoption</li>
+              <li>PLI scheme for specialty steel</li>
+              <li>Infrastructure-led demand boost (National Infrastructure Pipeline)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RETAIL -->
+    <div id="sector-retail" class="sector-panel">
+      <div class="sector-card">
+        <div class="sector-badge">Source: IIM Ahmedabad Casebook 2022-23 | FMS Casebook 2023-24</div>
+        <h3>Retail Industry</h3>
+        <p class="sector-overview">India's retail sector is the <strong>4th largest in the world</strong>. Organized retail accounts for ~12% while unorganized (kirana stores, wet markets) holds the rest. The sector is transforming through modern trade, e-commerce, and quick commerce channels.</p>
+        <div class="key-metrics-row">
+          <div class="metric-chip"><strong>Market Size:</strong> ~$883B (2022)</div>
+          <div class="metric-chip"><strong>Organized Retail:</strong> 12%</div>
+          <div class="metric-chip"><strong>CAGR:</strong> 9% (2019-24)</div>
+        </div>
+        <div class="sector-grid">
+          <div class="sector-block">
+            <h4>Retail Formats</h4>
+            <ul>
+              <li>Hypermarkets / Supermarkets (Big Bazaar, Reliance Retail)</li>
+              <li>Specialty Stores (Croma, Titan, Westside)</li>
+              <li>Convenience Stores & Kirana</li>
+              <li>E-commerce platforms (Meesho, Amazon, Flipkart)</li>
+              <li>Quick Commerce (Blinkit, Zepto, Swiggy Instamart)</li>
+            </ul>
+          </div>
+          <div class="sector-block">
+            <h4>Key Revenue Metrics</h4>
+            <ul>
+              <li>Revenue per sq. ft. (key retail KPI)</li>
+              <li>Same-Store Sales Growth (SSSG)</li>
+              <li>Inventory Turnover Ratio</li>
+              <li>Customer footfall & conversion rate</li>
+              <li>Average Transaction Value (ATV)</li>
+            </ul>
+          </div>
+          <div class="sector-block">
+            <h4>Industry Trends</h4>
+            <ul>
+              <li>Phygital retail (online + offline integration)</li>
+              <li>Private label growth for higher margins</li>
+              <li>Loyalty programs & personalization</li>
+              <li>Tier 2/3 city expansion</li>
+            </ul>
+          </div>
+          <div class="sector-block">
+            <h4>Key Challenges</h4>
+            <ul>
+              <li>High real estate costs in metros</li>
+              <li>Inventory management & shrinkage</li>
+              <li>Supply chain complexity (multi-vendor)</li>
+              <li>Price competition from e-commerce</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REAL ESTATE -->
+    <div id="sector-realestate" class="sector-panel">
+      <div class="sector-card">
+        <div class="sector-badge">Source: IIM Lucknow Casebook 2026</div>
+        <h3>Real Estate Industry</h3>
+        <p class="sector-overview">India's real estate sector is expected to reach <strong>$1 trillion by 2030</strong>, contributing 13% to GDP. It is one of the largest employers in the country. The sector spans residential, commercial, retail, hospitality, and special economic zones.</p>
+        <div class="key-metrics-row">
+          <div class="metric-chip"><strong>Market Size (2030E):</strong> $1T</div>
+          <div class="metric-chip"><strong>GDP Contribution:</strong> 6-7% currently</div>
+          <div class="metric-chip"><strong>Employment:</strong> 50M+ jobs</div>
+        </div>
+        <div class="sector-grid">
+          <div class="sector-block">
+            <h4>Segments</h4>
+            <ul>
+              <li>Residential (Affordable, Mid, Premium, Luxury)</li>
+              <li>Commercial (Office, Coworking)</li>
+              <li>Retail Real Estate (Malls, High streets)</li>
+              <li>Industrial & Warehousing (logistics parks)</li>
+              <li>Hospitality (Hotels, Resorts)</li>
+            </ul>
+          </div>
+          <div class="sector-block">
+            <h4>Key Drivers</h4>
+            <ul>
+              <li>Urbanization rate (~35% currently, rising)</li>
+              <li>Interest rates (RBI repo rate impact)</li>
+              <li>Government schemes (PMAY, Smart Cities)</li>
+              <li>NRI investment & demand</li>
+              <li>Work-from-office revival (commercial real estate)</li>
+            </ul>
+          </div>
+          <div class="sector-block">
+            <h4>Trends</h4>
+            <ul>
+              <li>REITs (Real Estate Investment Trusts) growth</li>
+              <li>Affordable housing demand surge</li>
+              <li>Green buildings & LEED certification</li>
+              <li>Co-living & co-working spaces</li>
+              <li>PropTech disruption (virtual tours, digital closings)</li>
+            </ul>
+          </div>
+          <div class="sector-block">
+            <h4>Challenges</h4>
+            <ul>
+              <li>Project delivery delays & RERA compliance</li>
+              <li>Land acquisition bottlenecks</li>
+              <li>Financing risk (high leverage by developers)</li>
+              <li>Stalled projects (post-NBFC crisis legacy)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div><!-- /industry -->
+
+<!-- ═══════════════════════════ FRAMEWORKS TAB ═══════════════════════════ -->
+<div id="tab-frameworks" class="tab-content">
+  <div class="framework-wrap">
+    <div class="fw-intro">
+      <h2>Case Interview Frameworks</h2>
+      <p>Master the essential frameworks used in consulting case interviews. Each framework below is drawn directly from IIM Ahmedabad, Calcutta, and Lucknow casebooks.</p>
+    </div>
+
+    <div class="fw-tabs-bar">
+      <button class="fw-tab-btn active" onclick="showFW('profitability')">📊 Profitability</button>
+      <button class="fw-tab-btn" onclick="showFW('marketentry')">🌍 Market Entry</button>
+      <button class="fw-tab-btn" onclick="showFW('pricing')">💰 Pricing</button>
+      <button class="fw-tab-btn" onclick="showFW('growth')">📈 Growth Strategy</button>
+      <button class="fw-tab-btn" onclick="showFW('mergers')">🤝 M&A / PE</button>
+      <button class="fw-tab-btn" onclick="showFW('general')">🧰 General Tools</button>
+    </div>
+
+    <!-- PROFITABILITY FRAMEWORK -->
+    <div id="fw-profitability" class="fw-panel active">
+      <div class="fw-card">
+        <h3>Profitability Framework</h3>
+        <p class="fw-desc">A profitability case examines the underlying reasons for a company's decline (or improvement) in profits. The fundamental equation: <strong>Profit = Revenue − Costs</strong>. Always confirm: Is the issue revenue-side, cost-side, or both? Is it industry-wide or firm-specific?</p>
+
+        <div class="fw-tree">
+          <h4>Core Issue Tree</h4>
+          <div class="fw-branch">
+            <div class="fw-node">
+              <div class="fw-node-title">PROFIT = REVENUE − COST</div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+              <div class="fw-node">
+                <div class="fw-node-title">📈 Revenue Issues</div>
+                <div class="fw-node-items">
+                  <span class="fw-chip">Price × Volume</span>
+                  <span class="fw-chip">Product Mix</span>
+                  <span class="fw-chip">Market Share</span>
+                  <span class="fw-chip">Market Size</span>
+                </div>
+              </div>
+              <div class="fw-node">
+                <div class="fw-node-title">📉 Cost Issues</div>
+                <div class="fw-node-items">
+                  <span class="fw-chip">Fixed Costs</span>
+                  <span class="fw-chip">Variable Costs</span>
+                  <span class="fw-chip">Operational</span>
+                  <span class="fw-chip">Non-Operational</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="fw-steps">
+          <div class="fw-step">
+            <div class="fw-step-num">1</div>
+            <div class="fw-step-body">
+              <h5>Clarify & Scope</h5>
+              <p>Confirm problem statement. Ask: For how long? Which geography? Which product lines? Compare to industry or just internal trend?</p>
+            </div>
+          </div>
+          <div class="fw-step">
+            <div class="fw-step-num">2</div>
+            <div class="fw-step-body">
+              <h5>Revenue Deep Dive</h5>
+              <p>Revenue = Price × Quantity. Drill into: Has price changed? Has volume changed? Is it product mix? Segment by product/geography/customer to find the anomaly. Use customer journey (Awareness → Purchase → Retention) when conventional splits don't work.</p>
+            </div>
+          </div>
+          <div class="fw-step">
+            <div class="fw-step-num">3</div>
+            <div class="fw-step-body">
+              <h5>Cost Deep Dive</h5>
+              <p>Separate Fixed vs Variable costs. Within each, use Value Chain Analysis: R&D → Raw Materials → Production → Distribution → Marketing → After-Sales. Use PESTEL for external macro cost drivers.</p>
+            </div>
+          </div>
+          <div class="fw-step">
+            <div class="fw-step-num">4</div>
+            <div class="fw-step-body">
+              <h5>Root Cause Identification</h5>
+              <p>Is it internal (product quality, operations, pricing strategy) or external (competition, regulation, macroeconomics, customer preferences)? Validate with data provided.</p>
+            </div>
+          </div>
+          <div class="fw-step">
+            <div class="fw-step-num">5</div>
+            <div class="fw-step-body">
+              <h5>Recommendations</h5>
+              <p>Short-term (quick wins) vs Long-term (structural). Prioritize by Impact × Ease. Address both revenue enhancement and cost optimization. Conclude with risks.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="fw-two-col">
+          <div class="fw-col-card">
+            <h4>Revenue Breakdown</h4>
+            <ul>
+              <li>Price (list price, discounts, mix)</li>
+              <li># Customers × Purchase frequency × Order value</li>
+              <li>New vs Repeat customers</li>
+              <li>Market share × Market size</li>
+              <li>Segment-level analysis (B2B vs B2C, geography)</li>
+            </ul>
+          </div>
+          <div class="fw-col-card">
+            <h4>Cost Breakdown</h4>
+            <ul>
+              <li>Fixed: Rent, Salaries, Depreciation, Amortization</li>
+              <li>Variable: Raw Materials, Labour (direct), Commissions</li>
+              <li>Semi-variable: Utilities, Maintenance</li>
+              <li>Non-operational: Finance costs, Bad debts</li>
+              <li>Value chain mapping for cost localization</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tip-box">
+          <strong>💡 Pro Tips from IIM Casebooks:</strong> Always ask if the issue is industry-wide or company-specific first — this narrows your tree immediately. Use MECE buckets. When revenue is the issue, always split by segment before diving into price vs volume. Never jump to recommendations before finding the root cause.
+        </div>
+      </div>
+    </div>
+
+    <!-- MARKET ENTRY FRAMEWORK -->
+    <div id="fw-marketentry" class="fw-panel">
+      <div class="fw-card">
+        <h3>Market Entry Framework</h3>
+        <p class="fw-desc">Market entry cases ask whether a company should enter a new geography, segment, or product category. The framework has four key stages: Qualifying Questions → Decision to Enter → Mode of Entry → Operationalizing.</p>
+
+        <div class="fw-steps">
+          <div class="fw-step">
+            <div class="fw-step-num">A</div>
+            <div class="fw-step-body">
+              <h5>Qualifying Questions (Scoping)</h5>
+              <p>Understand the company: current geography, USP, target segment. Understand the motive: profit increase, market share, diversification, regulatory. Ask about constraints: time, capital, breakeven expectations.</p>
+            </div>
+          </div>
+          <div class="fw-step">
+            <div class="fw-step-num">B</div>
+            <div class="fw-step-body">
+              <h5>Decision to Enter — Market Attractiveness</h5>
+              <p><strong>Quantitative:</strong> Market size & growth rate, Breakeven analysis (NPV, IRR, Payback period), Expected revenues & costs. <strong>Qualitative:</strong> Country/macro analysis (PESTEL), Industry analysis (Porter's 5 Forces), Need-gap analysis & STP (Segment → Target → Position).</p>
+            </div>
+          </div>
+          <div class="fw-step">
+            <div class="fw-step-num">C</div>
+            <div class="fw-step-body">
+              <h5>Mode of Entry</h5>
+              <p>Evaluate: Organic Growth (Greenfield), M&A (Acquisition), Joint Venture (JV), Licensing/Franchise. Rate each on: Costs, Time to profitability, Autonomy/Control, Risk. Consider on-shore vs off-shore, niche player acquisition, partnership with local bank/firm.</p>
+            </div>
+          </div>
+          <div class="fw-step">
+            <div class="fw-step-num">D</div>
+            <div class="fw-step-body">
+              <h5>Operationalizing (Setup)</h5>
+              <p>Establish the value chain: Sourcing → Manufacturing → Logistics → Distribution → Marketing → Customer Service. Apply 4P framework: Product (adapt vs standard?), Price (local pricing), Place (channels), Promotion (messaging).</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="fw-questions">
+          <div class="fw-q">Why this country/market specifically?</div>
+          <div class="fw-q">Why now — what triggered this decision?</div>
+          <div class="fw-q">What is our competitive advantage in this new market?</div>
+          <div class="fw-q">Are there regulatory/FDI restrictions?</div>
+          <div class="fw-q">What is the expected market share & timeline?</div>
+          <div class="fw-q">Do we have existing operations that overlap?</div>
+          <div class="fw-q">What is the risk appetite of the company?</div>
+          <div class="fw-q">Is there an existing player we can acquire?</div>
+        </div>
+
+        <div class="tip-box">
+          <strong>💡 Pro Tip:</strong> Always ask about <em>motive</em> before the analysis. A defensive entry (blocking competition) needs a very different recommendation than an offensive entry (profit maximization). The IIM Lucknow casebook emphasizes: "Quantify the entry decision — always estimate Year 1 revenue and breakeven period."
+        </div>
+      </div>
+    </div>
+
+    <!-- PRICING FRAMEWORK -->
+    <div id="fw-pricing" class="fw-panel">
+      <div class="fw-card">
+        <h3>Pricing Framework</h3>
+        <p class="fw-desc">Pricing cases involve setting the optimal price for a new or existing product/service. The three main pricing methodologies are Cost-Based, Competition-Based, and Value-Based. Cost is the floor; Value is the ceiling; Competition gives the range.</p>
+
+        <div class="fw-two-col">
+          <div class="fw-col-card">
+            <h4>💰 Cost-Based Pricing (Floor)</h4>
+            <ul>
+              <li>R&D costs (amortized over product life)</li>
+              <li>Production costs: Fixed (factory, salaries) + Variable (materials, labour)</li>
+              <li>Breakeven period & WACC</li>
+              <li>Target margin / ROI requirements</li>
+              <li><em>Price = Cost per unit + Target margin</em></li>
+            </ul>
+          </div>
+          <div class="fw-col-card">
+            <h4>🏆 Value-Based Pricing (Ceiling)</h4>
+            <ul>
+              <li>Willingness-to-pay (WTP) of target customer</li>
+              <li>Opportunity cost for the customer</li>
+              <li>Benchmark against similar products/substitutes in market</li>
+              <li>Economic value created for customer (EVE model)</li>
+              <li><em>Price = Customer's WTP</em></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="fw-box">
+          <h4>⚔️ Competition-Based Pricing (Range)</h4>
+          <ul>
+            <li>Substitute products (pricing pressure from alternatives)</li>
+            <li>Direct competitors (existing products in category)</li>
+            <li>Price premium or discount vs competition (based on differentiation)</li>
+            <li>If highly differentiated → can command premium; commodity → price-taker</li>
+          </ul>
+        </div>
+
+        <div class="fw-box" style="margin-top:1rem;">
+          <h4>🌊 Demand/Supply-Based Pricing</h4>
+          <ul>
+            <li>Price elasticity of demand (how sensitive is quantity to price change?)</li>
+            <li>Dynamic pricing (surge pricing for perishables, events)</li>
+            <li>Yield management (airlines, hotels)</li>
+            <li>Finding the revenue-maximizing price point on demand curve</li>
+          </ul>
+        </div>
+
+        <div class="fw-steps" style="margin-top:1.5rem;">
+          <div class="fw-step">
+            <div class="fw-step-num">1</div>
+            <div class="fw-step-body"><h5>Understand the Product & Objective</h5><p>What is the product? New or existing? Is the objective market penetration, margin maximization, or competitive defense?</p></div>
+          </div>
+          <div class="fw-step">
+            <div class="fw-step-num">2</div>
+            <div class="fw-step-body"><h5>Calculate Cost-Based Floor</h5><p>Get fixed costs, variable costs, R&D amortization. Decide over how many units/years to recover fixed costs. Compute minimum viable price.</p></div>
+          </div>
+          <div class="fw-step">
+            <div class="fw-step-num">3</div>
+            <div class="fw-step-body"><h5>Estimate Value-Based Ceiling</h5><p>Use customer segmentation to find WTP. Benchmark against substitutes. Consider economic value created.</p></div>
+          </div>
+          <div class="fw-step">
+            <div class="fw-step-num">4</div>
+            <div class="fw-step-body"><h5>Check Competition Range</h5><p>Where are competitors priced? What is our differentiation that justifies deviation from competition pricing?</p></div>
+          </div>
+          <div class="fw-step">
+            <div class="fw-step-num">5</div>
+            <div class="fw-step-body"><h5>Set Final Price & Validate</h5><p>Price must be between Cost Floor and WTP Ceiling. Validate: Does this price make sense for a rational consumer? Test with elasticity if needed.</p></div>
+          </div>
+        </div>
+
+        <div class="fw-questions">
+          <div class="fw-q">What are the total fixed and variable costs?</div>
+          <div class="fw-q">Over how many units should fixed cost be recovered?</div>
+          <div class="fw-q">What is the customer's willingness to pay?</div>
+          <div class="fw-q">How are competitors pricing their products?</div>
+          <div class="fw-q">Is the product differentiated enough to command premium?</div>
+          <div class="fw-q">What is the price elasticity of demand?</div>
+        </div>
+
+        <div class="tip-box">
+          <strong>💡 Pricing Strategies to Know:</strong> Penetration Pricing (low entry price to gain share), Skimming (high initial price, then drop), Freemium, Bundle pricing, Price discrimination (different prices for different segments). Always sense-check: "Would a rational customer pay this?"
+        </div>
+      </div>
+    </div>
+
+    <!-- GROWTH STRATEGY FRAMEWORK -->
+    <div id="fw-growth" class="fw-panel">
+      <div class="fw-card">
+        <h3>Growth Strategy Framework</h3>
+        <p class="fw-desc">Growth strategy cases involve helping a company achieve a target growth rate (e.g., "double revenue in 5 years"). Use the Ansoff Matrix as the primary structure: Existing vs New (Products × Geographies). Then evaluate Organic vs Inorganic growth levers.</p>
+
+        <div class="fw-tree">
+          <h4>Ansoff Matrix — Growth Options</h4>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+            <div class="fw-node" style="border-left:4px solid #16a34a;">
+              <div class="fw-node-title">✅ Market Penetration (Existing Product × Existing Market)</div>
+              <p style="font-size:0.83rem;color:var(--text-light);margin-top:0.4rem;">Increase market share in current market. Levers: 4Ps (Price promotions, Product upgrades, Distribution expansion, Advertising).</p>
+            </div>
+            <div class="fw-node" style="border-left:4px solid #2563c8;">
+              <div class="fw-node-title">🆕 Product Development (New Product × Existing Market)</div>
+              <p style="font-size:0.83rem;color:var(--text-light);margin-top:0.4rem;">Launch new products to existing customers. R&D investment, innovation pipeline, licensing technology.</p>
+            </div>
+            <div class="fw-node" style="border-left:4px solid #d97706;">
+              <div class="fw-node-title">🌍 Market Development (Existing Product × New Market)</div>
+              <p style="font-size:0.83rem;color:var(--text-light);margin-top:0.4rem;">Expand to new geographies or customer segments with existing product. (Overlap with Market Entry Framework.)</p>
+            </div>
+            <div class="fw-node" style="border-left:4px solid #dc2626;">
+              <div class="fw-node-title">🚀 Diversification (New Product × New Market)</div>
+              <p style="font-size:0.83rem;color:var(--text-light);margin-top:0.4rem;">Highest risk. Core vs Non-Core offerings. Related vs Unrelated diversification. Usually via M&A.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="fw-two-col">
+          <div class="fw-col-card">
+            <h4>📗 Organic Growth Levers</h4>
+            <ul>
+              <li>Improve own competencies & efficiencies</li>
+              <li>Pricing & promotion strategies (incentives, awareness)</li>
+              <li>Distribution channel expansion (new channels, contracts)</li>
+              <li>Core offering enhancements (features, after-sales)</li>
+              <li>Non-core services & accessories</li>
+              <li>Digital transformation to reduce cost & improve reach</li>
+            </ul>
+          </div>
+          <div class="fw-col-card">
+            <h4>📘 Inorganic Growth Levers</h4>
+            <ul>
+              <li>M&A (Mergers & Acquisitions) — fastest but costliest</li>
+              <li>Joint Ventures (JV) — shared risk, shared control</li>
+              <li>Partnerships (distribution, technology, brand)</li>
+              <li>Franchise model (asset-light expansion)</li>
+              <li>Licensing (IP monetization)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="fw-steps">
+          <div class="fw-step">
+            <div class="fw-step-num">1</div>
+            <div class="fw-step-body"><h5>Align on Growth Target</h5><p>What is the target growth rate? By what timeline? Revenue growth, market share, or profitability? Is growth organic, inorganic, or both?</p></div>
+          </div>
+          <div class="fw-step">
+            <div class="fw-step-num">2</div>
+            <div class="fw-step-body"><h5>Diagnose Current State</h5><p>What is the current growth rate? Why is it insufficient? Internal constraints (capacity, product) or external (market saturation, competition)?</p></div>
+          </div>
+          <div class="fw-step">
+            <div class="fw-step-num">3</div>
+            <div class="fw-step-body"><h5>Generate Growth Options (Ansoff Matrix)</h5><p>Systematically evaluate all four quadrants. List specific initiatives under each.</p></div>
+          </div>
+          <div class="fw-step">
+            <div class="fw-step-num">4</div>
+            <div class="fw-step-body"><h5>Prioritize & Quantify</h5><p>Rate options on: Revenue potential, Feasibility, Timeline, Risk. Quantify top 2-3 initiatives. Build to the target growth number.</p></div>
+          </div>
+          <div class="fw-step">
+            <div class="fw-step-num">5</div>
+            <div class="fw-step-body"><h5>Recommend & Implementation Roadmap</h5><p>Short-term quick wins + Long-term strategic moves. Flag risks and dependencies.</p></div>
+          </div>
+        </div>
+
+        <div class="tip-box">
+          <strong>💡 Key Insight:</strong> Always confirm whether the growth target is absolute (revenue $X) or relative (X% CAGR). Build a simple model: Current Revenue × Growth Rate = Gap to close. Then show how your recommendations fill the gap. The IIM Ahmedabad casebook notes: "Always link recommendations back to the numbers."
+        </div>
+      </div>
+    </div>
+
+    <!-- M&A FRAMEWORK -->
+    <div id="fw-mergers" class="fw-panel">
+      <div class="fw-card">
+        <h3>M&A / PE Due Diligence Framework</h3>
+        <p class="fw-desc">M&A cases involve evaluating whether to acquire a target company or invest (PE/VC). Use the SMIOLF framework for evaluation, along with financial valuation and cultural/strategic fit assessment.</p>
+
+        <div class="fw-steps">
+          <div class="fw-step">
+            <div class="fw-step-num">1</div>
+            <div class="fw-step-body">
+              <h5>Scoping Questions</h5>
+              <p>Investment objective: Exit strategy / Growth / Strategic Diversification? Fund style: Debt or Equity? Controlling or Non-Controlling stake? Existing portfolio synergies?</p>
+            </div>
+          </div>
+          <div class="fw-step">
+            <div class="fw-step-num">2</div>
+            <div class="fw-step-body">
+              <h5>SMIOLF Framework</h5>
+              <p><strong>S</strong>trategic Fit (vision alignment, market position), <strong>M</strong>arket Analysis (industry attractiveness, growth), <strong>I</strong>nvestment Financials (valuation, multiples, IRR), <strong>O</strong>perational Due Diligence (value chain, efficiencies), <strong>L</strong>egal & Regulatory (compliance, IP, liabilities), <strong>F</strong>it (cultural alignment, leadership).</p>
+            </div>
+          </div>
+          <div class="fw-step">
+            <div class="fw-step-num">3</div>
+            <div class="fw-step-body">
+              <h5>Synergy Analysis</h5>
+              <p>Revenue synergies (cross-selling, new markets). Cost synergies (economies of scale, shared infrastructure, headcount rationalization). Check: Combined A+B > standalone A and B.</p>
+            </div>
+          </div>
+          <div class="fw-step">
+            <div class="fw-step-num">4</div>
+            <div class="fw-step-body">
+              <h5>Valuation Methods</h5>
+              <p>DCF (Discounted Cash Flow), Comparable Company Analysis (trading multiples), Precedent Transactions (deal multiples). Key ratios: EV/EBITDA, P/E, P/BV depending on industry.</p>
+            </div>
+          </div>
+          <div class="fw-step">
+            <div class="fw-step-num">5</div>
+            <div class="fw-step-body">
+              <h5>Deal Structure & Risks</h5>
+              <p>All-cash vs stock deal? Earn-out clauses? Post-merger integration plan. Risk factors: PMI complexity, cultural clash, regulatory approvals (CCI in India).</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tip-box">
+          <strong>💡 Key Metrics for M&A:</strong> EBITDA multiples vary by industry (Tech: 15-25x, FMCG: 8-12x, Manufacturing: 5-8x). Always ask: "What is the strategic rationale beyond financials?" Often the interviewer wants you to challenge a deal that looks good on paper but has cultural or integration risks.
+        </div>
+      </div>
+    </div>
+
+    <!-- GENERAL TOOLS -->
+    <div id="fw-general" class="fw-panel">
+      <div class="fw-card">
+        <h3>General Frameworks & Tools</h3>
+        <p class="fw-desc">Beyond the core case-type frameworks, these analytical tools are used across all case types. Mastering these will significantly elevate your case performance.</p>
+
+        <div class="fw-two-col">
+          <div class="fw-col-card">
+            <h4>PESTEL Analysis (Macro)</h4>
+            <ul>
+              <li><strong>P</strong>olitical: Government stability, trade policies, FDI norms</li>
+              <li><strong>E</strong>conomic: GDP growth, inflation, interest rates, FX</li>
+              <li><strong>S</strong>ocial: Demographics, consumer trends, cultural factors</li>
+              <li><strong>T</strong>echnological: Innovation, digital disruption, R&D</li>
+              <li><strong>E</strong>nvironmental: ESG, climate regulations, carbon targets</li>
+              <li><strong>L</strong>egal: Regulations, IP laws, labour laws, compliance</li>
+            </ul>
+          </div>
+          <div class="fw-col-card">
+            <h4>Porter's Five Forces (Micro)</h4>
+            <ul>
+              <li><strong>Threat of New Entrants:</strong> Barriers to entry (capital, regulation, IP)</li>
+              <li><strong>Bargaining Power of Buyers:</strong> Price sensitivity, switching costs</li>
+              <li><strong>Bargaining Power of Suppliers:</strong> Concentration, substitutes for inputs</li>
+              <li><strong>Threat of Substitutes:</strong> Alternative products/services</li>
+              <li><strong>Industry Rivalry:</strong> Number of players, price wars, differentiation</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="fw-two-col">
+          <div class="fw-col-card">
+            <h4>4P Framework (Marketing)</h4>
+            <ul>
+              <li><strong>Product:</strong> Features, quality, packaging, brand, USP</li>
+              <li><strong>Price:</strong> Strategy (penetration/skimming), discounts, loyalty</li>
+              <li><strong>Place:</strong> Distribution channels, supply chain, retail placement</li>
+              <li><strong>Promotion:</strong> ATL/BTL advertising, PR, personal selling, digital</li>
+            </ul>
+          </div>
+          <div class="fw-col-card">
+            <h4>Value Chain Analysis</h4>
+            <ul>
+              <li>R&D → Raw Material Procurement → Inbound Logistics</li>
+              <li>Production (Manufacturing, QC, Assembly)</li>
+              <li>Outbound Logistics → Distribution → Marketing → Sales</li>
+              <li>After-Sales Service</li>
+              <li>For each stage: Man, Machine, Method, Measurement</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="fw-two-col">
+          <div class="fw-col-card">
+            <h4>BCG Matrix (Portfolio)</h4>
+            <ul>
+              <li><strong>Stars:</strong> High market share, high growth → Invest</li>
+              <li><strong>Cash Cows:</strong> High share, low growth → Harvest</li>
+              <li><strong>Question Marks:</strong> Low share, high growth → Decide</li>
+              <li><strong>Dogs:</strong> Low share, low growth → Divest</li>
+            </ul>
+          </div>
+          <div class="fw-col-card">
+            <h4>Breakeven & NPV Analysis</h4>
+            <ul>
+              <li>Breakeven = Fixed Investment ÷ Annual Profit Margin</li>
+              <li>Annual Revenue = Demand × Price</li>
+              <li>Annual Profit = Revenue − Fixed Costs − (Units × VC)</li>
+              <li>NPV = Σ [Cash Flow / (1+r)ᵗ] − Initial Investment</li>
+              <li>IRR: Discount rate where NPV = 0</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="fw-box">
+          <h4>🧭 Case Hygiene — Golden Rules from IIM Casebooks</h4>
+          <ul>
+            <li>Always clarify the problem statement before jumping in — never assume</li>
+            <li>Be MECE (Mutually Exclusive, Collectively Exhaustive) in every structure you build</li>
+            <li>Talk through your math — never calculate silently; narrate each step</li>
+            <li>Sanity check your numbers: Does 1 crore customers per day make sense?</li>
+            <li>Mistakes are okay — recover gracefully, don't repeat them</li>
+            <li>Drive the case — don't wait for the interviewer to tell you where to go next</li>
+            <li>Conclude with: Summary → Recommendation → Implementation → Risks</li>
+          </ul>
+        </div>
+
+        <div class="tip-box">
+          <strong>💡 Internal vs External Buckets:</strong> Whenever you're stuck on root cause, default to Internal (product, process, brand, leadership, pricing) vs External (competition, government regulation, macroeconomics, customer behavior change). This MECE bucket works for almost any case type.
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- /frameworks -->
+
+<!-- ═══════════════════════════ PRACTICE TAB (PLACEHOLDER) ═══════════════════════════ -->
+<div id="tab-practice" class="tab-content">
+  <div style="max-width:900px;margin:4rem auto;padding:2rem;text-align:center;">
+    <div style="font-size:3rem;margin-bottom:1rem;">📋</div>
+    <h2 style="font-family:'Playfair Display',serif;color:var(--navy);font-size:2rem;margin-bottom:1rem;">Case Interview Practice</h2>
+    <p style="color:var(--text-light);font-size:1rem;line-height:1.7;margin-bottom:1.5rem;">50+ detailed case interview transcripts across Profitability, Market Entry, Pricing, Growth Strategy, and Unconventional cases — sourced from IIM Ahmedabad, Calcutta, Lucknow & FMS Delhi casebooks. <strong>Coming in Part 3!</strong></p>
+    <div style="background:var(--bg2);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem;text-align:left;">
+      <strong style="color:var(--navy);">What's included in Part 3:</strong>
+      <ul style="list-style:none;margin-top:0.8rem;display:flex;flex-direction:column;gap:0.4rem;">
+        <li style="font-size:0.9rem;color:var(--text);">✅ 15+ Profitability Cases (Delhi Metro, Beer Manufacturer, Hospital Chain, SaaS Firm, SpiceJet vs IndiGo...)</li>
+        <li style="font-size:0.9rem;color:var(--text);">✅ 10+ Market Entry Cases (Investment Bank in India, Ratan Tata Car Service, Chemical Company...)</li>
+        <li style="font-size:0.9rem;color:var(--text);">✅ 8+ Pricing Cases (Korean Fertilizer, Toothbrush, Teleporting Machine, Expressway Pricing...)</li>
+        <li style="font-size:0.9rem;color:var(--text);">✅ 8+ Growth Strategy Cases (Flipkart 2017, South African Telecom, Online Travel Aggregator...)</li>
+        <li style="font-size:0.9rem;color:var(--text);">✅ 10+ Unconventional Cases (Ministry cases, VC Firm, Analytics Firm, Google MSMEs...)</li>
+      </ul>
+    </div>
+    <button class="open-chat-btn" onclick="openChat()" style="font-size:0.9rem;">Ask AI Coach about any case now →</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ GUESSTIMATE TAB (PLACEHOLDER) ═══════════════════════════ -->
+<div id="tab-guesstimate" class="tab-content">
+  <div style="max-width:900px;margin:4rem auto;padding:2rem;text-align:center;">
+    <div style="font-size:3rem;margin-bottom:1rem;">🔢</div>
+    <h2 style="font-family:'Playfair Display',serif;color:var(--navy);font-size:2rem;margin-bottom:1rem;">Guesstimate Practice</h2>
+    <p style="color:var(--text-light);font-size:1rem;line-height:1.7;margin-bottom:1.5rem;">50+ detailed guesstimate problems with full solutions, step-by-step approaches and key assumptions — from IIM Ahmedabad, Calcutta, Lucknow & FMS Delhi casebooks. <strong>Coming in Part 3!</strong></p>
+    <div style="background:var(--bg2);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem;text-align:left;">
+      <strong style="color:var(--navy);">Categories included in Part 3:</strong>
+      <ul style="list-style:none;margin-top:0.8rem;display:flex;flex-direction:column;gap:0.4rem;">
+        <li style="font-size:0.9rem;color:var(--text);">📊 Market Sizing (EV market India, Home Renovation Hyderabad, Maternity Wear India...)</li>
+        <li style="font-size:0.9rem;color:var(--text);">🚗 Transportation (Cars on Bandra-Worli Sea Link, Petrol Pumps in Delhi, Delhi Airport Passengers...)</li>
+        <li style="font-size:0.9rem;color:var(--text);">🍕 Food & Consumer (Cheese Burst Pizzas at Dominos, Gold Flake cigarettes in Mumbai, TOI Revenue...)</li>
+        <li style="font-size:0.9rem;color:var(--text);">⚡ Utilities (Monthly Electricity consumption India, Petrol consumption India...)</li>
+        <li style="font-size:0.9rem;color:var(--text);">🛒 E-commerce & Tech (Amazon India daily orders, YouTube ad duration, Dream11 revenue...)</li>
+        <li style="font-size:0.9rem;color:var(--text);">🎬 Unconventional (Movie Production Decision Tree, Number of bullets fired India...)</li>
+      </ul>
+    </div>
+    <button class="open-chat-btn" onclick="openChat()" style="font-size:0.9rem;">Ask AI Coach for a guesstimate now →</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ TIPS TAB (PLACEHOLDER) ═══════════════════════════ -->
+<div id="tab-tips" class="tab-content">
+  <div style="max-width:900px;margin:4rem auto;padding:2rem;text-align:center;">
+    <div style="font-size:3rem;margin-bottom:1rem;">💡</div>
+    <h2 style="font-family:'Playfair Display',serif;color:var(--navy);font-size:2rem;margin-bottom:1rem;">Tips & Tricks for Consulting Interviews</h2>
+    <p style="color:var(--text-light);font-size:1rem;line-height:1.7;margin-bottom:1.5rem;">Curated insider advice from candidates who successfully cracked MBB, Big 4, and boutique consulting firms. <strong>Coming in Part 3!</strong></p>
+    <button class="open-chat-btn" onclick="openChat()" style="font-size:0.9rem;">Ask AI Coach for interview tips now →</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ PERSONALIZED GUIDANCE TAB ═══════════════════════════ -->
+<div id="tab-guidance" class="tab-content">
+  <div class="guidance-hero">
+    <h2>Personalized Guidance</h2>
+    <p>Receive one-on-one support for interview preparation and CV reviews tailored to your unique needs. Work directly with Kunal Sadhukhan — an experienced consulting professional who has guided 50+ aspirants into top firms.</p>
+    <a href="https://topmate.io/kunal_sadhukhan" target="_blank" class="guidance-btn">📅 Book a Session on Topmate →</a>
+  </div>
+  <div class="guidance-cards">
+    <div class="guidance-card">
+      <div class="guidance-card-icon">🎯</div>
+      <h3>Mock Case Interviews</h3>
+      <p>Live 1-on-1 case practice with real-time feedback on structure, communication, and analytical rigor. Tailored to your target firm's style.</p>
+    </div>
+    <div class="guidance-card">
+      <div class="guidance-card-icon">📄</div>
+      <h3>CV & Resume Review</h3>
+      <p>Detailed review of your CV with consulting-specific guidance on how to frame your experience, quantify impact, and stand out to recruiters.</p>
+    </div>
+    <div class="guidance-card">
+      <div class="guidance-card-icon">💬</div>
+      <h3>Interview Strategy</h3>
+      <p>Firm-specific preparation (McKinsey PEI, BCG behavioral, Deloitte case), HR round coaching, and career path discussions.</p>
+    </div>
+  </div>
+  <div style="max-width:700px;margin:0 auto 3rem;padding:0 2rem;text-align:center;">
+    <p style="color:var(--text-light);font-size:0.95rem;line-height:1.75;margin-bottom:1.5rem;">Sessions available for freshers from undergrad/MBA programs, experienced professionals transitioning to consulting, and anyone looking to crack summer or final placements at top consulting firms.</p>
+    <a href="https://topmate.io/kunal_sadhukhan" target="_blank" class="guidance-btn" style="display:inline-flex;">🚀 Connect with Kunal on Topmate →</a>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ AI CHATBOT ═══════════════════════════ -->
+<div id="chat-widget">
+  <div id="chat-window">
+    <div class="chat-header">
+      <div class="chat-header-info">
+        <div class="chat-avatar">🤖</div>
+        <div>
+          <h4>Consulting Prep Assistant</h4>
+          <p>AI-powered coach — always online</p>
+        </div>
+      </div>
+      <button class="chat-close" onclick="closeChat()">✕</button>
+    </div>
+    <div id="chat-messages">
+      <div class="chat-msg bot">👋 Hi! I'm your <strong>Consulting Prep Assistant</strong>, powered by AI.<br><br>I can help you with case frameworks, guesstimate practice, industry knowledge, interview tips, and more. What would you like to work on today?</div>
+    </div>
+    <div class="chat-suggestions">
+      <button class="chat-sug" onclick="sendSug('Give me a profitability case to practice')">📊 Practice a case</button>
+      <button class="chat-sug" onclick="sendSug('Give me a guesstimate problem')">🔢 Guesstimate</button>
+      <button class="chat-sug" onclick="sendSug('Explain the Market Entry framework')">📐 Framework</button>
+      <button class="chat-sug" onclick="sendSug('Top tips for McKinsey interviews')">💡 MCK Tips</button>
+    </div>
+    <div class="chat-input-row">
+      <input id="chat-input" type="text" placeholder="Ask me anything about consulting prep..." onkeydown="if(event.key==='Enter')sendMsg()"/>
+      <button id="chat-send" onclick="sendMsg()">
+        <svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg>
+      </button>
+    </div>
+  </div>
+  <div id="chat-bubble" onclick="toggleChat()">
+    <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
+    <div class="chat-ping"></div>
+  </div>
+</div>
+
+<script>
+// ── TAB NAVIGATION ──
+function showTab(tab) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  const tabs = ['home','industry','frameworks','practice','guesstimate','tips','guidance'];
+  const idx = tabs.indexOf(tab);
+  if (idx >= 0) document.querySelectorAll('.nav-tab')[idx].classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ── INDUSTRY SECTOR TABS ──
+function showSector(sector) {
+  document.querySelectorAll('.sector-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.sector-tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('sector-' + sector).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// ── FRAMEWORK TABS ──
+function showFW(fw) {
+  document.querySelectorAll('.fw-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.fw-tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('fw-' + fw).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// ── CHATBOT ──
+let chatOpen = false;
+
+function toggleChat() {
+  chatOpen = !chatOpen;
+  const win = document.getElementById('chat-window');
+  if (chatOpen) win.classList.add('open');
+  else win.classList.remove('open');
+}
+
+function openChat() {
+  chatOpen = true;
+  document.getElementById('chat-window').classList.add('open');
+  setTimeout(() => document.getElementById('chat-input').focus(), 300);
+}
+
+function closeChat() {
+  chatOpen = false;
+  document.getElementById('chat-window').classList.remove('open');
+}
+
+function addMsg(text, who) {
+  const box = document.getElementById('chat-messages');
+  const div = document.createElement('div');
+  div.className = 'chat-msg ' + who;
+  div.innerHTML = text;
+  box.appendChild(div);
+  box.scrollTop = box.scrollHeight;
+  return div;
+}
+
+function sendSug(text) {
+  document.getElementById('chat-input').value = text;
+  sendMsg();
+}
+
+async function sendMsg() {
+  const input = document.getElementById('chat-input');
+  const msg = input.value.trim();
+  if (!msg) return;
+  input.value = '';
+  addMsg(msg, 'user');
+  const typing = addMsg('...', 'bot typing');
+
+  const systemPrompt = `You are the "Consulting Prep Assistant" for "Your Consulting Preparation Buddy" — a premium platform for aspiring management consultants targeting IIM placements, MBB, Big 4, and other top consulting firms.
+
+Your role is to:
+1. Help users practice case interviews with real case scenarios (profitability, market entry, pricing, growth, M&A, guesstimates)
+2. Explain frameworks clearly (Profitability, Market Entry, Pricing, Growth, PESTEL, Porter's 5 Forces, 4P, Value Chain, BCG Matrix)
+3. Give guesstimate problems with step-by-step solutions
+4. Share industry knowledge (Automobile, Aviation, E-Commerce, Pharma, IT, Financial Services, FMCG, Telecom, etc.)
+5. Give practical tips for McKinsey, BCG, Bain, Deloitte, KPMG, EY, Accenture interviews
+6. Help with HR/behavioral questions using STAR format
+7. Guide on CV writing for consulting roles
+
+When giving a case: present the problem statement first, then wait for their structure. Guide them through it interactively.
+When giving a guesstimate: state the question, then if asked, walk through a structured solution with assumptions.
+Be encouraging, structured, and concise. Use bullet points for clarity. Keep responses focused.`;
+
+  try {
+    const resp = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: systemPrompt,
+        messages: [{ role: 'user', content: msg }]
+      })
+    });
+    const data = await resp.json();
+    const reply = data.content && data.content[0] ? data.content[0].text : "I'm having trouble connecting right now. Please try again in a moment.";
+    typing.className = 'chat-msg bot';
+    typing.innerHTML = reply.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\*(.*?)\*/g, '<em>$1</em>');
+  } catch(e) {
+    typing.className = 'chat-msg bot';
+    typing.innerHTML = "I'm having trouble connecting to the AI right now. Please check your connection or try again shortly. In the meantime, explore the frameworks and industry content on this site! 💪";
+  }
+}
+</script>
+
+</body>
+</html>
