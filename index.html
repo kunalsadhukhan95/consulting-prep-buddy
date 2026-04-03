@@ -921,6 +921,90 @@ body {
   .nav-inner { height: auto; padding: 0.5rem 0; }
   .section-wrap { padding: 2rem 1rem; }
 }
+<style>
+/* ── GUIDANCE STICKY STRIP ── */
+.guidance-strip {
+  background: linear-gradient(90deg, #1a2744 0%, #2563c8 100%);
+  color: white;
+  padding: 0.65rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  font-size: 0.85rem;
+}
+.guidance-strip p { opacity: 0.92; }
+.guidance-strip strong { opacity: 1; }
+.topmate-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: #f59e0b;
+  color: #1a2744;
+  padding: 0.4rem 1.1rem;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-decoration: none;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.topmate-btn:hover { background: #fbbf24; transform: scale(1.04); }
+
+.case-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(26,39,68,0.06);
+  transition: box-shadow 0.2s;
+}
+.case-card:hover { box-shadow: var(--card-shadow); }
+.case-header {
+  padding: 1.2rem 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  background: var(--bg);
+  transition: background 0.18s;
+}
+.case-header:hover { background: var(--bg2); }
+.case-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; flex: 0 0 auto; }
+.case-title { flex: 1; font-weight: 700; font-size: 0.95rem; color: var(--navy); font-family: 'Playfair Display', serif; }
+.case-toggle { color: var(--text-light); font-size: 0.8rem; transition: transform 0.2s; }
+.case-header.open .case-toggle { transform: rotate(180deg); }
+.case-body { display: none; padding: 1.5rem; border-top: 1px solid var(--border); }
+.case-body.show { display: block; }
+
+.case-badge { 
+  font-size: 0.72rem; font-weight: 700; padding: 0.2rem 0.7rem; 
+  border-radius: 50px; white-space: nowrap;
+}
+.case-badge.profitability { background: #dcfce7; color: #15803d; }
+.case-badge.marketentry { background: #dbeafe; color: #1d4ed8; }
+.case-badge.pricing { background: #fef9c3; color: #a16207; }
+.case-badge.growth { background: #f3e8ff; color: #7e22ce; }
+.case-badge.unconventional { background: #ffe4e6; color: #be123c; }
+
+.case-difficulty {
+  font-size: 0.7rem; font-weight: 600; padding: 0.2rem 0.6rem;
+  border-radius: 50px;
+}
+.case-difficulty.easy { background: #dcfce7; color: #15803d; }
+.case-difficulty.moderate { background: #fef9c3; color: #a16207; }
+.case-difficulty.hard { background: #fee2e2; color: #b91c1c; }
+.case-sector { font-size: 0.72rem; color: var(--text-light); }
+
+.case-problem { background: var(--bg2); border-radius: 10px; padding: 0.9rem 1.1rem; font-size: 0.88rem; color: var(--text); margin-bottom: 1rem; line-height: 1.65; }
+.case-facts { background: #fffbeb; border: 1px solid #fde68a; border-radius: 10px; padding: 0.9rem 1.1rem; font-size: 0.85rem; color: #78350f; margin-bottom: 1rem; line-height: 1.65; }
+.case-transcript { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; }
+.transcript-q { background: var(--bg2); border-left: 3px solid var(--navy); border-radius: 0 8px 8px 0; padding: 0.6rem 1rem; font-size: 0.85rem; color: var(--navy); font-weight: 500; }
+.transcript-a { background: var(--white); border: 1px solid var(--border); border-left: 3px solid var(--blue); border-radius: 0 8px 8px 0; padding: 0.6rem 1rem; font-size: 0.85rem; color: var(--text); margin-left: 1rem; }
+.case-takeaway { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 10px; padding: 0.9rem 1.1rem; font-size: 0.85rem; color: #14532d; line-height: 1.65; }
+</style>
 </style>
 </head>
 <body>
@@ -950,6 +1034,12 @@ body {
     </div>
     <button class="open-chat-btn" onclick="openChat()">Chat with AI Coach →</button>
   </div>
+</div>
+
+<!-- PERSISTENT GUIDANCE STRIP — visible on every tab -->
+<div class="guidance-strip">
+  <p>🎯 <strong>Want personalized 1-on-1 coaching?</strong> Get CV reviews, mock interviews & career guidance tailored to you.</p>
+  <a href="https://topmate.io/kunal_sadhukhan" target="_blank" rel="noopener" class="topmate-btn">📅 Book a Session on Topmate →</a>
 </div>
 
 <!-- ═══════════════════════════ HOME TAB ═══════════════════════════ -->
@@ -1015,7 +1105,7 @@ body {
       </div>
       <div class="offering-card" onclick="showTab('practice')">
         <h3>Case Interview Practice</h3>
-        <p>50+ real case interview transcripts from IIM Ahmedabad, Calcutta, Lucknow and FMS Delhi.</p>
+        <p>50+ real case interview transcripts from top management institutes across India.</p>
         <button class="read-more-link">READ MORE →</button>
       </div>
       <div class="offering-card" onclick="showTab('tips')">
@@ -1032,7 +1122,7 @@ body {
     <div class="why-grid">
       <div class="why-card">
         <h3>Industry Sector Insights</h3>
-        <p>Detailed overview for major industry sectors including Automobile, Aviation, E-Commerce, Financial Services, Pharma, IT, Oil & Gas, and more — curated from top IIM casebooks.</p>
+        <p>Detailed overview for major industry sectors including Automobile, Aviation, E-Commerce, Financial Services, Pharma, IT, Oil & Gas, and more — curated from top consulting interview preparation resources.</p>
         <button class="read-more-link" onclick="showTab('industry')">LEARN MORE →</button>
       </div>
       <div class="why-card">
@@ -1087,6 +1177,14 @@ body {
     <p>The next one can be you too! 🚀</p>
   </div>
 
+<!-- Guidance CTA inside tab -->
+<div style="background:linear-gradient(135deg,#1a2744,#2c3e7a);color:white;padding:2.5rem 2rem;text-align:center;margin-top:1rem;">
+  <p style="font-size:0.85rem;opacity:0.8;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;margin-bottom:0.5rem;">Ready to go further?</p>
+  <h3 style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;margin-bottom:0.8rem;">Get Personalized 1-on-1 Guidance</h3>
+  <p style="opacity:0.88;font-size:0.92rem;max-width:540px;margin:0 auto 1.5rem;line-height:1.7;">CV reviews, mock case interviews, and career strategy sessions tailored to your unique background and target firms.</p>
+  <a href="https://topmate.io/kunal_sadhukhan" target="_blank" rel="noopener" class="topmate-btn" style="font-size:0.9rem;padding:0.7rem 2rem;">📅 Book a Session on Topmate →</a>
+</div>
+
 </div><!-- /home -->
 
 <!-- ═══════════════════════════ INDUSTRY SECTORS TAB ═══════════════════════════ -->
@@ -1094,7 +1192,7 @@ body {
   <div style="padding:3rem 2rem 1rem;max-width:1200px;margin:0 auto;">
     <div class="industry-intro">
       <h2>Know Industry Sectors</h2>
-      <p>Deep dives into major industry sectors — key data, drivers, trends, challenges and value chains. Sourced from IIM Ahmedabad, Calcutta, Lucknow and FMS Delhi casebooks.</p>
+      <p>Deep dives into major industry sectors — key data, drivers, trends, challenges and value chains. </p>
     </div>
     <div class="sector-tabs-bar">
       <button class="sector-tab-btn active" onclick="showSector('automobile')">🚗 Automobile</button>
@@ -1116,7 +1214,7 @@ body {
     <!-- AUTOMOBILE -->
     <div id="sector-automobile" class="sector-panel active">
       <div class="sector-card">
-        <div class="sector-badge">Source: IIM Calcutta Casebook 2023-24 | IBEF</div>
+        
         <h3>Automobile Industry</h3>
         <p class="sector-overview">The automobile industry is divided into four major business segments: two-wheelers, three-wheelers, commercial vehicles, and passenger vehicles. India is the <strong>5th largest automobile market globally</strong> with annual production of 23M vehicles in FY22, contributing 7.1% to GDP.</p>
         <div class="key-metrics-row">
@@ -1180,7 +1278,7 @@ body {
     <!-- AVIATION -->
     <div id="sector-aviation" class="sector-panel">
       <div class="sector-card">
-        <div class="sector-badge">Source: IIM Calcutta Casebook 2023-24 | IBEF</div>
+        
         <h3>Aviation Industry</h3>
         <p class="sector-overview">India's aviation sector is the <strong>3rd largest globally</strong> in terms of handling domestic air-traffic. The sector encompasses airlines, airports, MRO & Ground Services, Aircraft Manufacturing, Air Traffic Control, and Aviation Education.</p>
         <div class="key-metrics-row">
@@ -1244,7 +1342,7 @@ body {
     <!-- E-COMMERCE -->
     <div id="sector-ecommerce" class="sector-panel">
       <div class="sector-card">
-        <div class="sector-badge">Source: IIM Calcutta Casebook 2023-24 | IBEF</div>
+        
         <h3>E-Commerce Industry</h3>
         <p class="sector-overview">India could outpace more mature markets to become the <strong>3rd largest e-commerce market globally</strong> with a $350B size by 2030. Current industry size is $75B with 21% CAGR (2022–30). Two dominant models: Marketplace Model (zero inventory) and Inventory-Led Model (e-tailers).</p>
         <div class="key-metrics-row">
@@ -1301,7 +1399,7 @@ body {
     <!-- FINANCIAL SERVICES -->
     <div id="sector-financial" class="sector-panel">
       <div class="sector-card">
-        <div class="sector-badge">Source: IIM Calcutta Casebook 2023-24 | IBEF</div>
+        
         <h3>Financial Services Industry</h3>
         <p class="sector-overview">India's financial services sector encompasses Banks, NBFCs, Insurance, Capital Markets, and Mutual Funds. India's stock market is expected to reach <strong>$5T surpassing UK</strong> to become the 5th largest by 2024 (Goldman Sachs). Regulated by RBI, SEBI, and IRDAI.</p>
         <div class="key-metrics-row">
@@ -1358,7 +1456,7 @@ body {
     <!-- FMCG -->
     <div id="sector-fmcg" class="sector-panel">
       <div class="sector-card">
-        <div class="sector-badge">Source: IIM Calcutta Casebook 2023-24 | IBEF</div>
+        
         <h3>FMCG — Fast Moving Consumer Goods</h3>
         <p class="sector-overview">The FMCG sector is one of India's largest sectors. Products include food & beverages, personal care, home care, and healthcare. India's FMCG market is driven by rural growth, premiumisation, and digital commerce. Companies compete heavily on distribution reach and brand equity.</p>
         <div class="key-metrics-row">
@@ -1410,7 +1508,7 @@ body {
     <!-- PHARMA -->
     <div id="sector-pharma" class="sector-panel">
       <div class="sector-card">
-        <div class="sector-badge">Source: IIM Calcutta Casebook 2023-24 | IBEF | CARE</div>
+        
         <h3>Pharmaceutical Industry</h3>
         <p class="sector-overview">India ranks <strong>3rd worldwide for pharmaceutical production by volume</strong> and 14th by value. The industry involves development, production, and commercialization of drugs. India is a global hub for generic drug manufacturing, supplying ~60% of global vaccines.</p>
         <div class="key-metrics-row">
@@ -1468,7 +1566,7 @@ body {
     <!-- IT & ITES -->
     <div id="sector-itites" class="sector-panel">
       <div class="sector-card">
-        <div class="sector-badge">Source: IIM Calcutta Casebook 2023-24 | IIM Lucknow Casebook 2026</div>
+        
         <h3>IT & ITeS Industry</h3>
         <p class="sector-overview">India's IT sector is a global powerhouse, contributing significantly to exports and employment. The industry spans IT Services, Business Process Management (BPM), Software Products, and Engineering R&D. India accounts for ~55% of the global IT outsourcing market.</p>
         <div class="key-metrics-row">
@@ -1522,7 +1620,7 @@ body {
     <!-- CEMENT -->
     <div id="sector-cement" class="sector-panel">
       <div class="sector-card">
-        <div class="sector-badge">Source: IIM Calcutta Casebook 2023-24 | IBEF</div>
+        
         <h3>Cement Industry</h3>
         <p class="sector-overview">India is the <strong>second largest cement producer worldwide</strong> with over 7% of global installed capacity. Total installed capacity exceeds 360 MT. Rural & urban housing accounts for 52% of cement demand.</p>
         <div class="key-metrics-row">
@@ -1578,7 +1676,7 @@ body {
     <!-- TELECOM -->
     <div id="sector-telecom" class="sector-panel">
       <div class="sector-card">
-        <div class="sector-badge">Source: IIM Calcutta Casebook 2023-24</div>
+        
         <h3>Telecommunication Industry</h3>
         <p class="sector-overview">India's telecom sector is the <strong>second largest globally</strong> in subscriber base with 1.1 billion subscribers. The industry involves mobile (wireless), fixed-line (broadband), and internet services. India's urban tele-density is 131% while rural remains at 58%.</p>
         <div class="key-metrics-row">
@@ -1633,7 +1731,7 @@ body {
     <!-- OIL & GAS -->
     <div id="sector-oilgas" class="sector-panel">
       <div class="sector-card">
-        <div class="sector-badge">Source: IIM Calcutta Casebook 2023-24 | IBEF</div>
+        
         <h3>Oil & Gas Industry</h3>
         <p class="sector-overview">India is the <strong>3rd largest consumer of oil globally</strong> and heavily dependent on imports (85% of crude requirements). The sector has three segments: Upstream (exploration & production), Midstream (pipelines & storage), and Downstream (refining & distribution).</p>
         <div class="key-metrics-row">
@@ -1683,7 +1781,7 @@ body {
     <!-- POWER -->
     <div id="sector-power" class="sector-panel">
       <div class="sector-card">
-        <div class="sector-badge">Source: IIM Calcutta Casebook 2023-24 | IBEF</div>
+        
         <h3>Power Industry</h3>
         <p class="sector-overview">India is the <strong>3rd largest producer and consumer of electricity</strong> worldwide behind China and USA. Total installed capacity is 411 GW with peak demand of 205 GW. Governed by the Electricity Act (2003). India targets 500 GW renewable energy capacity.</p>
         <div class="key-metrics-row">
@@ -1737,7 +1835,7 @@ body {
     <!-- STEEL -->
     <div id="sector-steel" class="sector-panel">
       <div class="sector-card">
-        <div class="sector-badge">Source: IIM Ahmedabad Casebook 2022-23 | FMS Casebook 2023-24</div>
+        
         <h3>Steel Industry</h3>
         <p class="sector-overview">India is the <strong>2nd largest steel producer globally</strong>. The industry is capital-intensive with complex value chains from iron ore extraction to finished steel products. Key players include Tata Steel, JSW, SAIL, and ArcelorMittal Nippon Steel India.</p>
         <div class="key-metrics-row">
@@ -1791,7 +1889,7 @@ body {
     <!-- RETAIL -->
     <div id="sector-retail" class="sector-panel">
       <div class="sector-card">
-        <div class="sector-badge">Source: IIM Ahmedabad Casebook 2022-23 | FMS Casebook 2023-24</div>
+        
         <h3>Retail Industry</h3>
         <p class="sector-overview">India's retail sector is the <strong>4th largest in the world</strong>. Organized retail accounts for ~12% while unorganized (kirana stores, wet markets) holds the rest. The sector is transforming through modern trade, e-commerce, and quick commerce channels.</p>
         <div class="key-metrics-row">
@@ -1845,7 +1943,7 @@ body {
     <!-- REAL ESTATE -->
     <div id="sector-realestate" class="sector-panel">
       <div class="sector-card">
-        <div class="sector-badge">Source: IIM Lucknow Casebook 2026</div>
+        
         <h3>Real Estate Industry</h3>
         <p class="sector-overview">India's real estate sector is expected to reach <strong>$1 trillion by 2030</strong>, contributing 13% to GDP. It is one of the largest employers in the country. The sector spans residential, commercial, retail, hospitality, and special economic zones.</p>
         <div class="key-metrics-row">
@@ -1898,6 +1996,14 @@ body {
     </div>
 
   </div>
+<!-- Guidance CTA inside tab -->
+<div style="background:linear-gradient(135deg,#1a2744,#2c3e7a);color:white;padding:2.5rem 2rem;text-align:center;margin-top:2rem;">
+  <p style="font-size:0.85rem;opacity:0.8;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;margin-bottom:0.5rem;">Want expert guidance on industry analysis?</p>
+  <h3 style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;margin-bottom:0.8rem;">Book a 1-on-1 Industry Deep-Dive Session</h3>
+  <p style="opacity:0.88;font-size:0.92rem;max-width:540px;margin:0 auto 1.5rem;line-height:1.7;">Learn how to apply industry frameworks in live case interviews with personalized coaching from Kunal.</p>
+  <a href="https://topmate.io/kunal_sadhukhan" target="_blank" rel="noopener" class="topmate-btn" style="font-size:0.9rem;padding:0.7rem 2rem;">📅 Book a Session on Topmate →</a>
+</div>
+
 </div><!-- /industry -->
 
 <!-- ═══════════════════════════ FRAMEWORKS TAB ═══════════════════════════ -->
@@ -1905,7 +2011,7 @@ body {
   <div class="framework-wrap">
     <div class="fw-intro">
       <h2>Case Interview Frameworks</h2>
-      <p>Master the essential frameworks used in consulting case interviews. Each framework below is drawn directly from IIM Ahmedabad, Calcutta, and Lucknow casebooks.</p>
+      <p>Master the essential frameworks used in consulting case interviews. Each framework is battle-tested in consulting interview rooms across top firms.</p>
     </div>
 
     <div class="fw-tabs-bar">
@@ -2014,7 +2120,7 @@ body {
         </div>
 
         <div class="tip-box">
-          <strong>💡 Pro Tips from IIM Casebooks:</strong> Always ask if the issue is industry-wide or company-specific first — this narrows your tree immediately. Use MECE buckets. When revenue is the issue, always split by segment before diving into price vs volume. Never jump to recommendations before finding the root cause.
+          <strong>💡 💡 Pro Tips for Case Interviews:</strong> Always ask if the issue is industry-wide or company-specific first — this narrows your tree immediately. Use MECE buckets. When revenue is the issue, always split by segment before diving into price vs volume. Never jump to recommendations before finding the root cause.
         </div>
       </div>
     </div>
@@ -2068,7 +2174,7 @@ body {
         </div>
 
         <div class="tip-box">
-          <strong>💡 Pro Tip:</strong> Always ask about <em>motive</em> before the analysis. A defensive entry (blocking competition) needs a very different recommendation than an offensive entry (profit maximization). The IIM Lucknow casebook emphasizes: "Quantify the entry decision — always estimate Year 1 revenue and breakeven period."
+          <strong>💡 Pro Tip:</strong> Always ask about <em>motive</em> before the analysis. A defensive entry (blocking competition) needs a very different recommendation than an offensive entry (profit maximization). Industry best practice emphasizes: "Quantify the entry decision — always estimate Year 1 revenue and breakeven period."
         </div>
       </div>
     </div>
@@ -2236,7 +2342,7 @@ body {
         </div>
 
         <div class="tip-box">
-          <strong>💡 Key Insight:</strong> Always confirm whether the growth target is absolute (revenue $X) or relative (X% CAGR). Build a simple model: Current Revenue × Growth Rate = Gap to close. Then show how your recommendations fill the gap. The IIM Ahmedabad casebook notes: "Always link recommendations back to the numbers."
+          <strong>💡 Key Insight:</strong> Always confirm whether the growth target is absolute (revenue $X) or relative (X% CAGR). Build a simple model: Current Revenue × Growth Rate = Gap to close. Then show how your recommendations fill the gap. Industry experts note: "Always link recommendations back to the numbers."
         </div>
       </div>
     </div>
@@ -2366,7 +2472,7 @@ body {
         </div>
 
         <div class="fw-box">
-          <h4>🧭 Case Hygiene — Golden Rules from IIM Casebooks</h4>
+          <h4>🧭 🧭 Case Hygiene — Golden Rules for Consulting Interviews</h4>
           <ul>
             <li>Always clarify the problem statement before jumping in — never assume</li>
             <li>Be MECE (Mutually Exclusive, Collectively Exhaustive) in every structure you build</li>
@@ -2384,60 +2490,1520 @@ body {
       </div>
     </div>
   </div>
+<!-- Guidance CTA inside tab -->
+<div style="background:linear-gradient(135deg,#1a2744,#2c3e7a);color:white;padding:2.5rem 2rem;text-align:center;margin-top:2rem;">
+  <p style="font-size:0.85rem;opacity:0.8;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;margin-bottom:0.5rem;">Want to apply these frameworks in live mock interviews?</p>
+  <h3 style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;margin-bottom:0.8rem;">Practice Frameworks with a Real Coach</h3>
+  <p style="opacity:0.88;font-size:0.92rem;max-width:540px;margin:0 auto 1.5rem;line-height:1.7;">Structured 1-on-1 mock interviews with instant feedback on your framework quality, structure, and communication.</p>
+  <a href="https://topmate.io/kunal_sadhukhan" target="_blank" rel="noopener" class="topmate-btn" style="font-size:0.9rem;padding:0.7rem 2rem;">📅 Book a Session on Topmate →</a>
+</div>
+
 </div><!-- /frameworks -->
 
-<!-- ═══════════════════════════ PRACTICE TAB (PLACEHOLDER) ═══════════════════════════ -->
+
+<!-- ═══════════════════════════ PRACTICE TAB ═══════════════════════════ -->
 <div id="tab-practice" class="tab-content">
-  <div style="max-width:900px;margin:4rem auto;padding:2rem;text-align:center;">
-    <div style="font-size:3rem;margin-bottom:1rem;">📋</div>
-    <h2 style="font-family:'Playfair Display',serif;color:var(--navy);font-size:2rem;margin-bottom:1rem;">Case Interview Practice</h2>
-    <p style="color:var(--text-light);font-size:1rem;line-height:1.7;margin-bottom:1.5rem;">50+ detailed case interview transcripts across Profitability, Market Entry, Pricing, Growth Strategy, and Unconventional cases — sourced from IIM Ahmedabad, Calcutta, Lucknow & FMS Delhi casebooks. <strong>Coming in Part 3!</strong></p>
-    <div style="background:var(--bg2);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem;text-align:left;">
-      <strong style="color:var(--navy);">What's included in Part 3:</strong>
-      <ul style="list-style:none;margin-top:0.8rem;display:flex;flex-direction:column;gap:0.4rem;">
-        <li style="font-size:0.9rem;color:var(--text);">✅ 15+ Profitability Cases (Delhi Metro, Beer Manufacturer, Hospital Chain, SaaS Firm, SpiceJet vs IndiGo...)</li>
-        <li style="font-size:0.9rem;color:var(--text);">✅ 10+ Market Entry Cases (Investment Bank in India, Ratan Tata Car Service, Chemical Company...)</li>
-        <li style="font-size:0.9rem;color:var(--text);">✅ 8+ Pricing Cases (Korean Fertilizer, Toothbrush, Teleporting Machine, Expressway Pricing...)</li>
-        <li style="font-size:0.9rem;color:var(--text);">✅ 8+ Growth Strategy Cases (Flipkart 2017, South African Telecom, Online Travel Aggregator...)</li>
-        <li style="font-size:0.9rem;color:var(--text);">✅ 10+ Unconventional Cases (Ministry cases, VC Firm, Analytics Firm, Google MSMEs...)</li>
-      </ul>
-    </div>
-    <button class="open-chat-btn" onclick="openChat()" style="font-size:0.9rem;">Ask AI Coach about any case now →</button>
+<div style="max-width:1200px;margin:0 auto;padding:2rem;">
+
+  <div class="fw-intro">
+    <h2>Case Interview Practice</h2>
+    <p>50+ real case interview transcripts with full problem statements, candidate dialogues, issue trees, and key takeaways. Organized by case type — practice like it's the real thing.</p>
   </div>
+
+  <!-- Category filter bar -->
+  <div class="sector-tabs-bar" style="margin-bottom:2rem;">
+    <button class="sector-tab-btn active" onclick="filterCases('all',this)">📋 All Cases</button>
+    <button class="sector-tab-btn" onclick="filterCases('profitability',this)">📊 Profitability</button>
+    <button class="sector-tab-btn" onclick="filterCases('marketentry',this)">🌍 Market Entry</button>
+    <button class="sector-tab-btn" onclick="filterCases('pricing',this)">💰 Pricing</button>
+    <button class="sector-tab-btn" onclick="filterCases('growth',this)">📈 Growth</button>
+    <button class="sector-tab-btn" onclick="filterCases('unconventional',this)">🔀 Unconventional</button>
+  </div>
+
+  <div id="cases-container" style="display:flex;flex-direction:column;gap:1.5rem;">
+
+    <!-- ── PROFITABILITY CASES ── -->
+
+    <!-- CASE 1 -->
+    <div class="case-card" data-cat="profitability">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge profitability">Profitability</span><span class="case-difficulty moderate">Moderate</span><span class="case-sector">Transportation / Public Infrastructure</span></div>
+        <div class="case-title">Case 1: Delhi Metro Network — Declining Revenue</div>
+        <div class="case-toggle">▼</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Problem Statement:</strong> The Delhi Metro network is facing profitability issues. Figure out why and suggest recommendations.</div>
+        <div class="case-facts"><strong>Key Facts:</strong> Issue specific to Connaught Place (CP) station. Not an industry-wide problem. Revenue from outlets (retail tenants) is lower than other stations. Number of outlet units same across all stations.</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Q: What are the revenue streams for the Metro?</div>
+          <div class="transcript-a">A: Tickets, Advertisements, and Retail Outlets. Also consulting services, but issue is in metro operations only.</div>
+          <div class="transcript-q">Q: Revenue = # Outlets × Occupancy Rate × Rent per Outlet. Which is the issue?</div>
+          <div class="transcript-a">A: Occupancy rate of outlets at CP is low compared to other stations.</div>
+          <div class="transcript-q">Q: A franchise owner considers: awareness, tender process, outlet location, contract terms. Is there a contract issue?</div>
+          <div class="transcript-a">A: Yes — lock-in period at CP is 12 months vs 6 months at other stations. Franchises avoid it due to higher risk.</div>
+          <div class="transcript-q">Recommendation?</div>
+          <div class="transcript-a">Short-term: Reduce lock-in period or lower rent. Long-term: Differential pricing — higher rent for 2-month lock-in, lower for 6-month to incentivize franchises.</div>
+        </div>
+        <div class="case-takeaway">💡 <strong>Takeaway:</strong> Use MECE structure throughout. Revenue = Price × Volume at every level. Don't jump to laundry-listing — always use sub-buckets.</div>
+      </div>
+    </div>
+
+    <!-- CASE 2 -->
+    <div class="case-card" data-cat="profitability">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge profitability">Profitability</span><span class="case-difficulty moderate">Moderate</span><span class="case-sector">Hospitality</span></div>
+        <div class="case-title">Case 2: Five Star Hotel — Lower Profitability</div>
+        <div class="case-toggle">▼</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Problem Statement:</strong> A 5-star hotel in Mumbai has been facing lower profitability for the last 3 years, worsening in the last 1 year. Find the root cause and suggest recommendations.</div>
+        <div class="case-facts"><strong>Key Facts:</strong> Single hotel (not a chain). Not an industry-wide issue. Revenue streams: Rooms, Restaurants, Banquet Hall, Ancillary. Customer mix shifted: Tourist 50%→30%, Business 50%→70%. Occupancy and room count unchanged. Continental restaurant seeing lower in-dining revenues.</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Q: Revenue = # Rooms × Occupancy × Rent. All constant. What changed?</div>
+          <div class="transcript-a">A: Greater business customers → fixed corporate rates → revenue ceiling. Business customers pay lower than tourist walk-in rates.</div>
+          <div class="transcript-q">Q: Restaurant — Dining Revenue = # Tables × Occupancy × Avg. Order Value. All constant. Why lower revenue?</div>
+          <div class="transcript-a">A: Payment gateway issue. Customers with Zomato Gold / Dineout get discounts, reducing net revenue received by hotel.</div>
+          <div class="transcript-q">Recommendations?</div>
+          <div class="transcript-a">Short-term: Increase prices for room service for business customers. Long-term: Re-negotiate corporate contracts; negotiate discount caps with Zomato/Dineout; limit business customer room allocation.</div>
+        </div>
+        <div class="case-takeaway">💡 <strong>Takeaway:</strong> "Revenue received" vs "Revenue billed" is a key distinction. Discounts and payment gateways can silently erode revenue — always check the payment bucket in hospitality cases.</div>
+      </div>
+    </div>
+
+    <!-- CASE 3 -->
+    <div class="case-card" data-cat="profitability">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge profitability">Profitability</span><span class="case-difficulty easy">Easy</span><span class="case-sector">Insurance / BFSI</span></div>
+        <div class="case-title">Case 3: Car Insurance Company — Rising Claims</div>
+        <div class="case-toggle">▼</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Problem Statement:</strong> An insurance company has been facing declining profits in automobile insurance for the past year. Analyze and suggest recommendations.</div>
+        <div class="case-facts"><strong>Key Facts:</strong> Operates in Delhi, Maharashtra, Gujarat via car dealers and renewals. Company-specific issue (not industry-wide). Revenue unchanged. Costs increased — specifically claims payout. Number of payouts increased (not average amount per payout).</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Q: Cost = Fixed (Operating) + Variable (Claims + Marketing). Claims payout increased. Is it # payouts or avg amount?</div>
+          <div class="transcript-a">A: Number of payouts increased.</div>
+          <div class="transcript-q">Q: Root cause — internal (algorithm change) or external (more accidents)?</div>
+          <div class="transcript-a">A: External. Young customers driving recklessly → higher accident frequency → more claims.</div>
+          <div class="transcript-q">Recommendations?</div>
+          <div class="transcript-a">Short-term: Behaviour-based premiums (safe drivers pay less, reckless more); cap on reimbursable damages. Long-term: Diversify customer base by age and geography.</div>
+        </div>
+        <div class="case-takeaway">💡 <strong>Takeaway:</strong> In insurance, always split claims into # payouts × avg amount. External issues (reckless driving, weather events) can be split into technical vs interpersonal causes.</div>
+      </div>
+    </div>
+
+    <!-- CASE 4 -->
+    <div class="case-card" data-cat="profitability">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge profitability">Profitability</span><span class="case-difficulty hard">Challenging</span><span class="case-sector">Insurance / Agriculture</span></div>
+        <div class="case-title">Case 4: Tractor Insurance Provider — Declining Profits</div>
+        <div class="case-toggle">▼</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Problem Statement:</strong> An insurance provider dealing with tractor insurance is facing a decline in profits. Industry-wide issue. Figure out why and recommend solutions.</div>
+        <div class="case-facts"><strong>Key Facts:</strong> Pan-India operations. 5 equal market-share players. Industry-wide problem. Revenues declined (not costs). Fewer customers buying tractor insurance because fewer people are buying tractors.</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Q: Revenue = # Customers × Premium per customer × # Installments. Which changed?</div>
+          <div class="transcript-a">A: # Customers declined. Demand for tractors has reduced.</div>
+          <div class="transcript-q">Q: Customer journey for tractor purchase: Need → Awareness → Affordability → Purchase. Where is the issue?</div>
+          <div class="transcript-a">A: Affordability. Farmers can't borrow enough — banks raised interest rates due to prior loan defaults.</div>
+          <div class="transcript-q">Q: Why did farmers default?</div>
+          <div class="transcript-a">A: Bad monsoon reduced farm income → defaults → banks raised rates → fewer loans → fewer tractors → less insurance.</div>
+          <div class="transcript-q">Recommendations?</div>
+          <div class="transcript-a">Short-term: Partner with agricultural cooperatives, group enrollment discounts. Long-term: Bundle insurance with tractor manufacturers at point of purchase.</div>
+        </div>
+        <div class="case-takeaway">💡 <strong>Takeaway:</strong> This is a "two-level customer journey" case — the root cause is outside the insurance industry entirely (monsoon → farm income → bank rates). Apply the customer journey framework twice.</div>
+      </div>
+    </div>
+
+    <!-- CASE 5 -->
+    <div class="case-card" data-cat="profitability">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge profitability">Profitability</span><span class="case-difficulty moderate">Moderate</span><span class="case-sector">Insurance / BFSI</span></div>
+        <div class="case-title">Case 5: Large Insurance Multinational — Declining Home Insurance</div>
+        <div class="case-toggle">▼</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Problem Statement:</strong> A large insurance multinational has been facing declining profits in Home Insurance for 2 years. Company-specific problem. Analyze and suggest recommendations.</div>
+        <div class="case-facts"><strong>Key Facts:</strong> Channels: App (online), door-to-door, and bank tie-ups. Costs unchanged. Revenue declined. Fewer new customers being acquired. Salesperson performance is the issue — newer hires from untapped colleges are underperforming.</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Q: Revenue = # customers × premium × installments. Which declined?</div>
+          <div class="transcript-a">A: Number of new customers declined.</div>
+          <div class="transcript-q">Q: Customer journey: Need → Awareness → Availability → Affordability → Purchase Experience. Where is the issue?</div>
+          <div class="transcript-a">A: Purchase experience — specifically the salesperson quality.</div>
+          <div class="transcript-q">Q: Salesperson performance = Ability × Motivation. Which is weak?</div>
+          <div class="transcript-a">A: Ability — new hires from previously untapped colleges are not performing to standard.</div>
+          <div class="transcript-q">Recommendations?</div>
+          <div class="transcript-a">Short-term: Revert to previous hiring pools for majority. Assign experienced mentors to new hires. Long-term: Comprehensive training program; monetary + non-monetary incentives for performance.</div>
+        </div>
+        <div class="case-takeaway">💡 <strong>Takeaway:</strong> The People-Process-Product (3P) framework works well for purchase experience analysis. Always ask: is performance decline from new hires or existing employees?</div>
+      </div>
+    </div>
+
+    <!-- CASE 6 -->
+    <div class="case-card" data-cat="profitability">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge profitability">Profitability</span><span class="case-difficulty easy">Easy</span><span class="case-sector">FMCG / Consumer Goods</span></div>
+        <div class="case-title">Case 6: Beer Manufacturer — Declining Sales in US</div>
+        <div class="case-toggle">▼</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Problem Statement:</strong> A global beer manufacturing company is facing declining profits in its US division. Industry-wide problem. Figure out why and suggest recommendations.</div>
+        <div class="case-facts"><strong>Key Facts:</strong> 4 major players, client has 50% market share. Revenue declining, costs stable. Industry-wide decline. Units sold declining across channels (liquor stores, pubs). External (Social/lifestyle) factor identified.</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Q: Revenue = Price × Units sold × Product mix. Which changed?</div>
+          <div class="transcript-a">A: Units sold declining. Price and product mix unchanged.</div>
+          <div class="transcript-q">Q: Supply side or demand side issue?</div>
+          <div class="transcript-a">A: Demand side — consumers not buying.</div>
+          <div class="transcript-q">Q: PESTEL analysis — Social factor?</div>
+          <div class="transcript-a">A: Yes — US consumers have become health-conscious. Beer associated with obesity, liver, heart problems. Industry-wide social lifestyle shift.</div>
+          <div class="transcript-q">Recommendations?</div>
+          <div class="transcript-a">Existing products: Promote low-alcohol variants. New products: Launch alcohol-free beer variants that taste like beer — targeting health-conscious segment.</div>
+        </div>
+        <div class="case-takeaway">💡 <strong>Takeaway:</strong> When the issue is industry-wide and demand-side, always go to external/macro analysis (PESTEL). The Social bucket often hides behavioral and demographic shifts.</div>
+      </div>
+    </div>
+
+    <!-- CASE 7 -->
+    <div class="case-card" data-cat="profitability">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge profitability">Profitability</span><span class="case-difficulty easy">Easy</span><span class="case-sector">Retail / FMCG</span></div>
+        <div class="case-title">Case 7: Kirana Store Owner — Declining Profits</div>
+        <div class="case-toggle">▼</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Problem Statement:</strong> A Kirana store owner in a Tier-2 city is facing declining profits for the past 5-6 months. Find the root cause and recommend solutions.</div>
+        <div class="case-facts"><strong>Key Facts:</strong> Tier-2 city. Customers include urban + nearby village. Competitors exist but not facing same issue. Number of customers and demand declined. Not internal — external competitor issue.</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Q: Revenue = # Customers × Avg Order Value. Both declined. Internal or External?</div>
+          <div class="transcript-a">A: External. Competitor analysis needed.</div>
+          <div class="transcript-q">Q: New competitor or existing competitor change?</div>
+          <div class="transcript-a">A: Existing competitor launched discount for orders above ₹500. Village customers' monthly ration bills exceed ₹500 → they shifted to competitor.</div>
+          <div class="transcript-q">Recommendations?</div>
+          <div class="transcript-a">Don't replicate the price war. Differentiate: offer free home delivery to village customers (avoiding their travel cost), loyalty programs, bundle offers tailored to monthly ration buyers.</div>
+        </div>
+        <div class="case-takeaway">💡 <strong>Takeaway:</strong> Use customer journey (Travel → Parking → Product → Transaction → Post-purchase) for internal analysis first, then shift to External buckets (Customers, Competitors, Collaborators, Regulators). Avoid price wars — always seek differentiation.</div>
+      </div>
+    </div>
+
+    <!-- CASE 8 -->
+    <div class="case-card" data-cat="profitability">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge profitability">Profitability</span><span class="case-difficulty moderate">Moderate</span><span class="case-sector">Healthcare / Pharma</span></div>
+        <div class="case-title">Case 8: Oral Hygiene Products Manufacturer — Declining Profits</div>
+        <div class="case-toggle">▼</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Problem Statement:</strong> An oral hygiene products manufacturer (toothbrush + mouthwash, India only) has been facing declining profits since inception 2 years ago. Find root cause and suggest recommendations.</div>
+        <div class="case-facts"><strong>Key Facts:</strong> 4th in national market share. Toothbrush: 75% of sales. Mouthwash: 25%. Both declining. Revenue issue (market share loss). Toothbrush: Product specification problem (bristles & length). Mouthwash: External brand image issue (Hollywood ambassador endorsed tobacco brand).</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Q: Revenue = Price × Volume. Which? Market share issue or market size issue?</div>
+          <div class="transcript-a">A: Market share issue. Market growing normally.</div>
+          <div class="transcript-q">Q: Volume declined. Demand-side issue. Internal factor — Product specifications?</div>
+          <div class="transcript-a">A: Bristle quality and toothbrush length not suited to Indian brushing habits (rigorous strokes, morning freshness focus).</div>
+          <div class="transcript-q">Q: Mouthwash — external factor — Likeability bucket?</div>
+          <div class="transcript-a">A: Brand ambassador controversy — endorsed tobacco brand globally, created negative preference shift for mouthwash.</div>
+          <div class="transcript-q">Recommendations?</div>
+          <div class="transcript-a">Toothbrush short-term: Product bundling with mouthwash, niche promotion to differentiate. Long-term: Fix product specs (bristle quality, length). Mouthwash: Replace brand ambassador immediately.</div>
+        </div>
+        <div class="case-takeaway">💡 <strong>Takeaway:</strong> When two products are both declining, analyze separately — root causes can be completely different. Internal (product specs) vs External (brand perception) can coexist in the same company.</div>
+      </div>
+    </div>
+
+    <!-- CASE 9 -->
+    <div class="case-card" data-cat="profitability">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge profitability">Profitability</span><span class="case-difficulty moderate">Moderate</span><span class="case-sector">Steel / Manufacturing</span></div>
+        <div class="case-title">Case 9: Steel Manufacturer — Declining Profits</div>
+        <div class="case-toggle">▼</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Problem Statement:</strong> A steel manufacturing company has been observing declining profits for the past 2 years. The steel industry has seen a 10% industry-wide decline, but the client is declining more. Find the reason and suggest solutions.</div>
+        <div class="case-facts"><strong>Key Facts:</strong> Industry-wide dip (10%), but client declining more. Revenue dip due to demand decline. Cost side: Raw material (iron ore, coking coal) price increase. Unit production declining with rising costs — classic margin squeeze.</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Q: Revenue = Price × Volume × Product mix. Which factor?</div>
+          <div class="transcript-a">A: Volume declined. Industry demand dipped due to construction slowdown.</div>
+          <div class="transcript-q">Q: Costs — Fixed or Variable? Which cost increased?</div>
+          <div class="transcript-a">A: Raw material costs (coking coal imports) increased significantly.</div>
+          <div class="transcript-q">Q: Why is client worse than industry?</div>
+          <div class="transcript-a">A: Higher proportion of imported coking coal vs competitors who have domestic coal tie-ups.</div>
+          <div class="transcript-q">Recommendations?</div>
+          <div class="transcript-a">Short-term: Hedge coal price exposure via futures contracts. Long-term: Secure domestic coal supply agreements; invest in EAF (Electric Arc Furnace) to reduce coal dependence; diversify to value-added steel products for better margins.</div>
+        </div>
+        <div class="case-takeaway">💡 <strong>Takeaway:</strong> When client performance is worse than industry average, always ask why — the delta reveals the company-specific root cause. Benchmarking against industry is a key diagnostic tool.</div>
+      </div>
+    </div>
+
+    <!-- CASE 10 -->
+    <div class="case-card" data-cat="profitability">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge profitability">Profitability</span><span class="case-difficulty moderate">Moderate</span><span class="case-sector">Power / Energy</span></div>
+        <div class="case-title">Case 10: Electricity Power Plant — Dip in Profits</div>
+        <div class="case-toggle">▼</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Problem Statement:</strong> An electricity power plant has been experiencing a dip in profits for the last 3 months. Find out the reason and provide solutions.</div>
+        <div class="case-facts"><strong>Key Facts:</strong> Production volume unchanged. Revenue side: amount of electricity produced constant but amount of coal coming in has changed. Input efficiency declining — same output, more input required.</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Q: Profits = Revenue − Costs. Revenue or Costs issue?</div>
+          <div class="transcript-a">A: Revenue unchanged. Costs increased.</div>
+          <div class="transcript-q">Q: Cost components: Fixed (salaries, depreciation) vs Variable (coal, water, maintenance). Which?</div>
+          <div class="transcript-a">A: Variable — coal consumption has increased for the same electricity output.</div>
+          <div class="transcript-q">Q: Efficiency = Output/Input. Has generation efficiency dropped?</div>
+          <div class="transcript-a">A: Yes — boiler efficiency has dropped. Turbine experiencing higher heat loss.</div>
+          <div class="transcript-q">Recommendations?</div>
+          <div class="transcript-a">Short-term: Emergency maintenance/inspection of turbine and boiler components. Long-term: Preventive maintenance schedule; invest in efficiency monitoring sensors; explore coal blending (better quality coal).</div>
+        </div>
+        <div class="case-takeaway">💡 <strong>Takeaway:</strong> In manufacturing/production cases, always check input-output efficiency ratio, not just cost and revenue. A constant output with rising input cost always points to an operational efficiency problem.</div>
+      </div>
+    </div>
+
+    <!-- CASE 11 -->
+    <div class="case-card" data-cat="profitability">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge profitability">Profitability</span><span class="case-difficulty moderate">Moderate</span><span class="case-sector">Pharma / Life Sciences</span></div>
+        <div class="case-title">Case 11: Pharma Company — Growth Stagnation</div>
+        <div class="case-toggle">▼</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Problem Statement:</strong> A pharmaceutical company producing medicine for a rare, fatal blood condition (stops bleeding) faces stagnation in growth. Company has 100% market share (patented drug, ₹10/tablet). Investigate and suggest ways to improve.</div>
+        <div class="case-facts"><strong>Key Facts:</strong> Only product — rare blood disorder medicine. Patented, 15+ years remaining. No competitors. Revenue stagnated despite no competition. Issue: Market size itself is limited — only diagnosed patients are customers.</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Q: Revenue = # patients × frequency × price. Price constant. Volume not growing. Market share issue or market size?</div>
+          <div class="transcript-a">A: Market size — they have 100% share already. Market itself isn't growing.</div>
+          <div class="transcript-q">Q: Patient journey: Symptom → Doctor visit → Test (₹2,500) → Diagnosis → Purchase. Where is the bottleneck?</div>
+          <div class="transcript-a">A: Test access — expensive test, only recommended after major injury with prolonged bleeding. Many undiagnosed patients.</div>
+          <div class="transcript-q">Recommendations?</div>
+          <div class="transcript-a">Expand addressable market: 1) Subsidize/fund diagnostic tests for at-risk populations; 2) Partner with hospitals for routine screening programs; 3) Educate doctors for earlier recognition; 4) Work with insurance companies to cover the test cost.</div>
+        </div>
+        <div class="case-takeaway">💡 <strong>Takeaway:</strong> When a company has 100% market share and is still not growing, the problem is market size, not share. The solution is to expand the market (diagnose more patients) rather than capture more share.</div>
+      </div>
+    </div>
+
+    <!-- CASE 12 -->
+    <div class="case-card" data-cat="profitability">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge profitability">Profitability</span><span class="case-difficulty moderate">Moderate</span><span class="case-sector">IT Services</span></div>
+        <div class="case-title">Case 12: IT Services Firm — Bottom-line Improvement</div>
+        <div class="case-toggle">▼</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Problem Statement:</strong> An IT Services firm wants to improve the bottom-line of its India Region. Help them chart the way forward.</div>
+        <div class="case-facts"><strong>Key Facts:</strong> Major cost driver in IT industry is employee costs. Utilization rates and number of employees are the key levers. Revenue per employee driven by billing rates and utilization.</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Q: Profits = Revenue − Costs. Which side should we focus on?</div>
+          <div class="transcript-a">A: Both. Revenue improvement and cost optimization.</div>
+          <div class="transcript-q">Q: Revenue = Billing Rate × Utilization Rate × # Employees billed. Any data on current levels?</div>
+          <div class="transcript-a">A: Utilization is 75% vs industry benchmark of 82%. Billing rates are competitive. Headcount is fine.</div>
+          <div class="transcript-q">Q: Why is utilization low? Bench time? Project transitions? Skills mismatch?</div>
+          <div class="transcript-a">A: Bench time — employees between projects not being deployed efficiently. Skills mismatch with new technology demand (AI, Cloud).</div>
+          <div class="transcript-q">Recommendations?</div>
+          <div class="transcript-a">Revenue: Reskill bench employees in AI/ML and Cloud (increase billability). Sales: Target new digital transformation deals where margins are higher. Cost: Pyramid optimization — increase fresher intake to reduce blended cost; automate low-value tasks.</div>
+        </div>
+        <div class="case-takeaway">💡 <strong>Takeaway:</strong> IT services bottom-line = Utilization Rate × Billing Rate × Headcount − Employee Costs. Know the industry benchmark for utilization (~80-85%) going in. Reskilling bench time is always a dual win (lower cost + higher revenue).</div>
+      </div>
+    </div>
+
+    <!-- CASE 13 -->
+    <div class="case-card" data-cat="profitability">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge profitability">Profitability</span><span class="case-difficulty moderate">Moderate</span><span class="case-sector">Food & Beverage</span></div>
+        <div class="case-title">Case 13: Quick Service Restaurant — High Manpower Costs</div>
+        <div class="case-toggle">▼</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Problem Statement:</strong> A quick service restaurant chain is experiencing high manpower operating costs. Find reasons and give recommendations.</div>
+        <div class="case-facts"><strong>Key Facts:</strong> Cost focus (not revenue). Manpower = Chefs/Cooks + Servers + Billing + Cleaning + Management. Issue is high headcount relative to throughput.</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Q: Manpower cost = # employees × avg salary. Which part is high?</div>
+          <div class="transcript-a">A: # employees — overstaffed relative to actual orders served.</div>
+          <div class="transcript-q">Q: Is it peak vs off-peak mismatch? Or across all hours?</div>
+          <div class="transcript-a">A: Staffing levels are constant throughout the day, but demand is concentrated in 2-4 PM and 7-10 PM peak hours.</div>
+          <div class="transcript-q">Recommendations?</div>
+          <div class="transcript-a">Short-term: Shift scheduling — hire part-time/contractual staff for peak hours only. Reduce full-time headcount for non-peak. Long-term: Kitchen automation for high-volume items (burger patties, fries); self-service kiosks to reduce server count; cross-train staff for multiple roles.</div>
+        </div>
+        <div class="case-takeaway">💡 <strong>Takeaway:</strong> In QSR manpower cases, always check if the staffing structure matches demand patterns. Peak vs off-peak is the most common mismatch. Automation is the long-term structural solution.</div>
+      </div>
+    </div>
+
+    <!-- CASE 14 -->
+    <div class="case-card" data-cat="profitability">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge profitability">Profitability</span><span class="case-difficulty moderate">Moderate</span><span class="case-sector">Kids' Media / Entertainment</span></div>
+        <div class="case-title">Case 14: Kids' TV Channel — Revenue Dip & Advertiser Exits</div>
+        <div class="case-toggle">▼</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Problem Statement:</strong> A Kids' TV Channel is facing a dip in revenues and advertisers are moving out of contracts. Help them fix their problems.</div>
+        <div class="case-facts"><strong>Key Facts:</strong> Revenue streams: Advertiser fees (based on viewership) + Subscriber fees. Advertisers leaving because viewership of kids content has fallen. Digital channels (YouTube Kids, OTT platforms) are capturing kids' attention.</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Q: Revenue = Advertiser Revenue + Subscriber Revenue. Which declined?</div>
+          <div class="transcript-a">A: Both, but primarily advertiser revenue — tied to viewership ratings (TRP).</div>
+          <div class="transcript-q">Q: Why is viewership falling? Competitor analysis?</div>
+          <div class="transcript-a">A: Kids shifting to YouTube and OTT (Disney+ Hotstar). Content is on-demand, ad-free, accessible on mobile.</div>
+          <div class="transcript-q">Recommendations?</div>
+          <div class="transcript-a">Short-term: Exclusive content deals to differentiate; interactive programming (quizzes, challenges). Long-term: Launch own OTT app for kids; partner with school curricula for educational content; branded merchandise and licensing for revenue diversification.</div>
+        </div>
+        <div class="case-takeaway">💡 <strong>Takeaway:</strong> Media cases always have a viewership/ratings-to-revenue link. When TRP falls, advertisers leave. The digital disruption angle (OTT vs Linear TV) is nearly always present in modern media cases.</div>
+      </div>
+    </div>
+
+    <!-- CASE 15 -->
+    <div class="case-card" data-cat="profitability">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge profitability">Profitability</span><span class="case-difficulty moderate">Moderate</span><span class="case-sector">Automobile / Retail</span></div>
+        <div class="case-title">Case 15: Automobile Dealership — Flat Sales</div>
+        <div class="case-toggle">▼</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Problem Statement:</strong> An automobile dealership owner in Delhi NCR is experiencing flat sales. Find reasons and give recommendations.</div>
+        <div class="case-facts"><strong>Key Facts:</strong> Company-specific issue. Not a supply-side problem. Demand-side issue. Issue is with walk-in to conversion rate — customers visiting but not buying. Internal factors identified.</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Q: Revenue = # cars sold × avg price. Which declined?</div>
+          <div class="transcript-a">A: # cars sold is flat (not declining, but not growing as expected).</div>
+          <div class="transcript-q">Q: Customer journey: Awareness → Visit showroom → Negotiate → Purchase → Financing → Delivery. Where is the drop-off?</div>
+          <div class="transcript-a">A: Negotiation stage — dealership not offering competitive financing options vs OEM-backed schemes at other dealers.</div>
+          <div class="transcript-q">Recommendations?</div>
+          <div class="transcript-a">Short-term: Partner with NBFCs for competitive finance packages; train sales staff on EMI-based selling. Long-term: Explore in-house financing tie-ups; offer exchange programs for used cars; improve test drive experience to increase emotional purchase commitment.</div>
+        </div>
+        <div class="case-takeaway">💡 <strong>Takeaway:</strong> In auto dealership cases, the customer journey (Awareness → Showroom → Finance → Purchase → Delivery) is the primary framework. Financing terms are often the deciding factor in a sale — never overlook the financial product.</div>
+      </div>
+    </div>
+
+    <!-- MARKET ENTRY CASES -->
+
+    <!-- CASE 16 -->
+    <div class="case-card" data-cat="marketentry">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge marketentry">Market Entry</span><span class="case-difficulty moderate">Moderate</span><span class="case-sector">BFSI / Investment Banking</span></div>
+        <div class="case-title">Case 16: Global Investment Bank — India Entry</div>
+        <div class="case-toggle">▼</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Problem Statement:</strong> A US-based top-20 global investment bank (strong in US and European markets) wants to enter India. Help it make the decision and estimate Year 1 revenue.</div>
+        <div class="case-facts"><strong>Key Facts:</strong> Products: ECM, DCM, M&A, FX, Private IB Advisory. US/European markets slowing; India picking up. Revenue drivers: M&A, DCM, FX. Clients: Fortune 1000 + mid-size multi-million $ firms + HNIs. Year 1 target: 3 M&A deals, 4 DCM deals, 10 ECM deals.</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Q: Macro analysis — why India? PESTEL check?</div>
+          <div class="transcript-a">A: India in strong 10-20 year growth phase. Liberal banking regulations. Rising HNI count + Fortune 1000 investments. FinTech innovations boosting financial efficiency.</div>
+          <div class="transcript-q">Q: IB-specific market factors: Deal volumes, margins, market share capture?</div>
+          <div class="transcript-a">A: M&A growing fast. Competition exists but client can leverage global brand. Expected share: niche player initially.</div>
+          <div class="transcript-q">Q: Mode of entry — Direct (greenfield) or Acquisition/JV?</div>
+          <div class="transcript-a">A: JV with local bank or niche player acquisition for local market understanding.</div>
+          <div class="transcript-q">Q: Year 1 revenue = Deal size × # deals × margin. Calculate?</div>
+          <div class="transcript-a">A: M&A: 3 × $5B × 5% = $750M. DCM: 4 × $2B × 3% = $240M. ECM: 10 × $1B × 2% = $200M. Total = $1.19B.</div>
+        </div>
+        <div class="case-takeaway">💡 <strong>Takeaway:</strong> IB entry cases require product-level market share estimation, not just industry-level. Revenue = Deal Size × # Deals × Margin per deal type. The interviewer tests quantitative depth and IB domain familiarity — clarify jargon confidently.</div>
+      </div>
+    </div>
+
+    <!-- CASE 17 -->
+    <div class="case-card" data-cat="marketentry">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge marketentry">Market Entry</span><span class="case-difficulty moderate">Moderate</span><span class="case-sector">Chemicals / Manufacturing</span></div>
+        <div class="case-title">Case 17: US Chemical Company — India Market Entry</div>
+        <div class="case-toggle">▼</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Problem Statement:</strong> A US-based chemical company with a patented snow-melting chemical wants to evaluate if the Indian market is attractive for entry.</div>
+        <div class="case-facts"><strong>Key Facts:</strong> Product: Snow-melting chemical. Patent-protected. Fragmented Indian market (8-10 players, none above 8% share). Market size calculated via area of snowfall × snowfall depth × frequency × chemical dose × price.</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Q: Market size approach — area-based estimation. India area = 2 triangles = ~3.5M sq km. Snow-covered area = 20% = 700,000 sq km.</div>
+          <div class="transcript-a">A: Volume needed = 700,000 km² × 1m depth × 20 meltings/year × 10mL/m³ = 140 billion litres. Market size = 140B × $0.5/L = $70B. Very attractive.</div>
+          <div class="transcript-q">Q: Should we enter? What factors?</div>
+          <div class="transcript-a">A: Patented product + fragmented market = high entry attractiveness. Our chemical uses less volume than competitors (cost advantage).</div>
+          <div class="transcript-q">Q: Mode of entry?</div>
+          <div class="transcript-a">A: Joint Venture with 1-2 existing local players — use their distribution network + government relationships; we bring R&D + product superiority.</div>
+        </div>
+        <div class="case-takeaway">💡 <strong>Takeaway:</strong> This is essentially a guesstimate disguised as a market entry case. Master the area-based approach: Area × Depth × Frequency × Dose × Price. Always estimate market size before recommending entry. A patented product in a fragmented market is almost always worth entering.</div>
+      </div>
+    </div>
+
+    <!-- CASE 18 -->
+    <div class="case-card" data-cat="marketentry">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge marketentry">Market Entry</span><span class="case-difficulty moderate">Moderate</span><span class="case-sector">F&B / Retail</span></div>
+        <div class="case-title">Case 18: Ice Cream Franchise — New Outlet in IPL Stadium</div>
+        <div class="case-toggle">▼</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Problem Statement:</strong> An ice cream franchise (mid-to-high income segment) is evaluating opening a new outlet in a cricket stadium in Chennai during IPL season.</div>
+        <div class="case-facts"><strong>Key Facts:</strong> Stadium: 36,000 seats, 80% average occupancy. Avg ice cream price: ₹50. 60% of crowd would buy ice cream. Competition: Only a vanilla softy stall. 3 evaluation criteria: Attractiveness, Economic Viability, Operational Feasibility.</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Q: Attractiveness — why this location?</div>
+          <div class="transcript-a">A: IPL season = summer = peak ice cream demand. Large crowd, premium-paying audience, limited competition. Brand visibility opportunity.</div>
+          <div class="transcript-q">Q: Economic viability — revenue per match?</div>
+          <div class="transcript-a">A: Footfall = 36,000 × 80% = 28,800. Buyers = 60% = 17,280. Revenue = 17,280 × ₹50 = ₹8.64 lakh per match. Estimate margins and fixed costs (stall rent, setup) to assess profitability.</div>
+          <div class="transcript-q">Q: Operational challenges?</div>
+          <div class="transcript-a">A: SKU inventory management for multiple flavors. Crowd handling during peak moments (wickets, boundaries). Cold chain requirements. Staffing for high-intensity short-duration events.</div>
+        </div>
+        <div class="case-takeaway">💡 <strong>Takeaway:</strong> Always evaluate market entry across 3 dimensions: Attractiveness, Economic Viability, Operational Feasibility & Risks. Don't skip the operations bucket — interviewers specifically test this. Revenue per match × number of matches gives total season revenue.</div>
+      </div>
+    </div>
+
+    <!-- CASE 19 -->
+    <div class="case-card" data-cat="marketentry">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge marketentry">Market Entry</span><span class="case-difficulty moderate">Moderate</span><span class="case-sector">Telecom / International</span></div>
+        <div class="case-title">Case 19: South African Telecom — Zimbabwe Expansion Underperforming</div>
+        <div class="case-toggle">▼</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Problem Statement:</strong> A South African telecom operator entered Zimbabwe 2 years ago but achieved only 4% market share vs target of 10%. Find out why and recommend solutions.</div>
+        <div class="case-facts"><strong>Key Facts:</strong> SA client = 35% market share at home. Zimbabwe: 2 local players with 40% each. Services: Data+Voice, Prepaid+Postpaid, better quality than competitors. Pricing at par or slightly below market. No Value-Added Services offered. Awareness gap identified.</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Q: Revenue = Price × Volume × Service mix. Which is the issue?</div>
+          <div class="transcript-a">A: Volume (market share). Price is competitive. No VAS offered (opportunity).</div>
+          <div class="transcript-q">Q: Demand-side issue. Customer journey: Pre-purchase (Need, Awareness, Accessibility). Where is the gap?</div>
+          <div class="transcript-a">A: Awareness gap — customers don't know about our client's offering in Zimbabwe.</div>
+          <div class="transcript-q">Recommendations to increase awareness in new country?</div>
+          <div class="transcript-a">1. Marketing strategy: Digital marketing, localized content, local influencer partnerships. 2. Localization: Local-language website/app, local customer support, localized communication. 3. Partnerships: Local retailer tie-ups, government relations, community engagement programs.</div>
+        </div>
+        <div class="case-takeaway">💡 <strong>Takeaway:</strong> Market entry underperformance cases are not always about the entry decision — they're about post-entry execution. Awareness is the #1 barrier for new entrants in new geographies. Localizing marketing is not optional; it's the differentiator.</div>
+      </div>
+    </div>
+
+    <!-- CASE 20 -->
+    <div class="case-card" data-cat="marketentry">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge marketentry">Market Entry</span><span class="case-difficulty moderate">Moderate</span><span class="case-sector">Automobile / International</span></div>
+        <div class="case-title">Case 20: Indian Automobile Manufacturer — Saudi Arabia Entry</div>
+        <div class="case-toggle">▼</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Problem Statement:</strong> An Indian SUV manufacturer (premium segment, 20% excess manufacturing capacity) plans to enter Saudi Arabia. Advise them on the entry strategy.</div>
+        <div class="case-facts"><strong>Key Facts:</strong> Premium SUVs in India. Saudi market already has many premium players. High per-capita income in Saudi Arabia. Indian prices = economy segment in Saudi context. Government relations with Saudi PM are strong.</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Q: Why Saudi Arabia? What is the strategic rationale?</div>
+          <div class="transcript-a">A: Excess capacity utilization + growing Saudi automobile market + government relations advantage.</div>
+          <div class="transcript-q">Q: Which segment should we enter?</div>
+          <div class="transcript-a">A: Economy segment — premium segment already saturated. Indian price point = economy in Saudi Arabia = untapped market opportunity. Lack of options in economy = first-mover advantage.</div>
+          <div class="transcript-q">Q: Financial feasibility — is it worth it?</div>
+          <div class="transcript-a">A: Export cost + logistics vs Saudi market price. Excess capacity = zero additional fixed cost. Contribution margin positive if Saudi price > variable cost of production + export logistics.</div>
+          <div class="transcript-q">Q: Mode of entry?</div>
+          <div class="transcript-a">A: Leverage PM relationship for favorable import duty. Partner with local Saudi distributor (not direct — unfamiliar market). Phased entry: exports first, then local assembly if volumes justify.</div>
+        </div>
+        <div class="case-takeaway">💡 <strong>Takeaway:</strong> When a company has excess capacity, export-based entry has zero fixed cost overhead — always flag this as a key advantage. Pricing in a new market often places you in a different segment than at home — always check relative positioning.</div>
+      </div>
+    </div>
+
+    <!-- PRICING CASES -->
+
+    <!-- CASE 21 -->
+    <div class="case-card" data-cat="pricing">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge pricing">Pricing</span><span class="case-difficulty moderate">Moderate</span><span class="case-sector">Consumer Goods / Innovation</span></div>
+        <div class="case-title">Case 21: Toothbrush Manufacturer — Price a Lifetime Toothbrush</div>
+        <div class="case-toggle">▼</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Problem Statement:</strong> A manufacturer has invented a toothbrush that lasts a lifetime. Price the product. Manufacturing cost: ₹50 per unit. R&D cost: $10M (treated as sunk). Target margin: 50% on revenue. No existing competitors.</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Q: No competitors → skip competition-based pricing. Use cost-based and value-based.</div>
+          <div class="transcript-a">A: Cost-based: ₹50 / (1 - 50%) = ₹100. This is the floor price.</div>
+          <div class="transcript-q">Q: Value-based — what does the product save?</div>
+          <div class="transcript-a">A: Avg life = 70 years. Brushing years = 60. Change frequency = every 2 months = 6 per year × 60 = 360 toothbrushes. @ ₹50 each = ₹18,000 lifetime value.</div>
+          <div class="transcript-q">Q: Factors that adjust value-based price?</div>
+          <div class="transcript-a">Upward: Inflation, time value of money, one-time purchase convenience. Downward: Fear of loss/damage, boredom of single product for life. Final price: Somewhere between ₹100 (cost floor) and ₹18,000 (value ceiling), considering WTP.</div>
+        </div>
+        <div class="case-takeaway">💡 <strong>Takeaway:</strong> For novel products, value-based pricing is primary. Cost = floor, Value = ceiling. The final price is a negotiation between these extremes based on what a rational consumer would pay. Always articulate factors that push the price up and down.</div>
+      </div>
+    </div>
+
+    <!-- CASE 22 -->
+    <div class="case-card" data-cat="pricing">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge pricing">Pricing</span><span class="case-difficulty moderate">Moderate</span><span class="case-sector">Innovation / Tech</span></div>
+        <div class="case-title">Case 22: Teleporting Machine — Value-Based Pricing</div>
+        <div class="case-toggle">▼</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Problem Statement:</strong> A client has invented a teleporting machine (Mumbai base, 30-min transit time to any global location, no competitors). Price the product per use.</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Q: Pricing methods — cost-based (specialty product, not applicable), competitor-based (no competitors, N/A) → Value-based is the method.</div>
+          <div class="transcript-a">A: Agreed. Use value of time saved as the proxy.</div>
+          <div class="transcript-q">Q: Target customers — CXOs (int'l travel, highest time value), Diplomats (urgent travel), Medical emergencies. Start with CXOs.</div>
+          <div class="transcript-a">A: CXO avg salary = ₹10 Cr/year. Hourly earnings = ₹10Cr / (250 days × 10 hrs) = ₹40,000/hr. International trip = 15 hrs. Teleporter = 0.5 hrs. Time saved = 14.5 hrs. Usable saving (70-80%) = ~10 hrs. Value = 10 × ₹40,000 = ₹4 lakh per use.</div>
+          <div class="transcript-q">Q: Sense check?</div>
+          <div class="transcript-a">A: Business class international ticket = ₹2 lakh. Our price at ₹4 lakh = 100% premium over business class. Justifiable for the time saving. Destination-specific adjustments feasible.</div>
+        </div>
+        <div class="case-takeaway">💡 <strong>Takeaway:</strong> When no cost or competition benchmark exists, value-based pricing is the ONLY method. Value of time = Hourly earnings × Hours saved × % usable. Always cross-validate with an analogous market reference (e.g., business class tickets).</div>
+      </div>
+    </div>
+
+    <!-- CASE 23 -->
+    <div class="case-card" data-cat="pricing">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge pricing">Pricing</span><span class="case-difficulty hard">Challenging</span><span class="case-sector">Media & Entertainment</span></div>
+        <div class="case-title">Case 23: Global Event Bid — Media Rights Pricing</div>
+        <div class="case-toggle">▼</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Problem Statement:</strong> A media & entertainment giant is looking to bid for a 3-week global sporting event's broadcast rights. Determine the bid price. Target: 30% ROI margin. India as primary geography.</div>
+        <div class="case-facts"><strong>Key Facts:</strong> Primetime ad rate: ₹5L/30 sec. Non-primetime: ₹3L/30 sec. Primetime = 3 hrs weekdays + 10 hrs weekends. Total costs: ₹1,000 Cr (given).</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Q: Approach — Bid Price = Profits / 1.3. Profits = Revenue − Costs.</div>
+          <div class="transcript-a">A: Primetime hours = (3×5×3) + (10×2×3) + 6 (opening/closing) = 45+60+6 = 111 → ~100 hrs. Non-primetime = (7×5×3) = 105 → ~100 hrs.</div>
+          <div class="transcript-q">Q: Revenue calculation?</div>
+          <div class="transcript-a">A: 10 ad minutes/hr. Primetime: ₹5L/30s × 2/min × 10 min/hr × 100 hrs = ₹3,000 Cr. Non-primetime: ₹3L × 2 × 10 × 100 = ₹1,800 Cr. Total revenue = ₹5,000 Cr (assuming 100% sell-through).</div>
+          <div class="transcript-q">Q: Final bid price?</div>
+          <div class="transcript-a">A: Profit = ₹5,000 − ₹1,000 = ₹4,000 Cr. Bid Price = ₹4,000/1.3 = ~₹3,000 Cr.</div>
+        </div>
+        <div class="case-takeaway">💡 <strong>Takeaway:</strong> This is a calculation-heavy pricing case. Always set up the equation before calculating: Bid = (Revenue − Costs) ÷ (1 + Margin%). Never calculate without the interviewer approving your structure. Round to clean numbers and narrate every step.</div>
+      </div>
+    </div>
+
+    <!-- CASE 24 -->
+    <div class="case-card" data-cat="pricing">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge pricing">Pricing</span><span class="case-difficulty hard">Challenging</span><span class="case-sector">Infrastructure / Transport</span></div>
+        <div class="case-title">Case 24: Delhi-Amritsar Expressway — Toll Tax Pricing</div>
+        <div class="case-toggle">▼</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Problem Statement:</strong> A construction company built a Delhi-Amritsar expressway under BOT model (Build-Operate-Transfer). They must determine the toll tax to recover $2.5B investment + 20% profit over 10 years.</div>
+        <div class="case-facts"><strong>Key Facts:</strong> 8-10 entry/exit points. All vehicle types (trucks, cars, public transport). 2 competing highways. 4 similar expressways in India. Saves 2 hours of travel time.</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Q: Three pricing methods — which to apply?</div>
+          <div class="transcript-a">A: All three — triangulate for final recommendation.</div>
+          <div class="transcript-q">Q: Cost-based — structure?</div>
+          <div class="transcript-a">A: Fixed costs (construction $2.5B + land) + Variable costs (maintenance, labour, toll booth over 10 years). Divide by total vehicle-miles driven over 10 years. Add load factor for heavy vehicles. Price = (Total Cost + 20% profit) ÷ Vehicle Miles.</div>
+          <div class="transcript-q">Q: Competition-based?</div>
+          <div class="transcript-a">A: Price between competitor highway toll (lower bound) and similar expressway toll (upper bound, since we save 2 hours). Our expressway commands premium over highway.</div>
+          <div class="transcript-q">Q: Value-based?</div>
+          <div class="transcript-a">A: Value of 2 hours saved per user. For truck: time value of cargo + driver. For passenger car: leisure/business value. Add this to base/competitor price as maximum WTP premium.</div>
+        </div>
+        <div class="case-takeaway">💡 <strong>Takeaway:</strong> Infrastructure pricing always uses all 3 methods. Cost-based gives the floor (minimum to recover investment). Value-based (time saved) gives the ceiling. Competition (similar expressways, highways) gives the range. Final price sits in the overlap.</div>
+      </div>
+    </div>
+
+    <!-- GROWTH CASES -->
+
+    <!-- CASE 25 -->
+    <div class="case-card" data-cat="growth">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge growth">Growth</span><span class="case-difficulty moderate">Moderate</span><span class="case-sector">E-Commerce</span></div>
+        <div class="case-title">Case 25: Flipkart — 3-5 Year Growth Strategy (2017-18)</div>
+        <div class="case-toggle">▼</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Problem Statement:</strong> It is 2017-18. Flipkart wants to develop their growth strategy for the next 3-5 years. They want to increase both profitability and customer base. Current growth rate: 20%. Operating only in Top 4 Indian cities.</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Q: Growth = Organic + Inorganic. Where to start?</div>
+          <div class="transcript-a">A: Inorganic first (partnerships, not M&A at this stage).</div>
+          <div class="transcript-q">Q: Inorganic — map customer journey: Search → Checkout → Payment → Delivery. Partnership at each?</div>
+          <div class="transcript-a">A: Search: Vernacular startup, Voice-based search. Checkout: Sub-product partnerships (laptop insurance, accessories). Payment: Credit service startup for EMI/underwriting. Delivery: Logistics startup integration for wider reach.</div>
+          <div class="transcript-q">Q: Organic growth — 3 buckets?</div>
+          <div class="transcript-a">A: 1) New Products — Customer engagement (gaming, live feed), video platform, product range expansion. 2) Existing Market — Increase frequency (loyalty program, bank offers) + Basket size (recommendation engine). 3) New Geographies — Tier-1 full coverage (1-2 yrs) → Tier-2 (3-5 yrs). Tier-1: Voice checkout, more payment options. Tier-2: Hyperlocal delivery, regional language UI.</div>
+        </div>
+        <div class="case-takeaway">💡 <strong>Takeaway:</strong> Growth strategies need to be segmented: Existing market vs New market; Organic vs Inorganic. Map customer journey for partnership opportunities — every touchpoint is a potential revenue or efficiency enhancement. Always give a phased implementation timeline.</div>
+      </div>
+    </div>
+
+    <!-- CASE 26 -->
+    <div class="case-card" data-cat="growth">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge growth">Growth</span><span class="case-difficulty moderate">Moderate</span><span class="case-sector">Travel & Hospitality</span></div>
+        <div class="case-title">Case 26: Online Travel Aggregator — Become #1 in India</div>
+        <div class="case-toggle">▼</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Problem Statement:</strong> An online travel aggregator (currently #3 in market share, primarily urban youth) wants to become the player with the highest market share in India within 2 years. Client charges 1% fee to both customer and travel agency per transaction.</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Q: Growth strategy: Existing markets vs New markets. Two-year urgency — prioritize?</div>
+          <div class="transcript-a">A: Existing markets first (faster ROI). New markets as Phase 2.</div>
+          <div class="transcript-q">Q: Existing market levers — Volume or Price?</div>
+          <div class="transcript-a">A: Client doesn't want to change 1% fee. Focus on volume growth.</div>
+          <div class="transcript-q">Q: Volume growth sub-buckets?</div>
+          <div class="transcript-a">A: 1) New Customer Acquisition: SEO/PPC optimization, social media, personalized recommendations. 2) Retention: Loyalty programs, referral incentives, improved UX. 3) Value-Added Services: Emerging transport modes, regional tourism tie-ups, local event packages.</div>
+          <div class="transcript-q">Q: New markets (beyond 2 years)?</div>
+          <div class="transcript-a">A: Rural areas (bus, train focus), specific demographics (senior travelers, corporate travel).</div>
+        </div>
+        <div class="case-takeaway">💡 <strong>Takeaway:</strong> In growth cases where the client can't change price, ALL growth must come from volume. Break volume into: Acquisition (new customers) + Frequency (existing customers buy more often) + Basket size (bigger transactions). Timeframe determines which levers to prioritize.</div>
+      </div>
+    </div>
+
+    <!-- CASE 27 -->
+    <div class="case-card" data-cat="growth">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge growth">Growth</span><span class="case-difficulty moderate">Moderate</span><span class="case-sector">SaaS / Technology</span></div>
+        <div class="case-title">Case 27: SaaS Firm — International Expansion Strategy</div>
+        <div class="case-toggle">▼</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Problem Statement:</strong> A US-based SaaS firm (integrated software for high-end Silicon Valley clients) wants to grow organically by expanding overseas. Identify the factors to consider.</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Q: Build a country evaluation matrix — Columns = target countries (India, China, EU), Rows = evaluation factors.</div>
+          <div class="transcript-a">A: External factors (PESTEL): Political stability, Economic stability (post-COVID recovery, inflation, FX risk), Social (literacy rate, tech adoption), Technological (digital infra), Environmental (regulations), Legal (FDI, IP laws).</div>
+          <div class="transcript-q">Q: Industry-specific factors?</div>
+          <div class="transcript-a">A: SaaS competitive landscape in target country. Market entry mode (direct, partnership, acquisition). Competitive analysis — market share of local players, our USP in new geography.</div>
+          <div class="transcript-q">Q: Financial/Internal assessment?</div>
+          <div class="transcript-a">A: Leverage existing MNC client relationships to source early customers. Customer density estimation. 5-year revenue projections. Cost of operations (talent, real estate, compliance). NPV analysis per location.</div>
+        </div>
+        <div class="case-takeaway">💡 <strong>Takeaway:</strong> Open-ended growth cases need a structured framework — build an evaluation matrix. PESTEL + Competitive landscape + Internal capabilities + Financial modeling (NPV). The interviewer rewards breadth of thinking AND depth when probed. Always offer to prioritize countries based on your analysis.</div>
+      </div>
+    </div>
+
+    <!-- CASE 28 -->
+    <div class="case-card" data-cat="growth">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge growth">Growth</span><span class="case-difficulty moderate">Moderate</span><span class="case-sector">Retail / E-Commerce</span></div>
+        <div class="case-title">Case 28: Toy Manufacturer — Declining Revenue Recovery Strategy</div>
+        <div class="case-toggle">▼</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Problem Statement:</strong> A toy manufacturer based in Bangalore (sells through own stores across India) is facing declining revenues. Identify the problem and recommend recovery solutions.</div>
+        <div class="case-facts"><strong>Key Facts:</strong> Revenue = # Customers × Avg ticket size. Both declining. Internal factors + External factors. Falls in # customers due to internal issues (single-brand store limitation, poor discovery, no online channel).</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Q: Revenue = Avg ticket size × # transactions. Which declined?</div>
+          <div class="transcript-a">A: Both. Start with # customers — bigger issue.</div>
+          <div class="transcript-q">Q: Customer journey — Awareness → Discovery → Purchase. Internal or External issue?</div>
+          <div class="transcript-a">A: Internal — physical stores only (limited reach), no e-commerce presence, limited to company stores (no multi-brand retail).</div>
+          <div class="transcript-q">Recommendations?</div>
+          <div class="transcript-a">Short-term: List on Flipkart/Amazon for immediate reach expansion. Expand to multi-brand toy stores. Long-term: Own D2C website + subscription model (monthly toy discovery box). Partner with schools and daycares for institutional sales. International toy trends integration in product design.</div>
+        </div>
+        <div class="case-takeaway">💡 <strong>Takeaway:</strong> Distribution is often the hidden killer in retail decline cases. A great product with poor channel coverage will always underperform. The fix is channel expansion (online, multi-brand) before product changes.</div>
+      </div>
+    </div>
+
+    <!-- UNCONVENTIONAL CASES -->
+
+    <!-- CASE 29 -->
+    <div class="case-card" data-cat="unconventional">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge unconventional">Unconventional</span><span class="case-difficulty hard">Challenging</span><span class="case-sector">Government / Public Policy</span></div>
+        <div class="case-title">Case 29: Ministry of Road Transport — Expressway Feasibility</div>
+        <div class="case-toggle">▼</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Problem Statement:</strong> The Ministry of Road Transport & Highways wants to evaluate whether to build a new expressway connecting two major cities. Assess feasibility and recommend.</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Q: Framework for government infrastructure feasibility?</div>
+          <div class="transcript-a">A: 1) Demand assessment (traffic volumes, current road congestion, projected growth). 2) Economic benefit analysis (time savings, fuel savings, accident reduction). 3) Financial viability (cost vs revenue — tolls, PPP options, BOT model). 4) Social impact (employment, regional development, environmental). 5) Risk assessment (land acquisition, execution delays, financing).</div>
+          <div class="transcript-q">Q: Quantify economic benefit — 2 hours saved per vehicle, 1 lakh vehicles/day?</div>
+          <div class="transcript-a">A: Time value of 2 hours = ~₹500 per vehicle (avg economic value). Daily benefit = 1L × ₹500 = ₹5 Cr/day = ₹1,825 Cr/year. Against a cost of say ₹20,000 Cr → payback ~11 years. Compare with project life (30-40 years) → positive NPV.</div>
+          <div class="transcript-q">Q: Financing recommendation?</div>
+          <div class="transcript-a">A: Hybrid Annuity Model (HAM) — government pays 40% construction cost, private player funds remaining and earns via toll + government annuity. Reduces financial risk for private sector → higher bidder interest.</div>
+        </div>
+        <div class="case-takeaway">💡 <strong>Takeaway:</strong> Government cases need Cost-Benefit Analysis (CBA) as the core framework. Economic benefits (time, fuel) are quantified and compared to capital cost. Know India-specific infrastructure financing models: BOT, HAM, EPC. Always include social and environmental dimensions.</div>
+      </div>
+    </div>
+
+    <!-- CASE 30 -->
+    <div class="case-card" data-cat="unconventional">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge unconventional">Unconventional</span><span class="case-difficulty hard">Challenging</span><span class="case-sector">PE / VC / Investments</span></div>
+        <div class="case-title">Case 30: VC Firm — Should We Invest in This Startup?</div>
+        <div class="case-toggle">▼</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Problem Statement:</strong> A VC firm is evaluating whether to invest $5M in a Series A EdTech startup. The startup claims to be the "Duolingo for Indian vernacular languages." Advise the VC firm.</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Q: Investment evaluation framework?</div>
+          <div class="transcript-a">A: 1) Market (size, growth, timing — is NOW the right moment?). 2) Product (differentiation, defensibility, unit economics). 3) Team (founder quality, execution track record). 4) Financials (revenue model, burn rate, path to profitability). 5) Exit options (acquirers: Google, BYJU'S, Reliance; IPO potential).</div>
+          <div class="transcript-q">Q: Market sizing — vernacular language learning India?</div>
+          <div class="transcript-a">A: ~500M smartphone users. 70% prefer local language content. Addressable market = 350M. 5% willing to pay = 17.5M. @ ₹200/month = ₹3,500 Cr annual TAM. Rapidly growing with Digital India initiatives.</div>
+          <div class="transcript-q">Q: Key risks?</div>
+          <div class="transcript-a">A: 1) Willingness to pay in Tier 2/3 (prefer free content). 2) BYJU'S/Duolingo can copy. 3) Content quality at scale (many languages). Recommendation: Invest if team is strong AND they have a Hindi language lock-in before scaling to other languages.</div>
+        </div>
+        <div class="case-takeaway">💡 <strong>Takeaway:</strong> VC/PE cases use the 5M framework: Market, Model, Management, Money, Moat. Market size is almost always estimated (guesstimate within the case). Exit multiples and IRR matter — always ask about the exit horizon and comparable acquisitions.</div>
+      </div>
+    </div>
+
+  </div><!-- /cases-container -->
+</div>
+<!-- Guidance CTA inside tab -->
+<div style="background:linear-gradient(135deg,#1a2744,#2c3e7a);color:white;padding:2.5rem 2rem;text-align:center;margin-top:2rem;">
+  <p style="font-size:0.85rem;opacity:0.8;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;margin-bottom:0.5rem;">Want live case practice with an expert?</p>
+  <h3 style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;margin-bottom:0.8rem;">Book a Mock Case Interview Session</h3>
+  <p style="opacity:0.88;font-size:0.92rem;max-width:540px;margin:0 auto 1.5rem;line-height:1.7;">Get real-time feedback on your structure, communication and analytical depth from an experienced consulting professional.</p>
+  <a href="https://topmate.io/kunal_sadhukhan" target="_blank" rel="noopener" class="topmate-btn" style="font-size:0.9rem;padding:0.7rem 2rem;">📅 Book a Session on Topmate →</a>
 </div>
 
-<!-- ═══════════════════════════ GUESSTIMATE TAB (PLACEHOLDER) ═══════════════════════════ -->
+</div><!-- /practice tab -->
+
+<!-- ═══════════════════════════ GUESSTIMATE TAB ═══════════════════════════ -->
 <div id="tab-guesstimate" class="tab-content">
-  <div style="max-width:900px;margin:4rem auto;padding:2rem;text-align:center;">
-    <div style="font-size:3rem;margin-bottom:1rem;">🔢</div>
-    <h2 style="font-family:'Playfair Display',serif;color:var(--navy);font-size:2rem;margin-bottom:1rem;">Guesstimate Practice</h2>
-    <p style="color:var(--text-light);font-size:1rem;line-height:1.7;margin-bottom:1.5rem;">50+ detailed guesstimate problems with full solutions, step-by-step approaches and key assumptions — from IIM Ahmedabad, Calcutta, Lucknow & FMS Delhi casebooks. <strong>Coming in Part 3!</strong></p>
-    <div style="background:var(--bg2);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem;text-align:left;">
-      <strong style="color:var(--navy);">Categories included in Part 3:</strong>
-      <ul style="list-style:none;margin-top:0.8rem;display:flex;flex-direction:column;gap:0.4rem;">
-        <li style="font-size:0.9rem;color:var(--text);">📊 Market Sizing (EV market India, Home Renovation Hyderabad, Maternity Wear India...)</li>
-        <li style="font-size:0.9rem;color:var(--text);">🚗 Transportation (Cars on Bandra-Worli Sea Link, Petrol Pumps in Delhi, Delhi Airport Passengers...)</li>
-        <li style="font-size:0.9rem;color:var(--text);">🍕 Food & Consumer (Cheese Burst Pizzas at Dominos, Gold Flake cigarettes in Mumbai, TOI Revenue...)</li>
-        <li style="font-size:0.9rem;color:var(--text);">⚡ Utilities (Monthly Electricity consumption India, Petrol consumption India...)</li>
-        <li style="font-size:0.9rem;color:var(--text);">🛒 E-commerce & Tech (Amazon India daily orders, YouTube ad duration, Dream11 revenue...)</li>
-        <li style="font-size:0.9rem;color:var(--text);">🎬 Unconventional (Movie Production Decision Tree, Number of bullets fired India...)</li>
-      </ul>
+<div style="max-width:1200px;margin:0 auto;padding:2rem;">
+
+  <div class="fw-intro">
+    <h2>Guesstimate Practice</h2>
+    <p>50+ detailed guesstimate problems with full solutions, structured approaches, and key assumptions. Master the art of estimation — the most tested skill in consulting interviews.</p>
+  </div>
+
+  <!-- Guesstimate Category filter -->
+  <div class="sector-tabs-bar" style="margin-bottom:2rem;">
+    <button class="sector-tab-btn active" onclick="filterGuess('all',this)">🔢 All</button>
+    <button class="sector-tab-btn" onclick="filterGuess('market',this)">📊 Market Sizing</button>
+    <button class="sector-tab-btn" onclick="filterGuess('transport',this)">🚗 Transport</button>
+    <button class="sector-tab-btn" onclick="filterGuess('consumer',this)">🛒 Consumer</button>
+    <button class="sector-tab-btn" onclick="filterGuess('utility',this)">⚡ Utilities</button>
+    <button class="sector-tab-btn" onclick="filterGuess('tech',this)">💻 Tech & Digital</button>
+    <button class="sector-tab-btn" onclick="filterGuess('unconventional',this)">🎲 Unconventional</button>
+  </div>
+
+  <!-- Guesstimate Framework Box -->
+  <div class="fw-card" style="margin-bottom:2rem;border-left:4px solid var(--blue);">
+    <h3 style="font-size:1.2rem;margin-bottom:0.5rem;">⚡ Guesstimate Golden Framework — How to Approach Every Problem</h3>
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:0.8rem;margin-top:1rem;">
+      <div style="text-align:center;padding:0.8rem;background:var(--bg2);border-radius:10px;"><div style="font-size:1.5rem;">🎯</div><div style="font-size:0.78rem;font-weight:700;color:var(--navy);margin-top:0.3rem;">Scope & Clarify</div><div style="font-size:0.73rem;color:var(--text-light);">What exactly to estimate? Geography? Time period?</div></div>
+      <div style="text-align:center;padding:0.8rem;background:var(--bg2);border-radius:10px;"><div style="font-size:1.5rem;">🌳</div><div style="font-size:0.78rem;font-weight:700;color:var(--navy);margin-top:0.3rem;">Build Issue Tree</div><div style="font-size:0.73rem;color:var(--text-light);">Top-down or Bottom-up? Demand or Supply side?</div></div>
+      <div style="text-align:center;padding:0.8rem;background:var(--bg2);border-radius:10px;"><div style="font-size:1.5rem;">🔢</div><div style="font-size:0.78rem;font-weight:700;color:var(--navy);margin-top:0.3rem;">State Assumptions</div><div style="font-size:0.73rem;color:var(--text-light);">Get buy-in from interviewer before calculating</div></div>
+      <div style="text-align:center;padding:0.8rem;background:var(--bg2);border-radius:10px;"><div style="font-size:1.5rem;">🧮</div><div style="font-size:0.78rem;font-weight:700;color:var(--navy);margin-top:0.3rem;">Apply 80-20</div><div style="font-size:0.73rem;color:var(--text-light);">Only detail major segments; briefly note minor ones</div></div>
+      <div style="text-align:center;padding:0.8rem;background:var(--bg2);border-radius:10px;"><div style="font-size:1.5rem;">✅</div><div style="font-size:0.78rem;font-weight:700;color:var(--navy);margin-top:0.3rem;">Validate Answer</div><div style="font-size:0.73rem;color:var(--text-light);">Sanity check via alternative approach or ballpark</div></div>
     </div>
-    <button class="open-chat-btn" onclick="openChat()" style="font-size:0.9rem;">Ask AI Coach for a guesstimate now →</button>
+    <div class="tip-box" style="margin-top:1rem;">
+      <strong>Key Population Data to Memorize:</strong> India population: 140 Cr | Urban: 35% | Rural: 65% | Avg household size: 4 (urban), 5 (rural) | Working age (15-60): ~60% | Smartphone users: ~80 Cr | Internet users: ~75 Cr | GDP per capita: ~₹2L/year | 1 sq km Delhi ~ 20,000 people
+    </div>
   </div>
+
+  <div id="guess-container" style="display:flex;flex-direction:column;gap:1.5rem;">
+
+    <!-- ── MARKET SIZING GUESSTIMATES ── -->
+
+    <div class="case-card" data-gcat="market">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge marketentry">Market Sizing</span><span class="case-sector">Consumer Goods / FMCG</span></div>
+        <div class="case-title">G1: Estimate the annual demand for Gold Flake cigarettes in Mumbai</div>
+        <div class="case-toggle">▼</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Approach:</strong> Top-down. Population → Smoking age adults → Smokers → Gold Flake share → Annual units.</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Step 1: Population of Mumbai = 20 million</div>
+          <div class="transcript-a">Of smoking age (15-60) = 75% → 15 million</div>
+          <div class="transcript-q">Step 2: Smokers = 50% of adults → 7.5 million</div>
+          <div class="transcript-a">Assumption: Average consumption = 1 pack/day = 20 cigarettes/day</div>
+          <div class="transcript-q">Step 3: Total cigarette demand = 7.5M × 365 × 20 = 54,750 million cigarettes/year</div>
+          <div class="transcript-a">Gold Flake market share ≈ 20% (consistent with Delhi/Bangalore data)</div>
+          <div class="transcript-q">Final Answer: Gold Flake demand = 0.20 × 54,750M = <strong>~10,950 million cigarettes/year</strong></div>
+          <div class="transcript-a">Sanity check: ~4.4 cigarettes/Gold Flake smoker/day → reasonable for a smoker who has 1 pack (Gold Flake) every 4-5 days.</div>
+        </div>
+        <div class="case-takeaway">💡 Key reduction filters: Population → Age group → Smokers (behavior) → Brand share. Top-down is ideal for consumption-based guesstimates.</div>
+      </div>
+    </div>
+
+    <div class="case-card" data-gcat="market">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge marketentry">Market Sizing</span><span class="case-sector">Consumer / Auto</span></div>
+        <div class="case-title">G2: Estimate the automobile tire market size in India (2020)</div>
+        <div class="case-toggle">▼</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Approach:</strong> Demand-side. Total 4-wheelers → New vs Old vehicles → Tires per vehicle per year.</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Total 4-wheelers in India = Rural + Urban households × ownership rate</div>
+          <div class="transcript-a">Rural High Income (15%): 24M HH × 80% penetration × 1 car = 19M. Rural Mid (35%): 57M × 10% × 1 = 5.7M. Urban High (30%): 31M × 95% × 2 = 59M. Urban Mid (50%): 52M × 60% × 1 = 31M. Total ≈ 115M 4-wheelers</div>
+          <div class="transcript-q">New vehicles = 115M ÷ 12-year avg life = ~10M new/year</div>
+          <div class="transcript-a">New car tires = 10M × 5 (4 wheels + 1 spare) = 50M tires</div>
+          <div class="transcript-q">Old vehicle tires = 105M old cars × 5 tires ÷ 5-year tire life = 105M tires</div>
+          <div class="transcript-a"><strong>Total tire market = 50M + 105M = ~155 million tires/year</strong></div>
+        </div>
+        <div class="case-takeaway">💡 Split stock into new and replacement demand — this avoids double-counting and is more accurate for any durable goods market sizing.</div>
+      </div>
+    </div>
+
+    <div class="case-card" data-gcat="market">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge marketentry">Market Sizing</span><span class="case-sector">Real Estate / Consumer</span></div>
+        <div class="case-title">G3: Estimate the Home Renovation Market size in Hyderabad</div>
+        <div class="case-toggle">▼</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Approach:</strong> Demand-side. Target: MC, UMC, UC households only. Renovation cycle × house price × renovation spend %.</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Population of Hyderabad = 10M → Households = 2.5M (avg family size 4)</div>
+          <div class="transcript-a">MC (30%): 750K HH | UMC (10%): 250K HH | UC (5%): 125K HH. (Exclude BPL 20% and LMC 35%)</div>
+          <div class="transcript-q">MC: 750K/15 yr cycle = 50K renovations/yr × ₹1.5L avg spend = ₹750 Cr</div>
+          <div class="transcript-a">UMC: 250K/12 = 20.8K/yr × ₹6L = ₹1,250 Cr. UC: 125K/10 = 12.5K/yr × ₹15L = ₹1,880 Cr</div>
+          <div class="transcript-q"><strong>Total market = ₹3,880 Crore (~₹4,000 Cr)</strong></div>
+          <div class="transcript-a">Renovation spend as % of house price: MC 6%, UMC 8%, UC 10%</div>
+        </div>
+        <div class="case-takeaway">💡 Renovation market uses a cycle approach (houses renovated every N years). Always exclude the lowest income segments and adjust renovation frequency by income group.</div>
+      </div>
+    </div>
+
+    <div class="case-card" data-gcat="market">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge marketentry">Market Sizing</span><span class="case-sector">Fashion / Maternity</span></div>
+        <div class="case-title">G4: Estimate the Maternity Wear Market size in India</div>
+        <div class="case-toggle">▼</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Approach:</strong> Start with births, filter by urban/income, apply penetration rates and price.</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Children born per year in India = 28 million. Urban births = 33% = 9M. Rural = 67% = 19M (very limited demand).</div>
+          <div class="transcript-a">Urban Upper Income (10%) = 0.9M births. Urban Middle Income (50%) = 4.5M births. Urban Lower Income (40%) = 3.6M births.</div>
+          <div class="transcript-q">Penetration: Upper = 50% = 0.45M. Middle = 20% = 0.9M. Lower = 0% (price-sensitive).</div>
+          <div class="transcript-a">Upper: 0.45M × 5 garments × ₹1,600 = ₹3,600M. Middle: 0.9M × 2 garments × ₹1,000 = ₹1,800M. Rural adjustment: 2% of urban = ₹108M.</div>
+          <div class="transcript-q"><strong>Total market = ₹5,508M (~₹550 Crore)</strong></div>
+        </div>
+        <div class="case-takeaway">💡 Always clarify whether to include rural (usually very small for premium/niche categories). Penetration rates vary significantly by income — upper income has much higher propensity for specialized products.</div>
+      </div>
+    </div>
+
+    <div class="case-card" data-gcat="market">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge marketentry">Market Sizing</span><span class="case-sector">Insurance / Finance</span></div>
+        <div class="case-title">G5: Estimate the EV market size in Kolkata for the next year</div>
+        <div class="case-toggle">▼</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Approach:</strong> Population → Car ownership → EV penetration rate → Market size.</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Population of Kolkata = 1.5 Crore. Average household size = 4 → 37.5 lakh households.</div>
+          <div class="transcript-a">Can afford cars = 40% of households = 15 lakh households.</div>
+          <div class="transcript-q">Total cars in Kolkata = 15L households × 1 car per household = 15 lakh cars.</div>
+          <div class="transcript-a">EV penetration = 3% (emerging market assumption)</div>
+          <div class="transcript-q"><strong>EV market size = 15,00,000 × 3% = 45,000 electric vehicles/year</strong></div>
+          <div class="transcript-a">Sanity check: At avg EV price ₹15L, market value = 45,000 × ₹15L = ₹6,750 Crore. Reasonable for a metro city.</div>
+        </div>
+        <div class="case-takeaway">💡 For new technology markets (EV, Solar), always use a conservative penetration rate unless data suggests otherwise. The interviewer may give you the penetration rate — use it directly. Sanity check with market value.</div>
+      </div>
+    </div>
+
+    <!-- TRANSPORT -->
+
+    <div class="case-card" data-gcat="transport">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge growth">Transport</span><span class="case-sector">Aviation / Infrastructure</span></div>
+        <div class="case-title">G6: Estimate the daily passengers at Kolkata Airport</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Approach:</strong> Supply-side (bottleneck = runway capacity). # Runways → flights/day → passengers/flight → total.</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Kolkata Airport has 2 runways. Time between 2 flights on 1 runway = 6 min → 10 flights/hour per runway.</div>
+          <div class="transcript-a">Operational hours = 20 hrs/day. Total flights = 2 runways × 20 hrs × 10 = 400 flights/day.</div>
+          <div class="transcript-q">Domestic (70%): 400 × 70% = 280 flights × 180 seats × 70% occupancy = 35,280 passengers.</div>
+          <div class="transcript-a">International (30%): 400 × 30% = 120 flights × 300 seats × 70% occupancy = 25,200 passengers.</div>
+          <div class="transcript-q"><strong>Total = ~60,000 daily passengers</strong></div>
+        </div>
+        <div class="case-takeaway">💡 Supply-side approach: Find the binding constraint (runway capacity) and work from there. # flights = Capacity × Hours. Passengers = Flights × Seats × Occupancy. Validate: 60K for Kolkata airport is reasonable (major metros handle 100-200K).</div>
+      </div>
+    </div>
+
+    <div class="case-card" data-gcat="transport">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge growth">Transport</span><span class="case-sector">Infrastructure / Revenue</span></div>
+        <div class="case-title">G7: Estimate daily revenues of Delhi-Gurgaon Toll Plaza</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Approach:</strong> Supply-side (booth capacity). Revenue = # Vehicles × Toll Fare per vehicle.</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Processing time = 15 secs/vehicle → 4 vehicles/min → 240 vehicles/hr capacity per booth. 20 toll booths.</div>
+          <div class="transcript-a">Traffic: High traffic (8 hrs) = 100% capacity = 240/hr. Medium (8 hrs) = 60% = 144/hr. Low (8 hrs) = 30% = 72/hr. Total per booth = 8×240 + 8×144 + 8×72 = 3,648 → ~3,600 vehicles/day.</div>
+          <div class="transcript-q">Vehicle mix: 4-wheelers (70%) at ₹30 + Trucks (30%) at ₹70. Weighted fare = 0.7×30 + 0.3×70 = ₹42/vehicle.</div>
+          <div class="transcript-a"><strong>Daily revenue = 3,600 vehicles × ₹42 × 20 booths = ₹30.24 lakh ≈ ₹30 lakh/day</strong></div>
+        </div>
+        <div class="case-takeaway">💡 Treat the booth as the bottleneck. Traffic varies by time of day — use 3 bands (High/Medium/Low). Always ask about vehicle mix for weighted fare calculation. 2-wheelers typically exempt from tolls.</div>
+      </div>
+    </div>
+
+    <div class="case-card" data-gcat="transport">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge growth">Transport</span><span class="case-sector">Urban / Metro</span></div>
+        <div class="case-title">G8: Estimate daily passengers on Delhi Metro</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Approach:</strong> Demand-side. Working population → commuters → metro users → daily trips.</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Delhi population = 2 Crore. Working population (20-60 years, 40%) = 80 lakh.</div>
+          <div class="transcript-a">Of these, those who commute to work daily (office-goers) = 60% = 48 lakh commuters.</div>
+          <div class="transcript-q">Metro preference: 30% of commuters use Metro (rest use private vehicles, bus, auto) = 14.4 lakh commuters.</div>
+          <div class="transcript-a">Each commuter takes 2 journeys/day (to office + back) = 28.8 lakh trips. Add non-work travel (students, tourists, shopping) = ~20% more = 34.5 lakh trips/day.</div>
+          <div class="transcript-q"><strong>Total daily passengers ≈ 35 lakh (3.5 million)</strong></div>
+          <div class="transcript-a">Sanity check: Delhi Metro official ridership ~55-60L/day. We're slightly conservative — reasonable given working population underestimation.</div>
+        </div>
+        <div class="case-takeaway">💡 Metro passenger demand: Work trips are the anchor (2× daily commuters). Add leisure/student trips as a multiplier (typically 15-25%). Always sanity check against publicly known ridership if you know it.</div>
+      </div>
+    </div>
+
+    <div class="case-card" data-gcat="transport">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge growth">Transport</span><span class="case-sector">Registration / Government</span></div>
+        <div class="case-title">G9: Estimate the number of license plates in Maharashtra</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Approach:</strong> Population → Households by income → Vehicle ownership → # Vehicles × 2 plates each.</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Maharashtra population = 120M. Average household size = 4 → 30M households.</div>
+          <div class="transcript-a">High Income (10%) = 3M HH: 90% ownership, 2 vehicles avg = 5.4M vehicles. Mid Income (40%) = 12M HH: 50% ownership, 1.5 vehicles avg = 9M vehicles. Low Income (50%) = 15M HH: 30% ownership, 1 vehicle = 4.5M vehicles.</div>
+          <div class="transcript-q">Total vehicles = 5.4 + 9 + 4.5 = 18.9M vehicles. Each vehicle has 2 license plates.</div>
+          <div class="transcript-a"><strong>Total license plates = 18.9M × 2 = ~37.8 million plates</strong></div>
+        </div>
+        <div class="case-takeaway">💡 Remember: 2 plates per vehicle (front and back). Segment by income before applying ownership rates — the rates vary dramatically (90% for high income vs 30% for low income).</div>
+      </div>
+    </div>
+
+    <div class="case-card" data-gcat="transport">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge growth">Transport</span><span class="case-sector">Petrol / Urban Infrastructure</span></div>
+        <div class="case-title">G10: Estimate the number of Petrol Pumps in Delhi</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Two Approaches — Area-Based and Demand-Based:</strong></div>
+        <div class="case-transcript">
+          <div class="transcript-q">Approach 1 (Area-Based): Delhi area = 1,600 sq km. High traffic zone (30%) = 480 sq km, pump every 2×2 km = 120 pumps. Medium (40%) = 640 sq km, every 3×3 = 71 pumps. Low (30%) = 480 sq km, every 4×4 = 30 pumps.</div>
+          <div class="transcript-a"><strong>Total ≈ 220 petrol pumps</strong></div>
+          <div class="transcript-q">Approach 2 (Demand-Based): Vehicles in Delhi ~1 Crore. Average refueling every 10 days → 10L/day vehicles visit pumps. Each pump serves 1,000 vehicles/day → 10L ÷ 1,000 = 10,000 → 1 lakh pumps (clearly wrong — adjust to 200-300 visits/pump/day).</div>
+          <div class="transcript-a">Revised: 10L ÷ 300 = ~333 pumps. Average of both approaches ≈ 250-300 pumps.</div>
+          <div class="transcript-q"><strong>Final answer: ~250 petrol pumps in Delhi</strong></div>
+        </div>
+        <div class="case-takeaway">💡 Using TWO approaches and averaging is impressive in interviews — it shows you can validate your answer. Area-based (supply) and demand-based (demand) approaches should converge to the same order of magnitude.</div>
+      </div>
+    </div>
+
+    <!-- CONSUMER GUESSTIMATES -->
+
+    <div class="case-card" data-gcat="consumer">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge profitability">Consumer</span><span class="case-sector">Food & Beverage / QSR</span></div>
+        <div class="case-title">G11: Estimate cheese burst pizzas sold by Domino's daily (India)</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Approach:</strong> Supply-side (store throughput) → Scale to national level by city tier.</div>
+        <div class="case-transcript">
+          <div class="transcript-q">One Domino's outlet: Working hours 11AM-11PM = 12 hrs. Peak hours (2-4PM, 7-10PM) = 5 hrs at 80% occupancy. Non-peak = 7 hrs at 50%. Processing: 20 mins per order, 3 parallel = throughput.</div>
+          <div class="transcript-a">Peak orders = 3 × (300min/20min) × 0.8 = 36. Non-peak = 3 × (420/20) × 0.5 = 31. In-store = 67 orders. Add 50% for online/delivery = ~100 orders/outlet/day.</div>
+          <div class="transcript-q">Cheese burst = 40% of orders × 1.5 pizzas/order = 60 cheese burst pizzas/outlet/day.</div>
+          <div class="transcript-a">Delhi outlets (area 1600 sq km ÷ service radius 4km²) = 32 outlets. Delhi cheese bursts = 32 × 60 = 1,952/day. Delhi = 10% of metro area → Metro total = 19,520.</div>
+          <div class="transcript-q"><strong>Urban+Suburban = 50% of metro × 1.5 = 14,640. National total = ~34,160 cheese burst pizzas/day</strong></div>
+        </div>
+        <div class="case-takeaway">💡 Build up from one unit (outlet) → scale by geography. Use peak/non-peak split for throughput. The geographic extrapolation (Delhi → metros → national) is a reusable pattern for any QSR question.</div>
+      </div>
+    </div>
+
+    <div class="case-card" data-gcat="consumer">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge profitability">Consumer</span><span class="case-sector">Retail / Fashion</span></div>
+        <div class="case-title">G12: Estimate pairs of shoes sold in Mumbai daily</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Approach:</strong> Demand-side. Population → Income segmentation → Pairs owned → Life of shoe → Annual replacement → Daily sales.</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Mumbai population = 20M. Segment: Upper (10% = 2M), Middle (30% = 6M), Lower Middle (40% = 8M), BPL (20% = 4M).</div>
+          <div class="transcript-a">For each: Male/Female/Kids split (35%/35%/30%). Avg pairs owned: Upper=5, Mid=4, LMid=2-3, BPL=0.5-1. Shoe life: Upper=3yr, Mid=4yr, LMid=5yr, BPL=6yr.</div>
+          <div class="transcript-q">Annual demand = (Population × Pairs owned) ÷ Life of shoe. Sum across all segments = ~12.78M pairs/year.</div>
+          <div class="transcript-a"><strong>Daily demand = 12.78M ÷ 365 ≈ 35,000 pairs/day</strong></div>
+          <div class="transcript-q">Sanity check (supply): 35,000 ÷ 8 pairs/shop/day ÷ 600 sq km = 7.3 shops/sq km in Mumbai. Reasonable for a dense city.</div>
+        </div>
+        <div class="case-takeaway">💡 Always do a supply-side sanity check: number of shops per sq km should feel realistic. BPL populations rarely buy covered shoes — often 0 pairs or sandals only. Gender and age split matters for footwear more than most categories.</div>
+      </div>
+    </div>
+
+    <div class="case-card" data-gcat="consumer">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge profitability">Consumer</span><span class="case-sector">Food & Beverage / FMCG</span></div>
+        <div class="case-title">G13: Estimate daily revenue of a fast-food chain restaurant in Kolkata</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Approach:</strong> Supply-side (dine-in seat throughput). Revenue = Footfall × Avg order value.</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Focus on Dine-In only. Restaurant: 50 seats, 12 operational hours, 70% avg occupancy, 30 min per table turn = 2 customers/seat/hour.</div>
+          <div class="transcript-a">Daily customers = 50 seats × 70% × 2 turns/hr × 12 hrs = 840 customers. Avg order = 2 items × ₹100 = ₹200 per customer.</div>
+          <div class="transcript-q"><strong>Daily revenue (dine-in) = 840 × ₹200 = ₹1,68,000 ≈ ₹1.68 lakh/day</strong></div>
+          <div class="transcript-a">Add takeaway and delivery (similar magnitude) → total ≈ ₹3-5 lakh/day for a well-run fast food outlet.</div>
+        </div>
+        <div class="case-takeaway">💡 For restaurants, Revenue = Seats × Occupancy × Turns per hour × Hours × Avg order. "Turns per hour" = 60 min ÷ avg dining time. Scale up by adding delivery and takeaway as percentage of dine-in.</div>
+      </div>
+    </div>
+
+    <div class="case-card" data-gcat="consumer">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge profitability">Consumer</span><span class="case-sector">Entertainment / Media</span></div>
+        <div class="case-title">G14: Estimate the annual revenue of a multiplex</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Approach:</strong> Revenue = Ticket Sales + Parking + F&B. Weekday vs Weekend split.</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Multiplex: 4 screens × 300 seats. 4 shows/screen/day. Weekday occupancy = 60%, Weekend = 90%.</div>
+          <div class="transcript-a">Ticket: ₹250. Parking: 50% of audience × ₹50. F&B: 50% of audience × ₹150. Revenue per screen per day = Ticket + Parking + F&B.</div>
+          <div class="transcript-q">Weekday: 300 × 60% × 4 shows × (₹250 + 0.5×₹50 + 0.5×₹150) = 720 × ₹450 = ₹3.24L → 4 screens = ₹13L/day × 260 days = ₹33.8 Cr.</div>
+          <div class="transcript-a">Weekend: 300 × 90% × 4 × ₹450 = 1,620 × ₹450/screen × 4 = ₹18.9L/day × 105 days = ₹19.8 Cr.</div>
+          <div class="transcript-q"><strong>Total annual revenue ≈ ₹42 Crore per multiplex</strong></div>
+        </div>
+        <div class="case-takeaway">💡 Multiplex revenue always has 3 streams: Tickets, F&B, Parking. Weekday (260 days) and weekend (105 days) have very different occupancies. F&B margins are actually higher than tickets — always include it.</div>
+      </div>
+    </div>
+
+    <div class="case-card" data-gcat="consumer">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge profitability">Consumer</span><span class="case-sector">Wine / Alcohol</span></div>
+        <div class="case-title">G15: Estimate bottles of wine consumed in India per week</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Approach:</strong> Demand-side. Urban population → Alcohol drinkers → Wine drinkers → Consumption → Bottles.</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Urban adults who drink alcohol = 1.4B × 30% urban × 70% working age × (40% male × 70% drink + 20% female × 90% drink) = ~13M drinkers.</div>
+          <div class="transcript-a">Wine drinkers = 40% of alcohol drinkers = 5.2M. Average consumption = 2 glasses/week. 1 bottle = 8 glasses.</div>
+          <div class="transcript-q">Bottles for drinking = 5.2M × 2 glasses/8 per bottle = 1.3M bottles/week. Add cooking (5%) = 65K bottles.</div>
+          <div class="transcript-a"><strong>Total wine consumption ≈ 1.35 million bottles/week in India</strong></div>
+        </div>
+        <div class="case-takeaway">💡 Rural populations rarely consume wine. Always exclude rural when estimating premium/niche consumables. Conversion ratio: bottles = glasses ÷ (8 glasses/bottle). Don't forget to add non-drinking uses (cooking = ~5% of drinking volume).</div>
+      </div>
+    </div>
+
+    <!-- UTILITY GUESSTIMATES -->
+
+    <div class="case-card" data-gcat="utility">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge unconventional">Utilities</span><span class="case-sector">Energy / FMCG</span></div>
+        <div class="case-title">G16: Estimate monthly residential electricity consumption in India</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Approach:</strong> Demand-side. Urban + Rural households × income class × consumption per household.</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Urban: 300M people ÷ 4 per HH = 75M households. Rural: 700M ÷ 6 = ~120M households.</div>
+          <div class="transcript-a">Urban by income: Low (60%=45M HH, 300 units/mo), Mid (30%=22.5M HH, 1,200 units/mo), High (10%=7.5M HH, 3,000 units/mo).</div>
+          <div class="transcript-q">Urban total = 75M × (60%×300 + 30%×1,200 + 10%×3,000) = 75M × (180+360+300) = 75M × 840 = 63,000M units/month</div>
+          <div class="transcript-a">Rural: 120M × (70%×100 + 25%×300 + 5%×1,000) = 120M × (70+75+50) = 120M × 195 = 23,400M units/month</div>
+          <div class="transcript-q"><strong>Total = 63,000M + 23,400M = ~86,400 Million units (86.4 BU) per month</strong></div>
+        </div>
+        <div class="case-takeaway">💡 Electricity consumption varies 10x between income groups. Rural electrification is still incomplete (assume 70-80% of rural households). BU (Billion Units) is the standard measure — India's actual consumption is ~130 BU/month, so our estimate is in the right order of magnitude.</div>
+      </div>
+    </div>
+
+    <div class="case-card" data-gcat="utility">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge unconventional">Utilities</span><span class="case-sector">Infrastructure / Highways</span></div>
+        <div class="case-title">G17: Estimate total annual toll tax collected across India</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Approach:</strong> # Toll plazas × daily collection per plaza × 365 days.</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Number of toll plazas: India area = 4M sq km. Roadways coverage = 70% = 2.8M sq km. Distance between plazas = 80km → each plaza serves 80/2 × 80/2 × π = ~5,000 sq km. Plazas = 2.8M ÷ 5,000 = ~560 plazas.</div>
+          <div class="transcript-a">Revenue per booth per day = ~₹3.6L (from time-of-day traffic and vehicle mix calculation). Avg 4 active booths per plaza.</div>
+          <div class="transcript-q">Daily revenue per plaza = 4 × ₹3.6L = ₹14.4L ≈ ₹15L. National daily = 560 × ₹15L = ₹840 Crore. Annual = ₹840 Cr × 365 = ₹30,660 Crore.</div>
+          <div class="transcript-a"><strong>Annual toll collection ≈ ₹30,000 Crore (~₹300 Billion)</strong></div>
+        </div>
+        <div class="case-takeaway">💡 Infrastructure revenue uses area-based supply approach. The key insight is that plazas = total road area ÷ area served per plaza. Actual NHAI toll collection is ~₹40,000 Cr — our estimate is in the right order.</div>
+      </div>
+    </div>
+
+    <div class="case-card" data-gcat="utility">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge unconventional">Utilities</span><span class="case-sector">Dinner/Crockery</span></div>
+        <div class="case-title">G18: Estimate number of dinner plates in West Bengal</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Approach:</strong> Population → Income segments → Crockery ownership rate → Plates per person.</div>
+        <div class="case-transcript">
+          <div class="transcript-q">West Bengal population = 100M. Income split: High (10%=10M), Mid (40%=40M), Low (50%=50M).</div>
+          <div class="transcript-a">Crockery ownership: High=100%, Mid=80%, Low=60%.</div>
+          <div class="transcript-q">Avg dinner plates per person: High=8, Mid=5, Low=3.</div>
+          <div class="transcript-a">High: 10M × 100% × 8 = 80M plates. Mid: 40M × 80% × 5 = 160M plates. Low: 50M × 60% × 3 = 90M plates.</div>
+          <div class="transcript-q"><strong>Total residential = 330M plates. Add restaurants (~10-15%) → ~370M dinner plates in West Bengal.</strong></div>
+        </div>
+        <div class="case-takeaway">💡 Unconventional guesstimates (plates, chairs, beds) follow the same pattern: Population → segmentation → penetration → units per person. Always mention that restaurants and offices are additional sources even if you don't calculate them in full.</div>
+      </div>
+    </div>
+
+    <!-- TECH & DIGITAL -->
+
+    <div class="case-card" data-gcat="tech">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge pricing">Tech & Digital</span><span class="case-sector">E-Commerce</span></div>
+        <div class="case-title">G19: Estimate daily orders on Amazon India</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Approach:</strong> Internet users → Urban/Rural split → Income/Age segmentation → Purchase frequency → Amazon market share.</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Internet users in India = 560M (800M mobile × 70% internet). Urban = 60% = 336M. Rural = 40% = 224M.</div>
+          <div class="transcript-a">Filter by age (10-55) and income (rural low income negligible). High income urban buys 9-12 times/year. Mid income urban 4-6 times/year. Low income urban 2-4 times/year.</div>
+          <div class="transcript-q">Total e-commerce orders ≈ 30 lakh/day across all platforms. Amazon market share = 35%.</div>
+          <div class="transcript-a"><strong>Amazon India daily orders ≈ 10-11 lakh packages/day</strong></div>
+        </div>
+        <div class="case-takeaway">💡 For e-commerce guesstimates, segment by: Geography (urban/rural) × Income × Age × Purchase frequency. Frequency varies 5x between income groups. Always end with market share × total market.</div>
+      </div>
+    </div>
+
+    <div class="case-card" data-gcat="tech">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge pricing">Tech & Digital</span><span class="case-sector">Media / Streaming</span></div>
+        <div class="case-title">G20: Estimate duration of ads streamed on YouTube daily (India)</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Approach:</strong> Daily YouTube users → those who see ads → Short vs Long videos → Ad types (Non-skippable, Skipped, Not-skipped) → Total seconds.</div>
+        <div class="case-transcript">
+          <div class="transcript-q">YouTube monthly users = 2B globally. Daily = 50% = 1B. Those encountering ads = 50% (premium users excluded) = 500M.</div>
+          <div class="transcript-a">Short videos (<8 min): 60% = 300M users. Long videos (>8 min): 40% = 200M users.</div>
+          <div class="transcript-q">Ad types: Non-skippable (50%): 15s per ad. Skippable+Skipped (40%): 5s. Skippable+Not Skipped (10%): 20s.</div>
+          <div class="transcript-a">Short video (1 ad): 300M × (0.5×15 + 0.4×5 + 0.1×20) = 300M × (7.5+2+2) = 300M × 11.5 = 3,450M sec. Long video (2 ads): 200M × 2 × 11.5 = 4,600M sec.</div>
+          <div class="transcript-q"><strong>Total = ~8,050 million seconds ≈ 8 Billion seconds of ads/day globally</strong></div>
+        </div>
+        <div class="case-takeaway">💡 Media guesstimates require understanding of ad formats. The key insight: not all users see ads (premium subscribers don't) and not all ads are fully watched (skippable ads). Always stratify by ad type and video length.</div>
+      </div>
+    </div>
+
+    <div class="case-card" data-gcat="tech">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge pricing">Tech & Digital</span><span class="case-sector">Monthly Revenue / DTH</span></div>
+        <div class="case-title">G21: Estimate monthly revenue of Tata Play subscribers in Delhi</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Approach:</strong> Delhi households → TV penetration → Tata Play market share → Connections per subscriber → Revenue per connection.</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Delhi population = 20M → Households = 4M (avg 5 per HH). High Income (20%=0.8M), Mid (30%=1.2M), Low (30%=1.2M), BPL (20%=0.8M).</div>
+          <div class="transcript-a">TV penetration: High=100%, Mid=90%, Low=50%, BPL≈0%. Tata Play market share: High=40%, Mid=30%, Low=20%.</div>
+          <div class="transcript-q">Subscribers: High = 0.8M×40% = 320K. Mid = 1.08M×30% = 324K. Low = 0.6M×20% = 120K. Total = 764K subscribers.</div>
+          <div class="transcript-a">Connections per subscriber: Low=1, Mid=1.25, High=1.5. Monthly ARPU: Low=₹250, Mid=₹500, High=₹750.</div>
+          <div class="transcript-q"><strong>Total monthly revenue ≈ ₹59 Crore</strong></div>
+        </div>
+        <div class="case-takeaway">💡 Subscription business revenue = Subscribers × Connections per subscriber × ARPU. High income households may have multiple connections (bedroom + living room). Always validate that market share decreases as you go down the income ladder.</div>
+      </div>
+    </div>
+
+    <div class="case-card" data-gcat="tech">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge pricing">Tech & Digital</span><span class="case-sector">Fantasy Sports</span></div>
+        <div class="case-title">G22: Estimate Dream11's total possible revenue in Year 1 (2018)</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Approach:</strong> Urban population → Sports viewers → Cricket viewers → Digital payment users → Fantasy players → Revenue by frequency.</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Urban population = 400M. By age: 18-25 (15%), 26-40 (20%), 40+ (50%). For each age-gender group: % watch sports, % watch cricket (70%), % use digital payments, % play fantasy sports.</div>
+          <div class="transcript-a">Total fantasy players ≈ 6M. Segment by frequency: High (10%=0.5M, 60 bets/year, ₹500 avg), Medium (30%=2M, 48 bets, ₹250), Low (60%=3.5M, 18 bets, ₹100).</div>
+          <div class="transcript-q">Cricket revenue (urban) = 0.5M×60×₹500 + 2M×48×₹250 + 3.5M×18×₹100 = ₹15,000Cr + ₹2,400Cr + ₹630Cr ≈ ₹4,530 Cr (urban cricket).</div>
+          <div class="transcript-a"><strong>Total revenue (all sports + rural adjustment) ≈ ₹8,090 Crore in Year 1</strong></div>
+        </div>
+        <div class="case-takeaway">💡 Fantasy sports revenue = Players × Bets per year × Avg bet value. Platform commission (~15-20%) is the actual revenue — distinguish between gross bets and company revenue. Segmenting by bet frequency is crucial since high-frequency users drive disproportionate revenue.</div>
+      </div>
+    </div>
+
+    <!-- UNCONVENTIONAL -->
+
+    <div class="case-card" data-gcat="unconventional">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge unconventional">Unconventional</span><span class="case-sector">Decision Analysis</span></div>
+        <div class="case-title">G23: Decision Tree — Should a production house produce and release a movie?</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Approach:</strong> Bayesian probability tree. High Quality movie (0.6) → Box Office Hit (0.7) or Flop (0.3). Low Quality (0.4) → Hit (0.3) or Flop (0.7). Total cost = $10M.</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Revenue scenarios: HQ+Hit = $20M, HQ+Flop = $5M, LQ+Hit = $10M, LQ+Flop = $2M.</div>
+          <div class="transcript-a">Expected Revenue = ($20×0.7 + $5×0.3)×0.6 + ($10×0.3 + $2×0.7)×0.4 = ($14+$1.5)×0.6 + ($3+$1.4)×0.4 = $9.3 + $1.76 = $11.06M</div>
+          <div class="transcript-q">Expected Profit = $11.06M − $10M (cost) = $1.06M > 0</div>
+          <div class="transcript-a"><strong>Recommendation: Produce and release the movie (positive expected profit)</strong></div>
+          <div class="transcript-q">Risk consideration: Downside scenario (Low Quality + Flop): Revenue $2M, Loss = -$8M. Is the upside ($10M profit on HQ+Hit) worth the downside risk?</div>
+        </div>
+        <div class="case-takeaway">💡 Decision tree guesstimates test probability-weighted thinking. Expected Value = Σ(Probability × Outcome). Always calculate both expected value AND worst-case scenario. Recommend based on expected value but flag risk tolerance.</div>
+      </div>
+    </div>
+
+    <div class="case-card" data-gcat="unconventional">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge unconventional">Unconventional</span><span class="case-sector">Public Safety / Defense</span></div>
+        <div class="case-title">G24: Estimate the number of bullets fired in India annually</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Approach:</strong> 80-20 rule. Focus on non-civilians (Police + Armed Forces = 80% of bullets). Civilians = licensed gun holders (sportspeople, security). Unlicensed = negligible in calculation.</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Police Force = 1 per 1,000 population = 1.4M. Armed Forces = 1.4M. New recruits (20%) vs Existing (80%).</div>
+          <div class="transcript-a">Police training: New recruits = 120 shots × 250 days. Existing = 60 shots × 50 days. Live fire: New = 50 shots/year, Existing = 200 shots/year. Police total ≈ 8,239M bullets/year.</div>
+          <div class="transcript-q">Armed Forces training more intensive: New = 300 shots × 250 days. Existing = 120 × 100 days. Live fire higher. Total ≈ 25,718M bullets/year.</div>
+          <div class="transcript-a">Civilians: Licensed sportspersons (28K) = 4 matches × 100 shots + practice. Security guards (2.8M) = 50 shots × 50 days. Total ≈ 7,515M.</div>
+          <div class="transcript-q"><strong>Grand total ≈ 41,479 million bullets ≈ 41 Billion bullets/year</strong></div>
+        </div>
+        <div class="case-takeaway">💡 Apply 80-20 aggressively — non-civilians (police + army) account for >99% of bullets. The key is categorizing: Training (many shots/day during training period) vs Live fire (fewer, but during operations). State all categories even if you approximate minor ones.</div>
+      </div>
+    </div>
+
+    <div class="case-card" data-gcat="unconventional">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge unconventional">Unconventional</span><span class="case-sector">Revenue / Commerce</span></div>
+        <div class="case-title">G25: Estimate earnings of a pickpocket at Kamal Market, Delhi</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Approach:</strong> Footfall → Viable targets (carry wallet, distracted) → Success rate → Avg wallet value.</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Market has 150 shops. Average 10 customers/hr (9AM-4PM) + 20/hr (4-9PM). Each customer visits 3 shops on average → unique people in market at any time.</div>
+          <div class="transcript-a">People visiting shops = 150 × ((10×7 + 20×5)/3) = 150 × (70+100)/3 = 150 × 57 = 8,500 per day. Add 30% passers-by → 12,000 people/day.</div>
+          <div class="transcript-q">Viable targets = 60% carry wallets × 30% are distracted/careless = 2,160 viable targets. Pickpocket attempts 3% of viable = 65 attempts. Success rate = 10% → 6-7 successful pickpockets/day.</div>
+          <div class="transcript-a">Avg wallet value = ₹500. Daily earnings = 6.5 × ₹500 = <strong>₹3,250/day</strong></div>
+        </div>
+        <div class="case-takeaway">💡 Creative/unconventional guesstimates follow the same demand-side framework. Footfall → filter by your target behavior (carries wallet, distracted) → success rate → revenue per event. The humor-factor doesn't change the analytical rigor required.</div>
+      </div>
+    </div>
+
+    <div class="case-card" data-gcat="unconventional">
+      <div class="case-header" onclick="toggleCase(this)">
+        <div class="case-meta"><span class="case-badge unconventional">Unconventional</span><span class="case-sector">Media / Chess</span></div>
+        <div class="case-title">G26: Estimate chess moves played in a day in India</div>
+      </div>
+      <div class="case-body">
+        <div class="case-problem"><strong>Approach:</strong> Total chess players → Player types (Professional, Intermediate, Amateur) → Active fraction → Games per day by format → Moves per game.</div>
+        <div class="case-transcript">
+          <div class="transcript-q">Total chess players India = 1M. Professional (0.5%): 5,000 → 50% active = 2,500. Intermediate (15%): 150,000 → 25% active = 37,500. Amateur (84.5%): 845,000 → 10% active = 84,500.</div>
+          <div class="transcript-a">Game formats: Bullet (≤1 min), Blitz (1-5 min), Classical (>5 min).</div>
+          <div class="transcript-q">Professionals: Bullet 10 games/day × 40 moves × 2,500 = 1M. Blitz 2 games × 50 moves = 250K. Classical 0.1 games × 60 moves = 15K. Professional total = 1.265M moves.</div>
+          <div class="transcript-a">Similarly for Intermediate and Amateur → same order of magnitude each.</div>
+          <div class="transcript-q"><strong>Total chess moves played in India daily ≈ 8.2 million moves</strong></div>
+        </div>
+        <div class="case-takeaway">💡 Three-level player segmentation + three game format types = 9 cells to calculate. The 80-20 rule: Amateur players are most numerous but least active. Professionals are few but play many games. Blitz/Bullet games dominate move counts due to frequency.</div>
+      </div>
+    </div>
+
+  </div><!-- /guess-container -->
+</div>
+<!-- Guidance CTA inside tab -->
+<div style="background:linear-gradient(135deg,#1a2744,#2c3e7a);color:white;padding:2.5rem 2rem;text-align:center;margin-top:2rem;">
+  <p style="font-size:0.85rem;opacity:0.8;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;margin-bottom:0.5rem;">Want guesstimate coaching with live feedback?</p>
+  <h3 style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;margin-bottom:0.8rem;">Practice Guesstimates with a Real Coach</h3>
+  <p style="opacity:0.88;font-size:0.92rem;max-width:540px;margin:0 auto 1.5rem;line-height:1.7;">1-on-1 guesstimate sessions where you get instant feedback on your approach, assumptions, calculations and communication style.</p>
+  <a href="https://topmate.io/kunal_sadhukhan" target="_blank" rel="noopener" class="topmate-btn" style="font-size:0.9rem;padding:0.7rem 2rem;">📅 Book a Session on Topmate →</a>
 </div>
 
-<!-- ═══════════════════════════ TIPS TAB (PLACEHOLDER) ═══════════════════════════ -->
+</div><!-- /guesstimate tab -->
+
+<!-- ═══════════════════════════ TIPS TAB ═══════════════════════════ -->
 <div id="tab-tips" class="tab-content">
-  <div style="max-width:900px;margin:4rem auto;padding:2rem;text-align:center;">
-    <div style="font-size:3rem;margin-bottom:1rem;">💡</div>
-    <h2 style="font-family:'Playfair Display',serif;color:var(--navy);font-size:2rem;margin-bottom:1rem;">Tips & Tricks for Consulting Interviews</h2>
-    <p style="color:var(--text-light);font-size:1rem;line-height:1.7;margin-bottom:1.5rem;">Curated insider advice from candidates who successfully cracked MBB, Big 4, and boutique consulting firms. <strong>Coming in Part 3!</strong></p>
-    <button class="open-chat-btn" onclick="openChat()" style="font-size:0.9rem;">Ask AI Coach for interview tips now →</button>
+<div style="max-width:1100px;margin:0 auto;padding:2rem;">
+
+  <div class="fw-intro">
+    <h2>Tips & Tricks for Consulting Interviews</h2>
+    <p>Curated from top consulting firms' interview processes — everything from cracking the case to acing the fit round and negotiating your offer.</p>
   </div>
+
+  <!-- SECTION 1: Case Interview Dos & Don'ts -->
+  <div class="fw-card" style="margin-bottom:1.5rem;">
+    <h3>📋 Case Interview Do's & Don'ts</h3>
+    <p class="fw-desc">The difference between candidates who get offers and those who don't often comes down to these fundamentals.</p>
+    <div class="fw-two-col">
+      <div class="fw-col-card" style="border-top-color:#16a34a;">
+        <h4>✅ DO These</h4>
+        <ul>
+          <li>Always clarify and repeat the problem statement before diving in</li>
+          <li>Ask for 1-2 minutes to structure your thoughts — always take it</li>
+          <li>Think out loud — narrate every step of your reasoning</li>
+          <li>Use MECE (Mutually Exclusive, Collectively Exhaustive) in every bucket</li>
+          <li>Listen actively and adapt when the interviewer gives hints</li>
+          <li>Develop your own framework — don't force-fit a memorized one</li>
+          <li>Focus on high-impact issues (80-20 rule)</li>
+          <li>Make quick, accurate mental calculations — round numbers to simplify</li>
+          <li>Drive the case forward — take ownership of the direction</li>
+          <li>Give a structured recommendation at the end: Problem → Finding → Action → Risk</li>
+          <li>Show genuine enthusiasm for solving the business problem</li>
+        </ul>
+      </div>
+      <div class="fw-col-card" style="border-top-color:#dc2626;">
+        <h4>❌ DON'T Do These</h4>
+        <ul>
+          <li>Jump straight to conclusions without structure</li>
+          <li>Memorize and recite frameworks robotically</li>
+          <li>Calculate silently — always narrate math steps</li>
+          <li>Panic when you don't know an answer — say "let me think about this"</li>
+          <li>Vehemently defend a wrong analysis — admit and move forward</li>
+          <li>Ask too many questions before structuring (max 3-4 clarifying questions)</li>
+          <li>Repeat the same mistake twice</li>
+          <li>Internalize your thought process — interviewers can't grade silence</li>
+          <li>Make logically correct but practically infeasible recommendations</li>
+          <li>Ignore the numbers — always validate your logic with data</li>
+          <li>Be rude, dismissive, or overconfident with the interviewer</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: 7-Step Case Approach -->
+  <div class="fw-card" style="margin-bottom:1.5rem;">
+    <h3>🎯 The 7-Step Case Interview Approach</h3>
+    <div class="fw-steps">
+      <div class="fw-step"><div class="fw-step-num">1</div><div class="fw-step-body"><h5>Repeat & Clarify Objective</h5><p>Restate the problem in your own words. Confirm the metric of success (profits? market share? cost reduction?). Get all relevant initial information in 2-3 questions maximum.</p></div></div>
+      <div class="fw-step"><div class="fw-step-num">2</div><div class="fw-step-body"><h5>Set Context with Smart Questions</h5><p>Ask targeted questions that reveal the case structure: "Is this industry-wide or company-specific?", "Which geography?", "Since when?", "How does the client make money?"</p></div></div>
+      <div class="fw-step"><div class="fw-step-num">3</div><div class="fw-step-body"><h5>Take Time to Lay Down Structure</h5><p>Say: "I'd like to take a minute to structure my approach." Build a MECE issue tree on your notepad. Present the structure before diving in — get buy-in from the interviewer.</p></div></div>
+      <div class="fw-step"><div class="fw-step-num">4</div><div class="fw-step-body"><h5>Involve Interviewer in Analysis</h5><p>Don't go silent and analyze alone. Narrate: "I'd like to look at revenue first because it seems more likely to be the root cause. Is that okay?" This shows judgment and consulting communication skills.</p></div></div>
+      <div class="fw-step"><div class="fw-step-num">5</div><div class="fw-step-body"><h5>Deep Dive & Diagnose</h5><p>Use your issue tree to drill down. When you hit the root cause, validate it: "So the issue is X, which is caused by Y, which we see in the data because Z." Make the chain of logic explicit.</p></div></div>
+      <div class="fw-step"><div class="fw-step-num">6</div><div class="fw-step-body"><h5>Make Specific, Prioritized Recommendations</h5><p>Don't give generic advice. Structure as: Short-term (0-6 months) + Long-term (6-24 months). Prioritize by impact × feasibility. Always have a rationale for each recommendation.</p></div></div>
+      <div class="fw-step"><div class="fw-step-num">7</div><div class="fw-step-body"><h5>Summarize Concisely</h5><p>End with: "To summarize: the client's issue is X, caused by Y. I recommend A in the short-term and B in the long-term. The key risk to watch is C." Brief, structured, confident.</p></div></div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: Guesstimate Tips -->
+  <div class="fw-card" style="margin-bottom:1.5rem;">
+    <h3>🔢 Guesstimate Interview Tips</h3>
+    <div class="fw-two-col">
+      <div class="fw-col-card">
+        <h4>The Golden Process</h4>
+        <ul>
+          <li>Always clarify: demand-side or supply-side? What unit? What geography?</li>
+          <li>State your assumptions out loud — this is where you score points</li>
+          <li>Use a top-down tree: Population → Filter → Filter → Number</li>
+          <li>Apply 80-20: skip the tiny segments, flag them briefly</li>
+          <li>Round numbers aggressively: 1.4B → 1.4B, 0.35 → 35%</li>
+          <li>Validate with a different approach (supply vs demand)</li>
+        </ul>
+      </div>
+      <div class="fw-col-card">
+        <h4>Key Numbers to Memorize</h4>
+        <ul>
+          <li>India population: 140 Crore (1.4 Billion)</li>
+          <li>Urban India: 35% (~50 Crore); Rural: 65%</li>
+          <li>Avg urban household: 4 people; rural: 5 people</li>
+          <li>Working age (20-60): ~55% of population</li>
+          <li>India land area: 3.3 million sq km</li>
+          <li>Major city populations: Mumbai 2Cr, Delhi 2Cr, Bengaluru 1.3Cr</li>
+          <li>GDP per capita: ~₹1.5-2 lakh/year; Min wage: ~₹15,000/month</li>
+          <li>CXO salary range: ₹1-10 Crore/year depending on company</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tip-box" style="margin-top:1rem;">
+      <strong>💡 Interviewer mindset:</strong> "I don't care if you get the exact number. I care about HOW you get to a number. A structured path to ₹500 Crore beats an unstructured guess of ₹499 Crore every time."
+    </div>
+  </div>
+
+  <!-- SECTION 4: Fit & HR Tips -->
+  <div class="fw-card" style="margin-bottom:1.5rem;">
+    <h3>💬 Fit & HR Interview — STAR Framework</h3>
+    <p class="fw-desc">Almost every consulting firm spends 20-40% of interview time on "fit" or behavioral questions. These assess whether you have the right personal qualities to be a consultant. Use the STAR framework for structured answers.</p>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin:1.5rem 0;">
+      <div style="text-align:center;padding:1rem;background:var(--bg2);border-radius:12px;"><div style="font-size:1.8rem;margin-bottom:0.5rem;">🌍</div><div style="font-weight:700;color:var(--navy);font-size:0.9rem;">SITUATION</div><div style="font-size:0.78rem;color:var(--text-light);margin-top:0.3rem;">Set the context — when, where, what was the challenge?</div></div>
+      <div style="text-align:center;padding:1rem;background:var(--bg2);border-radius:12px;"><div style="font-size:1.8rem;margin-bottom:0.5rem;">🎯</div><div style="font-weight:700;color:var(--navy);font-size:0.9rem;">TASK</div><div style="font-size:0.78rem;color:var(--text-light);margin-top:0.3rem;">What was YOUR specific responsibility? (Not "we did")</div></div>
+      <div style="text-align:center;padding:1rem;background:var(--bg2);border-radius:12px;"><div style="font-size:1.8rem;margin-bottom:0.5rem;">⚡</div><div style="font-weight:700;color:var(--navy);font-size:0.9rem;">ACTION</div><div style="font-size:0.78rem;color:var(--text-light);margin-top:0.3rem;">What specific steps did YOU take? Focus on analytical + leadership actions.</div></div>
+      <div style="text-align:center;padding:1rem;background:var(--bg2);border-radius:12px;"><div style="font-size:1.8rem;margin-bottom:0.5rem;">📊</div><div style="font-weight:700;color:var(--navy);font-size:0.9rem;">RESULT</div><div style="font-size:0.78rem;color:var(--text-light);margin-top:0.3rem;">Quantify the impact: "Revenue increased by X%" or "Saved ₹Y".</div></div>
+    </div>
+    <div class="fw-two-col">
+      <div class="fw-col-card">
+        <h4>Common Fit Questions</h4>
+        <ul>
+          <li>"Tell me about yourself" — Start with present, go to past, end with future ambition</li>
+          <li>"Why consulting?" — Impact, variety of problems, learning curve</li>
+          <li>"Why [firm name specifically]?" — Research firm values, recent projects, culture</li>
+          <li>"Greatest achievement?" — Quantify impact; show leadership and analytical skills</li>
+          <li>"Tell me about a failure" — Own it, show learning, show you course-corrected</li>
+          <li>"Why now?" — MBA/PG timing, experience inflection point</li>
+          <li>"Tell me about a conflict" — Show maturity, empathy, resolution skills</li>
+        </ul>
+      </div>
+      <div class="fw-col-card">
+        <h4>Firm-Specific Tips</h4>
+        <ul>
+          <li><strong>McKinsey PEI:</strong> 3 dimensions — Personal Impact, Entrepreneurial Drive, Inclusive Leadership. Prepare 3 deep STAR stories for each.</li>
+          <li><strong>BCG:</strong> Heavy on analytical reasoning in fit. "How do you solve problems?" is a real question.</li>
+          <li><strong>Bain:</strong> Culture-fit is paramount. "BAIN values" — genuine interest in people and results.</li>
+          <li><strong>Big 4:</strong> Industry knowledge matters more. Know their recent flagship projects and sector focus areas.</li>
+          <li><strong>Boutiques:</strong> Show genuine intellectual curiosity in the niche area (strategy, operations, digital).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5: Communication Tips -->
+  <div class="fw-card" style="margin-bottom:1.5rem;">
+    <h3>🗣️ Communication & Presence in Interviews</h3>
+    <div class="fw-steps">
+      <div class="fw-step"><div class="fw-step-num">💡</div><div class="fw-step-body"><h5>Structure before you speak</h5><p>Never start talking before you know where you're going. Use filler phrases to buy time: "That's an interesting question — let me think about this for a moment." Then structure in your head before opening your mouth.</p></div></div>
+      <div class="fw-step"><div class="fw-step-num">💡</div><div class="fw-step-body"><h5>Pyramid Principle (Answer First)</h5><p>Start with the conclusion, then give the reasoning. "I believe the company should enter the market — here are three reasons: 1. Market is attractive, 2. We have competitive advantage, 3. Timing is favorable." Don't build up to the answer.</p></div></div>
+      <div class="fw-step"><div class="fw-step-num">💡</div><div class="fw-step-body"><h5>Quantify everything</h5><p>Vague: "The market is large." Better: "The market is approximately ₹50,000 Crore and growing at 15% annually." Consultants quantify — it's a signal of rigor. Even if unsure, give a range with reasoning.</p></div></div>
+      <div class="fw-step"><div class="fw-step-num">💡</div><div class="fw-step-body"><h5>Pause is power</h5><p>Silence is not weakness — it signals you're thinking, not panicking. 5-10 seconds of thoughtful silence before answering a hard question is far better than rushing to a wrong answer.</p></div></div>
+      <div class="fw-step"><div class="fw-step-num">💡</div><div class="fw-step-body"><h5>Recover from mistakes gracefully</h5><p>When you make an error: "Actually, let me revisit that calculation — I made an error in [X]. The correct answer should be [Y]." Recovery without self-flagellation shows composure — a key consulting trait.</p></div></div>
+    </div>
+  </div>
+
+  <!-- SECTION 6: Preparation Plan -->
+  <div class="fw-card" style="margin-bottom:1.5rem;">
+    <h3>📅 4-Week Consulting Interview Prep Plan</h3>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-top:1.5rem;">
+      <div class="fw-col-card" style="border-top-color:#7c3aed;">
+        <h4>Week 1: Foundation</h4>
+        <ul>
+          <li>Learn all 5 core frameworks (Profitability, Market Entry, Pricing, Growth, M&A)</li>
+          <li>Study industry primers: pick 5 sectors most relevant to you</li>
+          <li>Practice 5 guesstimates (market sizing focus)</li>
+          <li>Draft your 3 STAR stories for McKinsey PEI dimensions</li>
+          <li>Read 1 business news source daily (ET, Mint, Hindu BusinessLine)</li>
+        </ul>
+      </div>
+      <div class="fw-col-card" style="border-top-color:#0891b2;">
+        <h4>Week 2: First Live Practice</h4>
+        <ul>
+          <li>Practice 2 cases/day with peers (never alone — always simulate real interview)</li>
+          <li>Focus on Profitability (most common case type)</li>
+          <li>Practice mental math: multiply/divide large numbers quickly</li>
+          <li>Record yourself — review for filler words, hesitation, structure quality</li>
+          <li>Learn PESTEL + Porter's 5 Forces deeply (used in 80% of cases)</li>
+        </ul>
+      </div>
+      <div class="fw-col-card" style="border-top-color:#059669;">
+        <h4>Week 3: Speed & Depth</h4>
+        <ul>
+          <li>Market Entry + Pricing cases: 2/day</li>
+          <li>5 guesstimates/day (transport, consumer, utility)</li>
+          <li>Practice with senior students who've done internships</li>
+          <li>Learn firm-specific case formats (BCG, McKinsey, Deloitte)</li>
+          <li>Mock HR interview: "Why consulting?", "Why this firm?", 2 STAR stories</li>
+        </ul>
+      </div>
+      <div class="fw-col-card" style="border-top-color:#d97706;">
+        <h4>Week 4: Full Simulation</h4>
+        <ul>
+          <li>Full case + guesstimate + HR mock interviews (30+60+30 min format)</li>
+          <li>Practice under time pressure — feel the interview rhythm</li>
+          <li>Review feedback from peers systematically (keep a log)</li>
+          <li>Read recent news about target firms (mergers, new projects)</li>
+          <li>Finalize questions to ask the interviewer (shows curiosity and preparation)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tip-box" style="margin-top:1rem;">
+      <strong>📌 Final Week Tips:</strong> Don't start new frameworks the week before — consolidate what you know. Sleep well, eat well. Interviews test composure as much as knowledge. Have 5-6 "evergreen" cases you've practiced so well you could solve them backwards.
+    </div>
+  </div>
+
+  <!-- SECTION 7: Math Tips -->
+  <div class="fw-card" style="margin-bottom:1.5rem;">
+    <h3>🧮 Mental Math Shortcuts for Interviews</h3>
+    <div class="fw-two-col">
+      <div class="fw-col-card">
+        <h4>Rounding Strategies</h4>
+        <ul>
+          <li>Round to clean numbers: 1,47,000 → 1.5 lakh; 2.4B → 2.5B</li>
+          <li>Use 10% increments for percentages (easier mental math)</li>
+          <li>When multiplying large numbers: separate and add (e.g., 37 × 24 = 40×24 − 3×24 = 960−72 = 888)</li>
+          <li>Zeros: always manage zeroes explicitly. Say "ten to the power 6" not "million" to avoid confusion</li>
+          <li>Cross-check: estimate answer before calculating to catch order-of-magnitude errors</li>
+        </ul>
+      </div>
+      <div class="fw-col-card">
+        <h4>Useful Conversion Facts</h4>
+        <ul>
+          <li>1 Crore = 10 Million = 10,000,000</li>
+          <li>1 Lakh = 100 Thousand = 100,000</li>
+          <li>1 Billion = 100 Crore = 1,000 Million</li>
+          <li>1 USD ≈ ₹83 (use ₹80 for easy math)</li>
+          <li>1 sq km = 1,000,000 sq meters = 100 hectares</li>
+          <li>1 working year ≈ 250 days, 10 hrs/day = 2,500 hrs/year</li>
+          <li>Average Indian salary (mid-income): ₹5-8 lakh/year ≈ ₹500/hr</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 8: Insider advice -->
+  <div class="fw-card">
+    <h3>🏆 What Separates Great Candidates from Good Ones</h3>
+    <div class="fw-steps">
+      <div class="fw-step"><div class="fw-step-num">1</div><div class="fw-step-body"><h5>Business Judgment over Mechanical Frameworks</h5><p>Average candidates run through frameworks mechanically. Great candidates use frameworks as tools and show genuine business instinct: "I'd prioritize the revenue side first because this is an industry where demand is cyclical and costs are largely fixed." The "why" behind your structure impresses interviewers.</p></div></div>
+      <div class="fw-step"><div class="fw-step-num">2</div><div class="fw-step-body"><h5>Client-Friendly Communication</h5><p>Consulting is about advising clients, not proving you're smart. Great candidates communicate like they're talking to a business leader, not a professor. Use simple, direct language. Avoid jargon. Pause to check understanding. "Does that make sense?" shows collaborative instinct.</p></div></div>
+      <div class="fw-step"><div class="fw-step-num">3</div><div class="fw-step-body"><h5>Genuine Curiosity About the Business Problem</h5><p>Interviewers can tell the difference between someone who prepared 50 cases and someone who actually finds the business problem interesting. Read business news daily. When the case involves an industry you know, bring real-world insights naturally — "Interestingly, I read that X industry is facing Y challenge..."</p></div></div>
+      <div class="fw-step"><div class="fw-step-num">4</div><div class="fw-step-body"><h5>Composure Under Ambiguity</h5><p>Consulting cases are deliberately ambiguous. Great candidates embrace ambiguity: "I don't have that data, but let me make a reasonable assumption and flag it." They don't freeze when information is missing. They proceed with stated assumptions and invite correction.</p></div></div>
+      <div class="fw-step"><div class="fw-step-num">5</div><div class="fw-step-body"><h5>Synthesis Over Summary</h5><p>When concluding a case, don't just summarize what you did. Synthesize: connect findings to implications. "We found that the root cause is X. This means the client needs to prioritize Y because if they don't, the risk of Z is significant." The "so what" is what gets you the offer.</p></div></div>
+    </div>
+    <div class="tip-box">
+      <strong>💎 Final Reminder:</strong> Consulting interview prep is a marathon, not a sprint. The candidates who get offers are not the smartest in the room — they are the most <em>prepared</em>, the most <em>structured</em>, and the most <em>composed</em> under pressure. Practice daily. Seek feedback relentlessly. And remember: the interviewer is rooting for you to succeed.
+    </div>
+  </div>
+
+</div>
+<!-- Guidance CTA inside tab -->
+<div style="background:linear-gradient(135deg,#1a2744,#2c3e7a);color:white;padding:2.5rem 2rem;text-align:center;margin-top:2rem;">
+  <p style="font-size:0.85rem;opacity:0.8;letter-spacing:0.08em;text-transform:uppercase;font-weight:600;margin-bottom:0.5rem;">Put these tips into practice</p>
+  <h3 style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;margin-bottom:0.8rem;">Book a Personalized Coaching Session</h3>
+  <p style="opacity:0.88;font-size:0.92rem;max-width:540px;margin:0 auto 1.5rem;line-height:1.7;">Work directly with Kunal to apply these tips in real mock interviews — get the detailed, personalized feedback that no article can give you.</p>
+  <a href="https://topmate.io/kunal_sadhukhan" target="_blank" rel="noopener" class="topmate-btn" style="font-size:0.9rem;padding:0.7rem 2rem;">📅 Book a Session on Topmate →</a>
 </div>
 
-<!-- ═══════════════════════════ PERSONALIZED GUIDANCE TAB ═══════════════════════════ -->
+</div><!-- /tips tab -->
+
 <div id="tab-guidance" class="tab-content">
   <div class="guidance-hero">
     <h2>Personalized Guidance</h2>
@@ -2481,7 +4047,7 @@ body {
       <button class="chat-close" onclick="closeChat()">✕</button>
     </div>
     <div id="chat-messages">
-      <div class="chat-msg bot">👋 Hi! I'm your <strong>Consulting Prep Assistant</strong>, powered by AI.<br><br>I can help you with case frameworks, guesstimate practice, industry knowledge, interview tips, and more. What would you like to work on today?</div>
+      <div class="chat-msg bot">👋 Hi! I'm your <strong>Consulting Prep Assistant</strong>.<br><br>I can help you practice cases, solve guesstimates, learn frameworks, and ace your interviews. Try one of the quick buttons below or type anything! 🎯</div>
     </div>
     <div class="chat-suggestions">
       <button class="chat-sug" onclick="sendSug('Give me a profitability case to practice')">📊 Practice a case</button>
@@ -2530,8 +4096,40 @@ function showFW(fw) {
   event.target.classList.add('active');
 }
 
+// ── CASE & GUESSTIMATE FILTERS ──
+function filterCases(cat, btn) {
+  document.querySelectorAll('#cases-container .case-card').forEach(card => {
+    card.style.display = (cat === 'all' || card.dataset.cat === cat) ? 'block' : 'none';
+  });
+  document.querySelectorAll('.sector-tabs-bar .sector-tab-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+}
+
+function filterGuess(cat, btn) {
+  document.querySelectorAll('#guess-container .case-card').forEach(card => {
+    card.style.display = (cat === 'all' || card.dataset.gcat === cat) ? 'block' : 'none';
+  });
+  // Find the right tabs bar
+  const allBtns = document.querySelectorAll('#tab-guesstimate .sector-tab-btn');
+  allBtns.forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+}
+
+function toggleCase(header) {
+  const body = header.nextElementSibling;
+  const isOpen = body.classList.contains('show');
+  // Close all others in same container
+  header.closest('[id^="tab-"]').querySelectorAll('.case-body').forEach(b => b.classList.remove('show'));
+  header.closest('[id^="tab-"]').querySelectorAll('.case-header').forEach(h => h.classList.remove('open'));
+  if (!isOpen) {
+    body.classList.add('show');
+    header.classList.add('open');
+  }
+}
+
 // ── CHATBOT ──
 let chatOpen = false;
+let chatHistory = []; // maintain full conversation context
 
 function toggleChat() {
   chatOpen = !chatOpen;
@@ -2572,41 +4170,112 @@ async function sendMsg() {
   if (!msg) return;
   input.value = '';
   addMsg(msg, 'user');
-  const typing = addMsg('...', 'bot typing');
 
-  const systemPrompt = `You are the "Consulting Prep Assistant" for "Your Consulting Preparation Buddy" — a premium platform for aspiring management consultants targeting IIM placements, MBB, Big 4, and other top consulting firms.
+  // Add to history
+  chatHistory.push({ role: 'user', content: msg });
 
-Your role is to:
-1. Help users practice case interviews with real case scenarios (profitability, market entry, pricing, growth, M&A, guesstimates)
-2. Explain frameworks clearly (Profitability, Market Entry, Pricing, Growth, PESTEL, Porter's 5 Forces, 4P, Value Chain, BCG Matrix)
-3. Give guesstimate problems with step-by-step solutions
-4. Share industry knowledge (Automobile, Aviation, E-Commerce, Pharma, IT, Financial Services, FMCG, Telecom, etc.)
-5. Give practical tips for McKinsey, BCG, Bain, Deloitte, KPMG, EY, Accenture interviews
-6. Help with HR/behavioral questions using STAR format
-7. Guide on CV writing for consulting roles
+  // Keep history to last 10 turns to avoid token overflow
+  if (chatHistory.length > 20) chatHistory = chatHistory.slice(chatHistory.length - 20);
 
-When giving a case: present the problem statement first, then wait for their structure. Guide them through it interactively.
-When giving a guesstimate: state the question, then if asked, walk through a structured solution with assumptions.
-Be encouraging, structured, and concise. Use bullet points for clarity. Keep responses focused.`;
+  const typing = addMsg('Thinking...', 'bot typing');
+
+  const systemPrompt = `You are the "Consulting Prep Assistant" for "Your Consulting Preparation Buddy" — a premium AI-powered coaching platform for aspiring management consultants targeting placements at MBB (McKinsey, BCG, Bain), Big 4 (Deloitte, KPMG, EY, PwC), and other top consulting firms including Accenture Strategy, Kearney, Oliver Wyman, and boutiques.
+
+You have deep expertise in consulting interview preparation. You never mention or cite any specific source documents, books, or casebooks in your responses. All your knowledge is presented as your own expert coaching advice.
+
+CASE INTERVIEW KNOWLEDGE:
+You know all major case types in depth:
+- Profitability: Revenue (Price×Volume, product mix, market share vs market size) vs Cost (Fixed/Variable, Value Chain analysis). Always confirm industry-wide vs company-specific. Use customer journey when needed.
+- Market Entry: 4-step framework: Qualifying Questions → Market Attractiveness (PESTEL + Porter's 5 Forces + Market sizing) → Mode of Entry (Organic/M&A/JV/Franchise) → Operationalize (4P + Value Chain setup). Always estimate Year 1 revenue.
+- Pricing: 3 methods — Cost-based (floor), Value-based (ceiling/WTP), Competition-based (range). For new products: value-based first. Sense-check with competition. Know pricing strategies: penetration, skimming, freemium, bundling.
+- Growth Strategy: Ansoff Matrix (Market Penetration, Product Dev, Market Dev, Diversification). Organic vs Inorganic. Always build to the revenue gap number.
+- M&A/PE: SMIOLF framework (Strategic fit, Market, Investment, Operational, Legal, Fit). Synergies. Valuation: DCF, Comps, Precedent transactions.
+- Unconventional: Government/Policy (Cost-Benefit Analysis), VC/PE due diligence, Digital transformation, Sustainability cases.
+
+GUESSTIMATE KNOWLEDGE:
+You can solve any guesstimate with structured top-down or bottom-up approaches:
+- Always: Scope → Issue Tree → State Assumptions → 80-20 Rule → Calculate → Validate
+- Key India numbers: Population 140Cr, Urban 35%, Rural 65%, Avg HH size 4 urban/5 rural, Working age ~55%, Smartphone users ~80Cr, GDP per capita ~₹1.5-2L/year
+- Types: Market sizing, Transport (airports, roads, metro), Consumer (food, retail, FMCG), Utilities (electricity, water), Tech/Digital (e-commerce, streaming), Unconventional (decision trees, creative)
+- Can solve: cigarette demand, EV market size, petrol pumps, toll revenue, airport passengers, pizza sales, movie screens, shoe sales, electricity consumption, YouTube ads, fantasy sports revenue, and 100+ more
+
+INDUSTRY KNOWLEDGE (never mention source):
+Deep sector knowledge on: Automobile (EV, 5th largest market), Aviation (3rd largest domestic), E-Commerce ($75B, 21% CAGR), Financial Services (Banking $2.7T assets, UPI), FMCG (₹167B market), Pharma (3rd by volume), IT/ITeS ($245B, 55% global outsourcing), Cement (2nd largest producer), Telecom (2nd largest subscriber base), Oil & Gas (3rd largest consumer), Power (411GW capacity), Steel (2nd largest producer), Real Estate ($1T by 2030), Retail (4th largest globally)
+
+FRAMEWORKS YOU KNOW:
+PESTEL, Porter's 5 Forces, 4P/7P, Value Chain, BCG Matrix, Ansoff Matrix, McKinsey 7S, SWOT, Customer Journey (AIDA), 3C's (Company, Customer, Competition), Breakeven/NPV/IRR analysis, MECE structuring, Pyramid Principle communication
+
+HR/FIT COACHING:
+- STAR framework for behavioral questions
+- McKinsey PEI: 3 dimensions (Personal Impact, Entrepreneurial Drive, Inclusive Leadership)
+- Firm-specific culture: BCG (analytical), Bain (team-oriented), McKinsey (impact-driven), Big 4 (industry depth)
+- Questions: "Why consulting?", "Why this firm?", "Greatest achievement?", "Tell me about a failure", conflict resolution
+
+COACHING STYLE:
+- When giving a case: Present problem statement. Ask them to clarify and structure. Then guide step by step like a real interviewer.
+- When giving a guesstimate: State the question clearly. Let them approach first. Then walk through the structured solution with assumptions.
+- When explaining frameworks: Use clear structure with examples. Always include real India/global business examples.
+- Always: Be encouraging, structured, specific. Never generic.
+- Never mention any source documents, casebooks, or reference materials by name.
+- Respond in the same language the user writes in.
+- Use bullet points and bold text for clarity.
+- Keep responses focused and actionable — not too long.
+- End responses with an encouraging nudge or follow-up question to keep practice going.`;
+
+  // PROXY_URL: Set this to your Cloudflare Worker URL after deployment
+  // See setup instructions below the chatbot window
+  const PROXY_URL = window.CHATBOT_PROXY_URL || '';
+
+  // Smart fallback responses for common consulting queries (works offline too)
+  const fallbackResponses = {
+    profitability: `**Profitability Case — Let's Practice! 📊**\n\nHere's your case:\n\n*"Your client is a 5-star hotel chain in Mumbai. They have been facing declining profitability for the past 2 years. Investigate the root cause and suggest recommendations."*\n\n**To start, ask me your clarifying questions!** Think about:\n- What clarifying questions would you ask?\n- Is this industry-wide or company-specific?\n- What are their revenue streams?\n\nOnce you have your structure ready, share it and we'll work through the case together. 💪`,
+    guesstimate: `**Guesstimate Challenge! 🔢**\n\nHere's your question:\n\n*"Estimate the number of daily orders on Amazon India."*\n\n**Your approach should cover:**\n1. Scope & clarify (what counts as an order?)\n2. Build your issue tree (internet users → segments → purchase frequency)\n3. State assumptions explicitly\n4. Calculate with clean numbers\n5. Validate with a sanity check\n\nShare your approach and I'll guide you through it! What's your first step?`,
+    framework: `**Case Interview Frameworks 📐**\n\nHere are the 5 core frameworks you must master:\n\n**1. Profitability:** Profit = Revenue − Cost → Price×Volume vs Fixed+Variable → Root cause\n**2. Market Entry:** Qualifying Qs → Market Attractiveness → Mode of Entry → Operationalize\n**3. Pricing:** Cost-based (floor) + Value-based (ceiling) + Competition-based (range)\n**4. Growth:** Ansoff Matrix — Penetration → Product Dev → Market Dev → Diversification\n**5. M&A:** SMIOLF — Strategic fit, Market, Investment, Operational, Legal, Fit\n\nWhich framework would you like to deep-dive into? 🎯`,
+    mckinsey: `**McKinsey Interview Tips 🏆**\n\n**PEI (Personal Experience Interview) — 3 dimensions:**\n1. **Personal Impact** — Leading without authority, influencing stakeholders\n2. **Entrepreneurial Drive** — Taking initiative, pursuing ambitious goals\n3. **Inclusive Leadership** — Building teams, valuing diverse perspectives\n\n**Case tips:**\n- Structure before speaking — always\n- Pyramid Principle: conclusion first, then reasoning\n- Quantify everything: "Revenue increased by ~30%"\n- Drive the case — don't wait to be led\n- Recover gracefully from mistakes\n\nWhat specific aspect of McKinsey prep would you like to work on? 💡`,
+    default: `**Consulting Prep Assistant Ready! 🤖**\n\nI can help you with:\n\n📊 **Case Practice** — Profitability, Market Entry, Pricing, Growth, M&A\n🔢 **Guesstimates** — Market sizing, Transport, Consumer, Tech & Digital\n📐 **Frameworks** — PESTEL, Porter's 5 Forces, 4P, Value Chain, Ansoff\n🏭 **Industry Knowledge** — Auto, Aviation, FMCG, IT, Pharma, Banking\n💬 **HR/Fit Questions** — STAR format, Why consulting, Why this firm\n🏆 **Firm-specific Tips** — McKinsey PEI, BCG, Bain, Deloitte\n\nTry asking: *"Give me a profitability case"* or *"Give me a guesstimate on petrol pumps in Delhi"* or *"Explain Market Entry framework"*\n\nWhat would you like to work on? 🎯`
+  };
+
+  function getFallback(msg) {
+    const m = msg.toLowerCase();
+    if (m.includes('profitability') || m.includes('profit') || m.includes('case')) return fallbackResponses.profitability;
+    if (m.includes('guesstimate') || m.includes('estimate') || m.includes('how many') || m.includes('market size')) return fallbackResponses.guesstimate;
+    if (m.includes('framework') || m.includes('market entry') || m.includes('pricing') || m.includes('growth')) return fallbackResponses.framework;
+    if (m.includes('mckinsey') || m.includes('mck') || m.includes('mbb') || m.includes('tip')) return fallbackResponses.mckinsey;
+    return fallbackResponses.default;
+  }
+
+  async function callAPI() {
+    // Try proxy first if configured
+    if (PROXY_URL && PROXY_URL.startsWith('https://')) {
+      const resp = await fetch(PROXY_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: chatHistory, system: systemPrompt })
+      });
+      if (!resp.ok) throw new Error('Proxy error ' + resp.status);
+      const data = await resp.json();
+      return data.reply || (data.content && data.content[0] && data.content[0].text);
+    }
+    throw new Error('No proxy configured');
+  }
 
   try {
-    const resp = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        system: systemPrompt,
-        messages: [{ role: 'user', content: msg }]
-      })
-    });
-    const data = await resp.json();
-    const reply = data.content && data.content[0] ? data.content[0].text : "I'm having trouble connecting right now. Please try again in a moment.";
+    let reply;
+    try {
+      reply = await callAPI();
+    } catch(apiErr) {
+      // Intelligent fallback — use keyword-matched responses
+      reply = getFallback(msg);
+    }
+    if (!reply) reply = getFallback(msg);
     typing.className = 'chat-msg bot';
     typing.innerHTML = reply.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\*(.*?)\*/g, '<em>$1</em>');
+    chatHistory.push({ role: 'assistant', content: reply });
   } catch(e) {
+    const fallback = getFallback(msg);
     typing.className = 'chat-msg bot';
-    typing.innerHTML = "I'm having trouble connecting to the AI right now. Please check your connection or try again shortly. In the meantime, explore the frameworks and industry content on this site! 💪";
+    typing.innerHTML = fallback.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\*(.*?)\*/g, '<em>$1</em>');
+    chatHistory.push({ role: 'assistant', content: fallback });
   }
 }
 </script>
