@@ -4,64 +4,81 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Guesstimate Practice | Consulting Prep Buddy</title>
-<link rel="icon" type="image/png" href="logo.png">
 <link rel="stylesheet" href="styles.css">
+<style>
+.guess-problem {
+  background: linear-gradient(135deg,#f0f4ff,#e8f0ff);
+  border-left: 4px solid var(--indigo);
+  border-radius: 0 10px 10px 0;
+  padding: 1rem 1.25rem; margin-bottom: 1.25rem;
+  font-size: 0.9rem; color: var(--navy); font-weight: 600;
+}
+.guess-section { margin-bottom: 1.1rem; }
+.guess-section-title {
+  font-size: 0.78rem; font-weight: 800; letter-spacing: 0.07em;
+  text-transform: uppercase; padding: 0.28rem 0.7rem;
+  border-radius: 20px; display: inline-block; margin-bottom: 0.6rem;
+}
+.sect-assumptions { background: #fef9ec; color: #92400e; }
+.sect-approach    { background: #ecfdf5; color: #065f46; }
+.sect-calc        { background: #eff6ff; color: #1e40af; }
+.sect-answer      { background: #f0fdf4; color: #166534; }
+.guess-body { font-size: 0.88rem; line-height: 1.75; color: var(--gray-700); }
+.hint-box {
+  background: #f0f4ff; border-left: 3px solid var(--indigo);
+  border-radius: 0 8px 8px 0; padding: 0.75rem 1rem;
+  font-size: 0.83rem; color: var(--navy); margin-bottom: 1rem;
+}
+</style>
 </head>
 <body>
 <nav>
   <div class="nav-inner">
     <a class="nav-logo" href="index.html"><img src="logo.png" alt="Your Consulting Preparation Buddy" style="height:44px;width:auto;display:block;"></a>
     <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="industry.html">Industry Sectors</a>
-      <a href="frameworks.html">Frameworks</a>
-      <a href="cases.html">Case Practice</a>
-      <a href="guesstimates.html" class="active">Guesstimates</a>
-      <a href="tips.html">Tips &amp; Tricks</a>
-      <a href="guidance.html">Personalized Guidance</a>
+      <a href="index.html">🏠 Home</a>
+      <a href="industry.html">🏭 Industry Sectors</a>
+      <a href="frameworks.html">🧩 Frameworks</a>
+      <a href="cases.html">💼 Case Practice</a>
+      <a href="guesstimates.html" class="active">📊 Guesstimates</a>
+      <a href="tips.html">💡 Tips &amp; Tricks</a>
+      <a href="guidance.html">🎯 Personalized Guidance</a>
       <a href="https://topmate.io/kunal_sadhukhan" target="_blank" class="nav-cta">📅 Book a Session</a>
     </div>
   </div>
 </nav>
-
 <div class="page-hero">
   <h1>Guesstimate Practice</h1>
-  <p>Master market sizing and estimation with detailed solved examples drawn from leading consulting casebooks</p>
+  <p>69 detailed market sizing &amp; estimation examples — click any to expand assumptions, approach &amp; full solution</p>
 </div>
-
 <section>
 <div class="section-inner">
-
 <div class="topmate-banner">
-  <div>
-    <h3>Struggling with Guesstimates?</h3>
-    <p>Practice 1-on-1 with an expert and get structured feedback on your estimation approach</p>
-  </div>
+  <div><h3>Struggling with Guesstimates?</h3><p>Practice 1-on-1 with an expert for structured feedback on your estimation approach</p></div>
   <a href="https://topmate.io/kunal_sadhukhan" target="_blank" class="btn-white">Book on Topmate →</a>
 </div>
 
 <!-- Quick Reference -->
-<div style="background:white;border-radius:16px;padding:2rem;margin-bottom:2rem;box-shadow:0 4px 20px rgba(26,31,60,0.06);border:1px solid rgba(26,31,60,0.06);">
-  <h3 style="font-family:'Playfair Display',serif;color:var(--navy);margin-bottom:1rem;">📌 Essential India Data Points — Memorise These</h3>
-  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:0.75rem;">
-    <div style="background:var(--gray-100);border-radius:8px;padding:0.75rem;font-size:0.85rem;"><strong>Total Population:</strong> ~1.4 Billion<br>Urban: ~500M | Rural: ~900M</div>
-    <div style="background:var(--gray-100);border-radius:8px;padding:0.75rem;font-size:0.85rem;"><strong>Households:</strong> ~300M total<br>Avg size: ~4.5 persons</div>
-    <div style="background:var(--gray-100);border-radius:8px;padding:0.75rem;font-size:0.85rem;"><strong>Income Split:</strong> BPL 20% · Low 40%<br>Middle 30% · High 10%</div>
-    <div style="background:var(--gray-100);border-radius:8px;padding:0.75rem;font-size:0.85rem;"><strong>Age Groups:</strong> 0–14: 26%<br>15–64: 67% | 65+: 7%</div>
-    <div style="background:var(--gray-100);border-radius:8px;padding:0.75rem;font-size:0.85rem;"><strong>Smartphone Users:</strong> ~750M<br>Internet Users: ~900M</div>
-    <div style="background:var(--gray-100);border-radius:8px;padding:0.75rem;font-size:0.85rem;"><strong>Working Population:</strong> ~500M<br>Formal sector: ~100M</div>
-    <div style="background:var(--gray-100);border-radius:8px;padding:0.75rem;font-size:0.85rem;"><strong>Mumbai Population:</strong> ~2 Crore<br>Households: ~50 Lakh</div>
-    <div style="background:var(--gray-100);border-radius:8px;padding:0.75rem;font-size:0.85rem;"><strong>Delhi Population:</strong> ~2 Crore<br>Households: ~45 Lakh</div>
-    <div style="background:var(--gray-100);border-radius:8px;padding:0.75rem;font-size:0.85rem;"><strong>GDP (nominal):</strong> ~$3.5 Trillion<br>Per capita GDP: ~$2,500</div>
-    <div style="background:var(--gray-100);border-radius:8px;padding:0.75rem;font-size:0.85rem;"><strong>Cars in India:</strong> ~30 Crore<br>Two-wheelers: ~20 Crore</div>
+<div style="background:white;border-radius:16px;padding:1.75rem;margin-bottom:2rem;box-shadow:0 4px 20px rgba(26,31,60,.06);border:1px solid rgba(26,31,60,.06);">
+  <h3 style="font-family:'Playfair Display',serif;color:var(--navy);margin-bottom:1rem;font-size:1.15rem;">📌 Essential India Data Points — Memorise These</h3>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:.6rem;">
+    <div style="background:var(--gray-100);border-radius:8px;padding:.65rem;font-size:.82rem;"><strong>Population:</strong> ~1.4B<br>Urban 500M | Rural 900M</div>
+    <div style="background:var(--gray-100);border-radius:8px;padding:.65rem;font-size:.82rem;"><strong>Households:</strong> ~300M<br>Avg size ~4.5 persons</div>
+    <div style="background:var(--gray-100);border-radius:8px;padding:.65rem;font-size:.82rem;"><strong>Income:</strong> BPL 20% | Low 40%<br>Middle 30% | High 10%</div>
+    <div style="background:var(--gray-100);border-radius:8px;padding:.65rem;font-size:.82rem;"><strong>Age:</strong> 0–14: 26%<br>15–64: 67% | 65+: 7%</div>
+    <div style="background:var(--gray-100);border-radius:8px;padding:.65rem;font-size:.82rem;"><strong>Smartphones:</strong> ~750M<br>Internet: ~900M</div>
+    <div style="background:var(--gray-100);border-radius:8px;padding:.65rem;font-size:.82rem;"><strong>Mumbai/Delhi:</strong> ~2 Cr each<br>HH: ~50 Lakh each</div>
+    <div style="background:var(--gray-100);border-radius:8px;padding:.65rem;font-size:.82rem;"><strong>Working Pop:</strong> ~500M<br>Formal sector: ~100M</div>
+    <div style="background:var(--gray-100);border-radius:8px;padding:.65rem;font-size:.82rem;"><strong>GDP (nominal):</strong> ~$3.5T<br>Per capita: ~$2,500</div>
+    <div style="background:var(--gray-100);border-radius:8px;padding:.65rem;font-size:.82rem;"><strong>Cars:</strong> ~30 Cr total<br>2-wheelers: ~20 Cr</div>
+    <div style="background:var(--gray-100);border-radius:8px;padding:.65rem;font-size:.82rem;"><strong>Urban HH Urban Split:</strong><br>Low 35% | Mid 50% | High 15%</div>
   </div>
 </div>
 
 <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1rem;">
-  <p style="color:var(--gray-500);font-size:0.9rem;">Showing <span id="guess-count">0</span> guesstimates — click any to see full solution</p>
+  <p style="color:var(--gray-500);font-size:.9rem;">Showing <span id="guess-count">0</span> guesstimates — click any to expand and see full solution</p>
   <input id="guess-search" class="search-box" type="text" placeholder="🔍 Search guesstimates..." style="margin:0;max-width:320px;">
 </div>
-
 <div class="filter-tabs" id="cat-filters">
   <div class="filter-tab active" data-cat="All">All</div>
   <div class="filter-tab" data-cat="Volume Estimation">🔢 Volume Estimation</div>
@@ -70,137 +87,149 @@
   <div class="filter-tab" data-cat="Consumption/Demand">📦 Consumption &amp; Demand</div>
   <div class="filter-tab" data-cat="Transport & Mobility">🚗 Transport &amp; Mobility</div>
 </div>
-
 <div id="guesses-list"></div>
-
-<!-- Guesstimate Modal -->
-<div id="guess-modal" class="modal-overlay">
-  <div class="modal-box" style="max-width:860px;">
-    <button class="modal-close" onclick="closeGuessModal()">✕</button>
-    <div id="guess-modal-content"></div>
-  </div>
-</div>
-
 </div>
 </section>
-
 <div class="callout-banner">
   <h2>Build confidence with real guesstimate practice</h2>
   <p>1-on-1 coaching helps you develop the structured estimation thinking interviewers look for</p>
-  <a href="https://topmate.io/kunal_sadhukhan" target="_blank" class="btn-primary btn-gold" style="margin-top:0.5rem;">Book on Topmate →</a>
+  <a href="https://topmate.io/kunal_sadhukhan" target="_blank" class="btn-primary btn-gold" style="margin-top:.5rem;">Book on Topmate →</a>
 </div>
-
-<footer>
-  <p>© 2025 Your Consulting Preparation Buddy &nbsp;|&nbsp; <a href="https://topmate.io/kunal_sadhukhan" target="_blank">Book a 1:1 Session on Topmate</a></p>
-</footer>
-
+<footer><p>© 2025 Your Consulting Preparation Buddy &nbsp;|&nbsp; <a href="https://topmate.io/kunal_sadhukhan" target="_blank">Book a 1:1 Session on Topmate</a></p></footer>
 <button id="chatbot-toggle">🎓</button>
 <div id="chatbot-window">
-  <div class="chat-header">
-    <div class="chat-header-icon">🎓</div>
-    <div class="chat-header-text"><h4>Consulting Prep Assistant</h4><p>Ask anything — I'll guide you or suggest a Topmate session</p></div>
-  </div>
-  <div class="chat-messages" id="chat-messages">
-    <div class="chat-msg bot">Hi! 👋 Ask about any guesstimate approach. For live practice with expert feedback, book a session on Topmate!</div>
-  </div>
-  <div class="chat-input-area">
-    <input id="chat-input" class="chat-input" type="text" placeholder="e.g. How do I estimate Swiggy orders in Mumbai?">
-    <button id="chat-send" class="chat-send">➤</button>
-  </div>
+  <div class="chat-header"><div class="chat-header-icon">🎓</div><div class="chat-header-text"><h4>Consulting Prep Assistant</h4><p>Ask me to walk through a guesstimate</p></div></div>
+  <div class="chat-messages" id="chat-messages"><div class="chat-msg bot">Hi! 👋 Ask about any guesstimate approach. For live practice with expert feedback, book a session on Topmate!</div></div>
+  <div class="chat-input-area"><input id="chat-input" class="chat-input" type="text" placeholder="e.g. How do I estimate Swiggy orders in Mumbai?"><button id="chat-send" class="chat-send">➤</button></div>
 </div>
-
 <script src="guesses_data.js"></script>
 <script>
-const CAT_ICONS = {
-  'Volume Estimation': '🔢',
-  'Market Sizing': '📊',
-  'Revenue Estimation': '💰',
-  'Consumption/Demand': '📦',
-  'Transport & Mobility': '🚗'
-};
+const CAT_ICONS={'Volume Estimation':'🔢','Market Sizing':'📊','Revenue Estimation':'💰','Consumption/Demand':'📦','Transport & Mobility':'🚗'};
 
-let activeCat = 'All';
-let guessSearch = '';
+let activeCat='All', guessQ='';
 
-function getFilteredGuesses() {
+/* ── Parse guesstimate content into structured sections ── */
+function parseGuesstimate(rawText) {
+  const text = rawText.replace(/\\n/g,'\n').replace(/© [^\n]*/g,'').replace(/---PAGE \d+---/g,'').trim();
+  const lines = text.split('\n').map(l=>l.trim()).filter(l=>l.length>3);
+
+  let question = '';
+  let assumptions = [];
+  let approach = [];
+  let calculation = [];
+  let answer = '';
+  let observations = [];
+
+  // Extract question (first line that looks like a question or "Estimate...")
+  for (const line of lines.slice(0,8)) {
+    if (/estimate|how many|what is|calculate|find|number of|market size|revenue|daily|monthly|annual/i.test(line) && line.length > 15) {
+      question = line;
+      break;
+    }
+  }
+  if (!question && lines.length > 1) question = lines[1] || lines[0];
+
+  // Categorise remaining lines
+  let section = 'approach';
+  for (const line of lines) {
+    const ll = line.toLowerCase();
+    if (/assumption|assum/i.test(line) && line.length < 50) { section = 'assumptions'; continue; }
+    if (/methodology|method|approach|framework/i.test(line) && line.length < 50) { section = 'approach'; continue; }
+    if (/calculation|formula|compute|result/i.test(line) && line.length < 50) { section = 'calc'; continue; }
+    if (/observation|suggestion|inference|key learning|note/i.test(line) && line.length < 50) { section = 'obs'; continue; }
+
+    // Detect answer line
+    if (/total|final answer|answer|=\s*[\d,.]+\s*(mn|cr|lakh|billion|million|units|years|trips|km)/i.test(line)) {
+      answer = line; continue;
+    }
+    // Lines with numbers/calculations → calculation section
+    if (/[\d,]+\s*[x*÷/+\-]\s*[\d,]+|=\s*[\d,]+|\d+%|\d+\s*(cr|lakh|mn|billion|million)/i.test(line)) {
+      calculation.push(line); continue;
+    }
+
+    if (section === 'assumptions') assumptions.push(line);
+    else if (section === 'approach') approach.push(line);
+    else if (section === 'calc') calculation.push(line);
+    else if (section === 'obs') observations.push(line);
+    else approach.push(line);
+  }
+
+  return { question, assumptions, approach, calculation, answer, observations };
+}
+
+function renderGuessBody(parsed) {
+  let html = '';
+  const sect = (label, cls, items) => {
+    if (!items || items.length === 0) return '';
+    return `<div class="guess-section">
+      <div class="guess-section-title ${cls}">${label}</div>
+      <div class="guess-body">${items.map(i=>`<p style="margin-bottom:.4rem;">• ${escHtml(i)}</p>`).join('')}</div>
+    </div>`;
+  };
+
+  html += sect('📋 Assumptions', 'sect-assumptions', parsed.assumptions);
+  html += sect('🗺️ Approach & Methodology', 'sect-approach', parsed.approach);
+  html += sect('🔢 Calculations', 'sect-calc', parsed.calculation);
+  if (parsed.answer) {
+    html += `<div class="guess-section">
+      <div class="guess-section-title sect-answer">✅ Final Answer</div>
+      <div style="background:#f0fdf4;border-radius:8px;padding:.85rem 1rem;font-size:.95rem;font-weight:700;color:#166534;">${escHtml(parsed.answer)}</div>
+    </div>`;
+  }
+  if (parsed.observations && parsed.observations.length > 0) {
+    html += sect('💡 Key Observations', 'sect-assumptions', parsed.observations);
+  }
+  return html || `<div class="guess-body">${escHtml(parsed.question)}</div>`;
+}
+
+function getFiltered() {
   return GUESSES.filter(g => {
     const matchCat = activeCat === 'All' || g.category === activeCat;
-    const matchSearch = !guessSearch ||
-      g.title.toLowerCase().includes(guessSearch) ||
-      g.content.toLowerCase().includes(guessSearch.slice(0, 30));
+    const matchSearch = !guessQ || g.title.toLowerCase().includes(guessQ) || g.content.toLowerCase().includes(guessQ.slice(0,25));
     return matchCat && matchSearch;
   });
 }
 
 function renderGuesses() {
-  const filtered = getFilteredGuesses();
+  const filtered = getFiltered();
   document.getElementById('guess-count').textContent = filtered.length;
-  document.getElementById('guesses-list').innerHTML = filtered.map(g => `
-    <div class="accordion-item">
-      <div class="accordion-header" onclick="openGuessModal(${g.id})">
-        <div style="display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;">
-          <span style="font-size:1.1rem;">${CAT_ICONS[g.category] || '📐'}</span>
-          <span><strong>#${g.id}</strong> ${escHtml(g.title.substring(0,75))}${g.title.length>75?'...':''}</span>
+  document.getElementById('guesses-list').innerHTML = filtered.map(g => {
+    const parsed = parseGuesstimate(g.content);
+    const qDisplay = parsed.question || g.title;
+    return `
+    <div class="accordion-item" id="guess-${g.id}">
+      <div class="accordion-header" onclick="togG(this)">
+        <div style="display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;">
+          <span style="font-size:1.05rem;">${CAT_ICONS[g.category]||'📐'}</span>
+          <span><strong>#${g.id}</strong> ${escHtml(g.title.substring(0,68))}${g.title.length>68?'…':''}</span>
         </div>
-        <div style="display:flex;gap:0.5rem;align-items:center;flex-shrink:0;">
+        <div style="display:flex;gap:.4rem;align-items:center;flex-shrink:0;">
           <span class="tag tag-sector">${g.category}</span>
-          <span style="color:var(--indigo);font-size:0.8rem;font-weight:600;">SOLVE →</span>
+          <span class="accordion-arrow" style="margin-left:.25rem;">▼</span>
         </div>
       </div>
-    </div>
-  `).join('');
+      <div class="accordion-body">
+        <div class="hint-box">
+          <strong>💡 Approach Reminder:</strong> Define scope → Top-down or Bottom-up → State assumptions clearly → Calculate step-by-step → Sanity check your answer
+        </div>
+        <div class="guess-problem">📋 <strong>Question:</strong> ${escHtml(qDisplay)}</div>
+        ${renderGuessBody(parsed)}
+
+      </div>
+    </div>`;
+  }).join('');
 }
 
-function openGuessModal(id) {
-  const g = GUESSES.find(x => x.id === id);
-  if (!g) return;
-  const content = g.content.replace(/\\n/g, '\n');
-  document.getElementById('guess-modal-content').innerHTML = `
-    <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-bottom:1rem;">
-      <span class="tag tag-sector">${CAT_ICONS[g.category]||'📐'} ${g.category}</span>
-    </div>
-    <h2 style="font-family:'Playfair Display',serif;color:var(--navy);font-size:1.4rem;margin-bottom:1.25rem;">${escHtml(g.title)}</h2>
-    <hr style="margin-bottom:1.25rem;border:none;border-top:1px solid var(--gray-300);">
-    <div style="background:#f0f4ff;border-left:4px solid var(--indigo);border-radius:0 8px 8px 0;padding:1rem;margin-bottom:1.25rem;font-size:0.88rem;color:var(--navy);">
-      <strong>💡 Approach Reminder:</strong> Define scope → Choose method (Top-down/Bottom-up) → State assumptions → Calculate step by step → Sanity check
-    </div>
-    <pre style="white-space:pre-wrap;font-family:'DM Sans',sans-serif;font-size:0.88rem;line-height:1.8;color:var(--gray-700);">${escHtml(content)}</pre>
-    <div style="margin-top:2rem;padding:1.25rem;background:linear-gradient(135deg,var(--topmate-blue),#1e2d8f);border-radius:12px;color:white;">
-      <p style="margin-bottom:0.75rem;font-weight:600;">Practice this guesstimate live with an expert?</p>
-      <a href="https://topmate.io/kunal_sadhukhan" target="_blank" class="btn-white">Book a Session on Topmate →</a>
-    </div>
-  `;
-  document.getElementById('guess-modal').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeGuessModal() {
-  document.getElementById('guess-modal').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-function escHtml(s) {
-  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
-
-document.getElementById('guess-modal').addEventListener('click', function(e) {
-  if (e.target === this) closeGuessModal();
-});
+function togG(h){ h.parentElement.classList.toggle('open'); }
+function escHtml(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
 document.querySelectorAll('#cat-filters .filter-tab').forEach(btn => {
-  btn.addEventListener('click', function() {
-    document.querySelectorAll('#cat-filters .filter-tab').forEach(b => b.classList.remove('active'));
-    this.classList.add('active');
-    activeCat = this.dataset.cat;
-    renderGuesses();
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('#cat-filters .filter-tab').forEach(b=>b.classList.remove('active'));
+    this.classList.add('active'); activeCat=this.dataset.cat; renderGuesses();
   });
 });
-
-document.getElementById('guess-search').addEventListener('input', function() {
-  guessSearch = this.value.toLowerCase();
-  renderGuesses();
-});
-
+document.getElementById('guess-search').addEventListener('input',function(){ guessQ=this.value.toLowerCase(); renderGuesses(); });
 renderGuesses();
 </script>
 <script src="chatbot.js"></script>

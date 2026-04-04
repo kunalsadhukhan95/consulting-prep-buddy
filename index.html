@@ -7,6 +7,30 @@
 <meta name="description" content="Master consulting case interviews with expert resources, industry insights, 100+ case examples, guesstimates, and personalized 1-on-1 coaching.">
 <link rel="icon" type="image/png" href="logo.png">
 <link rel="stylesheet" href="styles.css">
+<style>
+.counter-num{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:900;color:var(--indigo);display:block;line-height:1.1;}
+.counter-card{text-align:center;padding:1.4rem 1rem;background:white;border-radius:14px;box-shadow:0 2px 14px rgba(26,31,60,.07);border:1px solid rgba(45,58,140,.08);transition:transform .25s,box-shadow .25s;}
+.counter-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(45,58,140,.12);}
+.counter-label{font-size:.72rem;color:var(--gray-500);text-transform:uppercase;letter-spacing:.1em;margin-top:.35rem;font-weight:600;}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:center;}
+@media(max-width:768px){.about-grid{grid-template-columns:1fr;gap:2rem;}}
+.offering-card{background:white;border-radius:16px;padding:1.75rem 1.5rem;box-shadow:0 4px 20px rgba(26,31,60,.06);border:1px solid rgba(26,31,60,.06);transition:all .3s;border-bottom:3px solid transparent;display:flex;flex-direction:column;}
+.offering-card:hover{transform:translateY(-5px);box-shadow:0 14px 40px rgba(26,31,60,.12);border-bottom-color:var(--indigo);}
+.offering-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:1rem;flex-shrink:0;}
+.offering-card h3{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--navy);margin-bottom:.55rem;font-weight:700;}
+.offering-card p{font-size:.875rem;color:var(--gray-500);line-height:1.65;flex:1;}
+.offering-link{display:inline-flex;align-items:center;gap:.4rem;margin-top:1.1rem;font-size:.78rem;font-weight:800;color:var(--indigo);text-decoration:none;letter-spacing:.06em;text-transform:uppercase;border:1.5px solid var(--indigo);padding:.32rem .8rem;border-radius:6px;transition:all .2s;width:fit-content;}
+.offering-link:hover{background:var(--indigo);color:white;}
+.tcard{background:white;border-radius:18px;padding:2rem;box-shadow:0 4px 24px rgba(26,31,60,.07);border:1px solid rgba(26,31,60,.06);position:relative;}
+.tcard::before{content:'\201C';font-family:'Playfair Display',serif;font-size:4rem;color:var(--gold);opacity:.35;position:absolute;top:.5rem;left:1.25rem;line-height:1;}
+.why-item-v2{background:white;padding:2.25rem 2rem;border-radius:14px;box-shadow:0 4px 16px rgba(26,31,60,.05);border-top:4px solid var(--indigo);}
+.why-item-v2 h3{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--navy);margin-bottom:.65rem;}
+.why-item-v2 p{font-size:.88rem;color:var(--gray-500);margin-bottom:1rem;line-height:1.65;}
+.callout-v2{background:linear-gradient(135deg,#1a1f3c 0%,#2d3a8c 60%,#1e2d8f 100%);color:white;padding:4rem 2rem;text-align:center;position:relative;overflow:hidden;}
+.callout-v2::before{content:'';position:absolute;top:-60%;left:-30%;width:160%;height:220%;background:radial-gradient(ellipse at 60% 40%,rgba(201,168,76,.13) 0%,transparent 65%);pointer-events:none;}
+.callout-v2 h2{font-family:'Playfair Display',serif;font-size:clamp(1.35rem,3vw,2rem);margin-bottom:.6rem;position:relative;}
+.callout-v2 p{color:rgba(255,255,255,.82);max-width:640px;margin:0 auto 1.75rem;position:relative;font-size:.97rem;}
+</style>
 </head>
 <body>
 
@@ -14,13 +38,13 @@
   <div class="nav-inner">
     <a class="nav-logo" href="index.html"><img src="logo.png" alt="Your Consulting Preparation Buddy" style="height:44px;width:auto;display:block;"></a>
     <div class="nav-links">
-      <a href="index.html" class="active">Home</a>
-      <a href="industry.html">Industry Sectors</a>
-      <a href="frameworks.html">Frameworks</a>
-      <a href="cases.html">Case Practice</a>
-      <a href="guesstimates.html">Guesstimates</a>
-      <a href="tips.html">Tips &amp; Tricks</a>
-      <a href="guidance.html">Personalized Guidance</a>
+      <a href="index.html" class="active">🏠 Home</a>
+      <a href="industry.html">🏭 Industry Sectors</a>
+      <a href="frameworks.html">🧩 Frameworks</a>
+      <a href="cases.html">💼 Case Practice</a>
+      <a href="guesstimates.html">📊 Guesstimates</a>
+      <a href="tips.html">💡 Tips &amp; Tricks</a>
+      <a href="guidance.html">🎯 Personalized Guidance</a>
       <a href="https://topmate.io/kunal_sadhukhan" target="_blank" class="nav-cta">📅 Book a Session</a>
     </div>
   </div>
@@ -28,149 +52,140 @@
 
 <!-- HERO -->
 <section class="hero">
-  <img src="logo.png" alt="Your Consulting Preparation Buddy" style="height:90px;width:auto;margin:0 auto 1.5rem;display:block;filter:drop-shadow(0 4px 16px rgba(0,0,0,0.25));">
-  <div class="hero-tag">Unlock Your Potential</div>
+  <img src="logo.png" alt="Your Consulting Preparation Buddy" style="height:100px;width:auto;margin:0 auto 1.5rem;display:block;filter:drop-shadow(0 4px 20px rgba(0,0,0,.28));">
+  <div class="hero-tag">✨ Unlock Your Potential</div>
   <h1>Master the Art of<br>Consulting Interviews</h1>
   <p>Empower your consulting journey with tailored resources, expert insights, and interactive practice to excel in interviews and land your dream role.</p>
-  <a href="https://topmate.io/kunal_sadhukhan" target="_blank" class="btn-primary btn-gold">GET STARTED →</a>
+  <a href="#offerings" class="btn-primary btn-gold">GET STARTED →</a>
 </section>
 
 <!-- ABOUT -->
-<section style="background:#eef0f8;padding:5rem 2rem;">
+<section id="about" style="background:#eef0f8;padding:5rem 2rem;">
   <div class="section-inner">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;">
+    <div class="about-grid">
       <div>
-        <span class="section-label">About Us</span>
-        <h2 class="section-title">Your dedicated partner in consulting success and preparation</h2>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2rem;">
-          <div style="text-align:center;padding:1.25rem;background:white;border-radius:12px;box-shadow:0 2px 12px rgba(26,31,60,.06);">
-            <div style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--indigo);">100+</div>
-            <div style="font-size:.75rem;color:var(--gray-500);text-transform:uppercase;letter-spacing:.1em;">Consulting Interviews</div>
-          </div>
-          <div style="text-align:center;padding:1.25rem;background:white;border-radius:12px;box-shadow:0 2px 12px rgba(26,31,60,.06);">
-            <div style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--indigo);">85</div>
-            <div style="font-size:.75rem;color:var(--gray-500);text-transform:uppercase;letter-spacing:.1em;">Prep Sessions</div>
-          </div>
-          <div style="text-align:center;padding:1.25rem;background:white;border-radius:12px;box-shadow:0 2px 12px rgba(26,31,60,.06);">
-            <div style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--indigo);">50+</div>
-            <div style="font-size:.75rem;color:var(--gray-500);text-transform:uppercase;letter-spacing:.1em;">Mentorships</div>
-          </div>
-          <div style="text-align:center;padding:1.25rem;background:white;border-radius:12px;box-shadow:0 2px 12px rgba(26,31,60,.06);">
-            <div style="font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--indigo);">20+</div>
-            <div style="font-size:.75rem;color:var(--gray-500);text-transform:uppercase;letter-spacing:.1em;">Consulting Casebooks</div>
-          </div>
+        <span class="section-label">📌 About Us</span>
+        <h2 class="section-title">Your dedicated partner in <strong style="color:var(--indigo);">consulting success</strong> and preparation</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-top:2rem;">
+          <div class="counter-card"><span class="counter-num" data-target="100" data-suffix="+">0</span><div class="counter-label">🎤 Consulting Interviews</div></div>
+          <div class="counter-card"><span class="counter-num" data-target="85" data-suffix="">0</span><div class="counter-label">📝 Prep Sessions</div></div>
+          <div class="counter-card"><span class="counter-num" data-target="50" data-suffix="+">0</span><div class="counter-label">🤝 Mentorships</div></div>
+          <div class="counter-card"><span class="counter-num" data-target="20" data-suffix="+">0</span><div class="counter-label">📚 Consulting Casebooks</div></div>
         </div>
       </div>
       <div>
-        <p style="margin-bottom:1rem;color:var(--gray-700);">Your Consulting Preparation Buddy is an e-learning platform designed specifically for aspiring consultants. We provide essential resources, individualized guidance, and a vibrant community to ensure you succeed in your consulting interviews.</p>
-        <p style="margin-bottom:1rem;color:var(--gray-700);">Our platform offers tailored content on guesstimates, case interview frameworks, and industry insights, along with interactive practice sets and one-on-one guidance for interview preparation and CV reviews. Our commitment to empowering aspiring consultants sets us apart.</p>
-        <p style="margin-bottom:2rem;color:var(--gray-700);">We are the ultimate resource for aspiring management consultants, focused on your success through personalized support and expert insights.</p>
-        <a href="guidance.html" class="btn-primary">LEARN MORE →</a>
+        <p style="margin-bottom:1rem;color:var(--gray-700);font-size:.97rem;line-height:1.8;"><strong style="color:var(--navy);">Your Consulting Preparation Buddy</strong> is an e-learning platform designed specifically for aspiring consultants. We provide essential resources, individualized guidance, and a vibrant community to ensure you succeed in your consulting interviews.</p>
+        <p style="margin-bottom:1rem;color:var(--gray-700);font-size:.97rem;line-height:1.8;">Our platform offers <strong>tailored content</strong> on guesstimates, case interview frameworks, and industry insights, along with interactive practice sets and one-on-one guidance for interview preparation and CV reviews.</p>
+        <p style="margin-bottom:2rem;color:var(--gray-700);font-size:.97rem;line-height:1.8;">We are the <strong>ultimate resource for aspiring management consultants</strong>, focused on your success through personalized support and expert insights.</p>
+        <a href="guidance.html" class="btn-primary">🎯 LEARN MORE →</a>
       </div>
     </div>
   </div>
 </section>
 
 <!-- OFFERINGS -->
-<section>
+<section id="offerings" style="padding:5rem 2rem;">
   <div class="section-inner">
-    <div style="text-align:center;margin-bottom:1rem;">
+    <div style="text-align:center;margin-bottom:3rem;">
+      <span class="section-label">🗂️ What We Offer</span>
       <h2 class="section-title">Explore Our Comprehensive Offerings</h2>
+      <p class="section-sub" style="margin:0 auto;">Everything you need to crack your consulting interviews — all in one place.</p>
     </div>
     <div class="cards-grid">
-      <div class="card">
-        <div class="card-icon">📊</div>
+      <div class="offering-card">
+        <div class="offering-icon" style="background:linear-gradient(135deg,#dbeafe,#bfdbfe);">📊</div>
         <h3>Guesstimate Practice</h3>
-        <p>Master your guesstimate skills with our interactive practice sets tailored for consulting interviews. 69 solved examples with detailed methodology across market sizing, volume estimation and revenue problems.</p>
-        <a href="guesstimates.html" class="card-link">READ MORE →</a>
+        <p>Master your guesstimate skills with <strong>69 solved examples</strong> covering market sizing, volume estimation and revenue problems — with detailed assumptions, methodology and step-by-step calculations.</p>
+        <a href="guesstimates.html" class="offering-link">EXPLORE →</a>
       </div>
-      <div class="card">
-        <div class="card-icon">🧩</div>
+      <div class="offering-card">
+        <div class="offering-icon" style="background:linear-gradient(135deg,#ede9fe,#ddd6fe);">🧩</div>
         <h3>Case Interview Frameworks</h3>
-        <p>Learn essential frameworks that guide you through case interviews with clarity and confidence — Profitability, Market Entry, Pricing, M&amp;A, Growth Strategy, Operations and Go-to-Market.</p>
-        <a href="frameworks.html" class="card-link">READ MORE →</a>
+        <p>Learn the <strong>9 essential frameworks</strong> that guide you through case interviews — Profitability, Market Entry, Pricing, M&amp;A, Growth, Operations, GTM and more — with evolved approaches and examples.</p>
+        <a href="frameworks.html" class="offering-link">EXPLORE →</a>
       </div>
-      <div class="card">
-        <div class="card-icon">🎯</div>
+      <div class="offering-card">
+        <div class="offering-icon" style="background:linear-gradient(135deg,#fef9ec,#fef3c7);">🎯</div>
         <h3>Personalized Guidance</h3>
-        <p>Receive one-on-one support for interview preparation and CV reviews tailored to your unique needs. Book a direct session with an industry expert on Topmate.</p>
-        <a href="guidance.html" class="card-link">READ MORE →</a>
+        <p>Receive <strong>one-on-one support</strong> for interview preparation and CV reviews tailored to your unique needs. Book a direct session with an industry expert — Strategy, M&amp;A, Operations or Digital roles.</p>
+        <a href="guidance.html" class="offering-link">BOOK NOW →</a>
       </div>
-      <div class="card">
-        <div class="card-icon">🏭</div>
+      <div class="offering-card">
+        <div class="offering-icon" style="background:linear-gradient(135deg,#d1fae5,#a7f3d0);">🏭</div>
         <h3>Industry Sector Insights</h3>
-        <p>Detailed overviews for 18 major sectors — Airlines, Telecom, Pharma, Retail, Banking, IT &amp; ITES, Logistics, E-commerce and more. Value chains, KPIs, Porter's Five Forces and key terminology.</p>
-        <a href="industry.html" class="card-link">READ MORE →</a>
+        <p>Detailed overviews for <strong>18 major sectors</strong> — Airlines, Telecom, Pharma, Retail, Banking, IT &amp; ITES, Logistics, E-commerce and more. Value chains, KPIs, Porter's Five Forces and key terminology.</p>
+        <a href="industry.html" class="offering-link">EXPLORE →</a>
       </div>
-      <div class="card">
-        <div class="card-icon">💼</div>
+      <div class="offering-card">
+        <div class="offering-icon" style="background:linear-gradient(135deg,#fce7f3,#fbcfe8);">💼</div>
         <h3>Case Interview Practice</h3>
-        <p>100 detailed case interview transcripts from leading consulting casebooks, organised by type: Profitability, Market Entry, Growth, Pricing, M&amp;A, Operations, Due Diligence and Unconventional.</p>
-        <a href="cases.html" class="card-link">READ MORE →</a>
+        <p><strong>100 detailed case interview transcripts</strong> from leading consulting casebooks, with full Interviewer–Candidate dialogue — organised by Profitability, Market Entry, Growth, Pricing, M&amp;A and more.</p>
+        <a href="cases.html" class="offering-link">PRACTICE →</a>
       </div>
-      <div class="card">
-        <div class="card-icon">💡</div>
+      <div class="offering-card">
+        <div class="offering-icon" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);">💡</div>
         <h3>Tips &amp; Tricks</h3>
-        <p>12 in-depth sections covering interview strategy, hypothesis-driven thinking, MECE segmentation, mental math, behavioural questions, CV tips and a full 8-week study plan.</p>
-        <a href="tips.html" class="card-link">READ MORE →</a>
+        <p><strong>12 in-depth sections</strong> covering interview strategy, hypothesis-driven thinking, MECE segmentation, mental math, behavioural questions, CV tips and a complete 8-week study plan.</p>
+        <a href="tips.html" class="offering-link">LEARN →</a>
       </div>
     </div>
   </div>
 </section>
 
 <!-- WHY CHOOSE US -->
-<section style="background:#eef0f8;">
+<section style="background:#eef0f8;padding:5rem 2rem;">
   <div class="section-inner">
-    <h2 class="section-title" style="text-align:center;margin-bottom:0.5rem;">Why Choose Us?</h2>
-    <div class="why-grid">
-      <div class="why-item">
+    <div style="text-align:center;margin-bottom:3rem;">
+      <span class="section-label">✅ Why We're Different</span>
+      <h2 class="section-title">Why Choose Us?</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;">
+      <div class="why-item-v2">
+        <div style="font-size:2rem;margin-bottom:.75rem;">🏭</div>
         <h3>Industry Sector Insights</h3>
-        <p>Detailed overview for 18 major industry sectors with value chains, KPIs, Porter's Five Forces and key terminologies — all in one place.</p>
-        <a href="industry.html" class="card-link">LEARN MORE →</a>
+        <p>Detailed overviews for <strong>18 major sectors</strong> with value chains, KPIs, Porter's Five Forces and key terminologies — all structured in one expandable page.</p>
+        <a href="industry.html" class="offering-link">LEARN MORE →</a>
       </div>
-      <div class="why-item">
+      <div class="why-item-v2">
+        <div style="font-size:2rem;margin-bottom:.75rem;">🎓</div>
         <h3>Expert Guidance</h3>
-        <p>Personalised support from industry professionals with real-world consulting experience across Strategy, M&amp;A, Operations and Digital.</p>
-        <a href="guidance.html" class="card-link">LEARN MORE →</a>
+        <p>Personalised support from an industry professional with <strong>real-world consulting experience</strong> across Strategy, M&amp;A, Operations and Digital transformation.</p>
+        <a href="guidance.html" class="offering-link">LEARN MORE →</a>
       </div>
-      <div class="why-item">
+      <div class="why-item-v2">
+        <div style="font-size:2rem;margin-bottom:.75rem;">📖</div>
         <h3>Tailored Learning Experience</h3>
-        <p>Content customised for consulting aspirants with 100+ case interviews and 69 guesstimates drawn directly from leading consulting casebooks.</p>
-        <a href="cases.html" class="card-link">LEARN MORE →</a>
+        <p>Content customised for consulting aspirants with <strong>100+ case interviews</strong> and <strong>69 guesstimates</strong> drawn directly from leading consulting casebooks.</p>
+        <a href="cases.html" class="offering-link">LEARN MORE →</a>
       </div>
     </div>
   </div>
 </section>
 
 <!-- TESTIMONIALS -->
-<section>
+<section style="padding:5rem 2rem;">
   <div class="section-inner">
     <div style="display:grid;grid-template-columns:1fr 2fr;gap:4rem;align-items:start;">
       <div style="padding-top:2rem;">
-        <span class="section-label">— Social Proof</span>
+        <span class="section-label">💬 Social Proof</span>
         <h2 class="section-title">Hear from Our Satisfied Users</h2>
+        <p style="color:var(--gray-500);font-size:.9rem;margin-top:.75rem;">Real feedback from consulting aspirants who used this platform to land their dream roles.</p>
       </div>
-      <div class="testimonials-grid">
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p class="testimonial-text">"Kunal was very helpful and informative. He gave me very insightful suggestions and guided me in the right direction. I would definitely recommend people connect with him for consulting case study preparation!"</p>
-          <div class="reviewer">
-            <div class="reviewer-avatar-placeholder">R</div>
-            <div>
-              <div class="reviewer-name">RIDDHI</div>
-              <div class="reviewer-co">Strategy Consulting</div>
-            </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
+        <div class="tcard">
+          <div class="stars" style="margin-bottom:.75rem;">★★★★★</div>
+          <p class="testimonial-text" style="padding-left:.5rem;">"Kunal was very helpful and informative. He gave me very <strong>insightful suggestions</strong> and guided me in the right direction. I would definitely recommend people connect with him for consulting case study preparation!"</p>
+          <div class="reviewer" style="margin-top:1.25rem;">
+            <div class="reviewer-avatar-placeholder" style="background:linear-gradient(135deg,#2d3a8c,#3d4fa0);">R</div>
+            <div><div class="reviewer-name">RIDDHI</div><div class="reviewer-co" style="color:var(--indigo);font-weight:600;font-size:.78rem;">Accenture</div></div>
           </div>
         </div>
-        <div class="testimonial-card">
-          <div class="stars">★★★★★</div>
-          <p class="testimonial-text">"With the help of this platform, I gained confidence and honed my skills. The interactive practice sets were incredibly useful, allowing me to tackle interviews with ease."</p>
-          <div class="reviewer">
-            <div class="reviewer-avatar-placeholder">A</div>
-            <div>
-              <div class="reviewer-name">ANSHUL KUMAR</div>
-              <div class="reviewer-co">Business Consulting</div>
-            </div>
+        <div class="tcard">
+          <div class="stars" style="margin-bottom:.75rem;">★★★★★</div>
+          <p class="testimonial-text" style="padding-left:.5rem;">"With the help of this platform, I gained <strong>confidence and honed my skills</strong>. The interactive practice sets were incredibly useful, allowing me to tackle interviews with ease."</p>
+          <div class="reviewer" style="margin-top:1.25rem;">
+            <div class="reviewer-avatar-placeholder" style="background:linear-gradient(135deg,#16a34a,#15803d);">A</div>
+            <div><div class="reviewer-name">ANSHUL KUMAR</div><div class="reviewer-co" style="color:#16a34a;font-weight:600;font-size:.78rem;">Deloitte</div></div>
           </div>
         </div>
       </div>
@@ -179,33 +194,148 @@
 </section>
 
 <!-- CLOSING CALLOUT -->
-<div class="callout-banner">
-  <h2>20,000+ Indian College Students and Experienced Professionals start their consulting career every year.</h2>
-  <p>The next one can be you too! With the right preparation, guidance and practice — your consulting dream is within reach.</p>
-  <a href="https://topmate.io/kunal_sadhukhan" target="_blank" class="btn-primary btn-gold" style="margin-top:.5rem;">Book a Session on Topmate →</a>
+<div class="callout-v2">
+  <h2>🚀 20,000+ Indian College Students and Experienced Professionals<br>start their consulting career every year.</h2>
+  <p>The next one can be <strong>you</strong> too! With the right preparation, guidance and practice — your consulting dream is within reach.</p>
+  <a href="https://topmate.io/kunal_sadhukhan" target="_blank" class="btn-primary btn-gold">📅 Book a Session on Topmate →</a>
 </div>
 
 <footer>
-  <p>© 2025 Your Consulting Preparation Buddy &nbsp;|&nbsp; <a href="https://topmate.io/kunal_sadhukhan" target="_blank">Book a 1:1 Session on Topmate</a></p>
+  <p>© 2025 Your Consulting Preparation Buddy &nbsp;|&nbsp; <a href="https://topmate.io/kunal_sadhukhan" target="_blank">📅 Book a 1:1 Session on Topmate</a></p>
 </footer>
 
 <button id="chatbot-toggle" title="Ask Consulting Prep Assistant">🎓</button>
 <div id="chatbot-window">
   <div class="chat-header">
     <div class="chat-header-icon">🎓</div>
-    <div class="chat-header-text">
-      <h4>Consulting Prep Assistant</h4>
-      <p>Ask a question — I'll point you to the right resource or session</p>
-    </div>
+    <div class="chat-header-text"><h4>Consulting Prep Assistant</h4><p>Ask me anything about consulting prep</p></div>
   </div>
   <div class="chat-messages" id="chat-messages">
-    <div class="chat-msg bot">Hi! 👋 Ask me anything about consulting prep. I'll guide you to the right resource — or connect you with Kunal for a personalised 1-on-1 session on Topmate!</div>
+    <div class="chat-msg bot">Hi! 👋 I'm your <strong>Consulting Prep Assistant</strong>. Ask me anything about case interviews, frameworks, guesstimates, or industries — I'll guide you to the right resource!</div>
   </div>
   <div class="chat-input-area">
-    <input id="chat-input" class="chat-input" type="text" placeholder="Ask a question — I'll guide you or suggest a session">
+    <input id="chat-input" class="chat-input" type="text" placeholder="Ask a question...">
     <button id="chat-send" class="chat-send">➤</button>
   </div>
 </div>
-<script src="chatbot.js"></script>
+
+<script>
+/* ── Animated counter on scroll ── */
+function animateCounter(el) {
+  const target = parseInt(el.dataset.target, 10);
+  const suffix = el.dataset.suffix || '';
+  const steps = 50, duration = 1400;
+  const inc = Math.ceil(target / steps);
+  let cur = 0;
+  const t = setInterval(() => {
+    cur = Math.min(cur + inc, target);
+    el.textContent = cur + (cur >= target ? suffix : '');
+    if (cur >= target) clearInterval(t);
+  }, duration / steps);
+}
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting && !e.target.dataset.animated) {
+      e.target.dataset.animated = '1';
+      animateCounter(e.target);
+    }
+  });
+}, { threshold: 0.4 });
+document.querySelectorAll('.counter-num[data-target]').forEach(c => observer.observe(c));
+
+/* ── Chatbot ── */
+function initChatbot() {
+  const toggle = document.getElementById('chatbot-toggle');
+  const win = document.getElementById('chatbot-window');
+  const input = document.getElementById('chat-input');
+  const sendBtn = document.getElementById('chat-send');
+  const messages = document.getElementById('chat-messages');
+  let isOpen = false;
+
+  toggle.addEventListener('click', () => {
+    isOpen = !isOpen;
+    win.classList.toggle('open', isOpen);
+    toggle.textContent = isOpen ? '✕' : '🎓';
+    if (isOpen) input.focus();
+  });
+
+  const TABS = `<div style="margin-top:.7rem;display:flex;flex-direction:column;gap:.38rem;font-size:.8rem;">
+    <a href="industry.html" style="color:var(--indigo);font-weight:600;text-decoration:none;">🏭 Industry Sector Overviews (18 sectors) →</a>
+    <a href="frameworks.html" style="color:var(--indigo);font-weight:600;text-decoration:none;">🧩 Case Interview Frameworks (9 frameworks) →</a>
+    <a href="cases.html" style="color:var(--indigo);font-weight:600;text-decoration:none;">💼 Case Interview Practice (100 cases) →</a>
+    <a href="guesstimates.html" style="color:var(--indigo);font-weight:600;text-decoration:none;">📊 Guesstimate Practice (69 examples) →</a>
+    <a href="tips.html" style="color:var(--indigo);font-weight:600;text-decoration:none;">💡 Tips &amp; Tricks (12 sections) →</a>
+    <a href="guidance.html" style="color:var(--indigo);font-weight:600;text-decoration:none;">🎯 Personalized 1-on-1 Guidance →</a>
+    <a href="https://topmate.io/kunal_sadhukhan" target="_blank" style="color:#3b55e6;font-weight:700;text-decoration:none;">📅 Book a Session on Topmate →</a>
+  </div>`;
+
+  const QA = {
+    'framework': `<strong>🧩 9 Case Interview Frameworks</strong> are available:<br><em>Profitability, Market Entry, Pricing, Growth (Ansoff), M&A, Operations, Go-to-Market, Guesstimate Approach, and Core Interview Skills.</em><br>Each includes the evolved technique, key questions to ask, and segmentation tools.<br><a href="frameworks.html" style="color:var(--indigo);font-weight:700;">Go to Frameworks →</a>`,
+    'profitabilit': `<strong>📉 Profitability Framework:</strong><br>Profit = Revenue − Costs<br>Revenue = Price × Volume<br>After isolating the metric, segment along the Value Chain:<br><em>Production → Distribution Push → Customer Pull</em><br>Always check: company-specific or industry-wide?<br><a href="frameworks.html" style="color:var(--indigo);font-weight:700;">See full framework →</a>`,
+    'market entry': `<strong>🌐 Market Entry Framework (2 parts):</strong><br><strong>Part 1 — Economic Sense:</strong> Profit = Market Size × Market Share × Profit/unit − Fixed Costs<br><strong>Part 2 — Implementation:</strong> Value chain feasibility → Entry mode (Organic / Acquisition / JV)<br><a href="frameworks.html" style="color:var(--indigo);font-weight:700;">See full framework →</a>`,
+    'industry': `<strong>🏭 18 Industry Sector Overviews</strong> covering:<br><em>Airlines, Automobiles, Cement, Defence, E-commerce, Education, Hospitality, Insurance, IT & ITES, Logistics, Oil & Gas, OTT, Payments, Pharma, Power, Retail, Semiconductor, Telecom.</em><br>Each includes Value Chain, Porter's Five Forces, Revenue & Cost Drivers, KPIs and Key Terminology.<br><a href="industry.html" style="color:var(--indigo);font-weight:700;">Go to Industry Sectors →</a>`,
+    'case': `<strong>💼 100 Case Interview Practice Examples</strong> across:<br><em>Profitability (28), Market Entry (15), Growth (18), Pricing (12), Operations (8), M&A (6), Due Diligence (5), Unconventional (6), GTM (2).</em><br>Each case shows the full Interviewer–Candidate dialogue with colour-coded turns.<br><a href="cases.html" style="color:var(--indigo);font-weight:700;">Go to Case Practice →</a>`,
+    'guesstimate': `<strong>📊 69 Guesstimate Practice Examples</strong> across:<br><em>Volume Estimation, Market Sizing, Revenue Estimation, Consumption/Demand, Transport & Mobility.</em><br>Each shows Assumptions → Methodology → Step-by-step Calculations → Final Answer.<br><a href="guesstimates.html" style="color:var(--indigo);font-weight:700;">Go to Guesstimates →</a>`,
+    'tip': `<strong>💡 12 Tips & Tricks Sections</strong> covering:<br>Preliminary Questions, Overall Strategy, Hypothesis-Driven Approach, MECE Segmentation, 80/20 Rule, Competitor Benchmarking, CV Tips, Behavioural Prep, Mental Math, Non-Verbal Communication, Role-Specific Prep, and Common Mistakes to Avoid.<br><a href="tips.html" style="color:var(--indigo);font-weight:700;">Go to Tips & Tricks →</a>`,
+    'guidance': `<strong>🎯 Personalized Guidance</strong> includes:<br>CV Review, Mock Case Interview, Interview Strategy (Strategy / M&A / Operations / Digital), Guesstimate Coaching, Industry Deep-Dive, and Full Prep Package.<br>Book directly with Kunal — a consultant with real-world experience.<br><a href="guidance.html" style="color:var(--indigo);font-weight:700;">Go to Guidance →</a><br><a href="https://topmate.io/kunal_sadhukhan" target="_blank" style="color:#3b55e6;font-weight:700;">📅 Book on Topmate →</a>`,
+    'topmate': `For personalised <strong>1-on-1 coaching</strong>, book a session with Kunal directly on Topmate:<br><a href="https://topmate.io/kunal_sadhukhan" target="_blank" style="color:#3b55e6;font-weight:700;">📅 Book on Topmate →</a>`,
+    'pricing': `<strong>💰 Pricing Framework:</strong> Three methods — Cost-Plus, Competitor-Based, Value-Based.<br><strong>Floor</strong> = Variable Cost/unit | <strong>Ceiling</strong> = Customer WTP.<br>For new/unique products, use value-based pricing. Consider price elasticity, segments, and competitive response.<br><a href="frameworks.html" style="color:var(--indigo);font-weight:700;">See full framework →</a>`,
+    'mna': `<strong>🤝 M&A Framework:</strong> Strategic Rationale → Revenue + Cost Synergies → Valuation (EBITDA multiple / DCF) → Integration Risks → 100-Day Plan.<br>Key risks: culture clash, talent flight, regulatory approvals, customer attrition.<br><a href="frameworks.html" style="color:var(--indigo);font-weight:700;">See full framework →</a>`,
+  };
+
+  async function handleSend() {
+    const text = input.value.trim();
+    if (!text) return;
+    input.value = '';
+    appendMsg(text, 'user');
+    sendBtn.disabled = true;
+    const typingEl = appendMsgHtml('<em style="color:var(--gray-500);">Thinking…</em>', 'bot');
+    await new Promise(r => setTimeout(r, 300));
+
+    const tl = text.toLowerCase().replace(/[^a-z0-9 ]/g, '');
+    let reply = null;
+    for (const [key, val] of Object.entries(QA)) {
+      if (tl.includes(key)) { reply = val; break; }
+    }
+
+    if (!reply) {
+      reply = `Here's a quick overview of everything on this platform:<br>
+        <div style="margin:.55rem 0;font-size:.82rem;line-height:1.75;">
+          <strong>🏭 Industry Sectors</strong> — 18 sectors: value chains, KPIs & Porter's Five Forces<br>
+          <strong>🧩 Frameworks</strong> — 9 case frameworks with evolved approaches & India data<br>
+          <strong>💼 Case Practice</strong> — 100 full Interviewer–Candidate transcripts<br>
+          <strong>📊 Guesstimates</strong> — 69 solved examples with step-by-step calculations<br>
+          <strong>💡 Tips & Tricks</strong> — 12 sections on interview strategy & prep<br>
+          <strong>🎯 Personalized Guidance</strong> — 1-on-1 coaching, mock cases & CV review
+        </div>${TABS}`;
+    }
+
+    typingEl.innerHTML = reply;
+    sendBtn.disabled = false;
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  function appendMsg(text, role) {
+    const div = document.createElement('div');
+    div.className = 'chat-msg ' + role;
+    div.textContent = text;
+    messages.appendChild(div);
+    messages.scrollTop = messages.scrollHeight;
+    return div;
+  }
+  function appendMsgHtml(html, role) {
+    const div = document.createElement('div');
+    div.className = 'chat-msg ' + role;
+    div.innerHTML = html;
+    messages.appendChild(div);
+    messages.scrollTop = messages.scrollHeight;
+    return div;
+  }
+
+  sendBtn.addEventListener('click', handleSend);
+  input.addEventListener('keydown', e => { if (e.key === 'Enter' && !sendBtn.disabled) handleSend(); });
+}
+document.addEventListener('DOMContentLoaded', initChatbot);
+</script>
 </body>
 </html>

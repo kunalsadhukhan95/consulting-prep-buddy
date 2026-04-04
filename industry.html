@@ -4,132 +4,160 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Know Industry Sectors | Consulting Prep Buddy</title>
-<link rel="icon" type="image/png" href="logo.png">
 <link rel="stylesheet" href="styles.css">
+<style>
+.ind-section { margin-bottom: 1.1rem; }
+.ind-section-title {
+  font-size: 0.75rem; font-weight: 800; letter-spacing: 0.08em;
+  text-transform: uppercase; padding: 0.25rem 0.7rem;
+  border-radius: 20px; display: inline-block; margin-bottom: 0.55rem;
+}
+.sect-vc    { background: #ede9fe; color: #4c1d95; }
+.sect-pf    { background: #dbeafe; color: #1e40af; }
+.sect-rev   { background: #dcfce7; color: #166534; }
+.sect-kpi   { background: #fef9ec; color: #92400e; }
+.sect-pestel{ background: #fce7f3; color: #9d174d; }
+.sect-terms { background: #f0fdf4; color: #14532d; }
+.ind-body   { font-size: 0.88rem; line-height: 1.75; color: var(--gray-700); }
+.ind-icon-big { font-size: 2rem; margin-right: 0.75rem; }
+</style>
 </head>
 <body>
 <nav>
   <div class="nav-inner">
     <a class="nav-logo" href="index.html"><img src="logo.png" alt="Your Consulting Preparation Buddy" style="height:44px;width:auto;display:block;"></a>
     <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="industry.html" class="active">Industry Sectors</a>
-      <a href="frameworks.html">Frameworks</a>
-      <a href="cases.html">Case Practice</a>
-      <a href="guesstimates.html">Guesstimates</a>
-      <a href="tips.html">Tips &amp; Tricks</a>
-      <a href="guidance.html">Personalized Guidance</a>
+      <a href="index.html">🏠 Home</a>
+      <a href="industry.html" class="active">🏭 Industry Sectors</a>
+      <a href="frameworks.html">🧩 Frameworks</a>
+      <a href="cases.html">💼 Case Practice</a>
+      <a href="guesstimates.html">📊 Guesstimates</a>
+      <a href="tips.html">💡 Tips &amp; Tricks</a>
+      <a href="guidance.html">🎯 Personalized Guidance</a>
       <a href="https://topmate.io/kunal_sadhukhan" target="_blank" class="nav-cta">📅 Book a Session</a>
     </div>
   </div>
 </nav>
-
 <div class="page-hero">
   <h1>Know Industry Sectors</h1>
-  <p>Detailed overviews of 18+ major sectors — value chains, KPIs, Porter's Five Forces &amp; industry terminologies</p>
+  <p>18 major sectors — click any sector to expand value chain, Porter's Five Forces, KPIs &amp; key terminology</p>
 </div>
-
 <section>
 <div class="section-inner">
-
 <div class="topmate-banner">
-  <div>
-    <h3>Need Sector-Specific Interview Prep?</h3>
-    <p>Get personalized guidance on industry knowledge &amp; case interviews from an expert</p>
-  </div>
+  <div><h3>Need Sector-Specific Interview Prep?</h3><p>Get personalised guidance on industry knowledge &amp; case interviews from an expert</p></div>
   <a href="https://topmate.io/kunal_sadhukhan" target="_blank" class="btn-white">Book on Topmate →</a>
 </div>
-
-<p style="margin-bottom:1.5rem; color:var(--gray-500);">Click any sector card to expand its full overview, including value chain, market structure, Porter's Five Forces, revenue drivers, cost drivers, key KPIs and industry terminology.</p>
-
 <input id="industry-search" class="search-box" type="text" placeholder="🔍 Search industries (e.g. Telecom, Pharma, Retail...)">
-
-<div id="industry-grid" class="cards-grid"></div>
-
-<!-- Modal for full sector detail -->
-<div id="sector-modal" class="modal-overlay">
-  <div class="modal-box">
-    <button class="modal-close" onclick="closeModal()">✕</button>
-    <div id="modal-content"></div>
-  </div>
-</div>
-
+<div id="industry-list"></div>
 </div>
 </section>
-
 <div class="callout-banner">
   <h2>Ready to practice with industry-specific cases?</h2>
   <p>Apply your sector knowledge in real case interview scenarios</p>
-  <a href="cases.html" class="btn-primary btn-gold" style="margin-top:0.5rem;">Go to Case Practice →</a>
+  <a href="cases.html" class="btn-primary btn-gold" style="margin-top:.5rem;">Go to Case Practice →</a>
 </div>
-
-<footer>
-  <p>© 2025 Your Consulting Preparation Buddy &nbsp;|&nbsp; <a href="https://topmate.io/kunal_sadhukhan" target="_blank">Book a 1:1 Session on Topmate</a></p>
-</footer>
-
+<footer><p>© 2025 Your Consulting Preparation Buddy &nbsp;|&nbsp; <a href="https://topmate.io/kunal_sadhukhan" target="_blank">Book a 1:1 Session on Topmate</a></p></footer>
 <button id="chatbot-toggle">🎓</button>
 <div id="chatbot-window">
-  <div class="chat-header">
-    <div class="chat-header-icon">🎓</div>
-    <div class="chat-header-text"><h4>Consulting Prep Assistant</h4><p>Ask about any industry sector</p></div>
-  </div>
-  <div class="chat-messages" id="chat-messages">
-    <div class="chat-msg bot">Hi! 👋 Ask about any industry sector. I'll guide you to the right content — or you can book a deep-dive session on Topmate!</div>
-  </div>
-  <div class="chat-input-area">
-    <input id="chat-input" class="chat-input" type="text" placeholder="e.g. What are key KPIs in Telecom?">
-    <button id="chat-send" class="chat-send">➤</button>
-  </div>
+  <div class="chat-header"><div class="chat-header-icon">🎓</div><div class="chat-header-text"><h4>Consulting Prep Assistant</h4><p>Ask about any industry sector</p></div></div>
+  <div class="chat-messages" id="chat-messages"><div class="chat-msg bot">Hi! 👋 Ask about any industry sector — Telecom, Pharma, Retail, Banking and more!</div></div>
+  <div class="chat-input-area"><input id="chat-input" class="chat-input" type="text" placeholder="e.g. What are key KPIs in Telecom?"><button id="chat-send" class="chat-send">➤</button></div>
 </div>
-
 <script src="industry_data.js"></script>
 <script>
-function renderIndustries(list) {
-  const grid = document.getElementById('industry-grid');
-  grid.innerHTML = list.map((ind, i) => `
-    <div class="industry-card" onclick="openModal(${i})">
-      <div class="industry-icon">${ind.icon}</div>
-      <h3>${ind.name} Industry</h3>
-      <p style="font-size:0.85rem;color:var(--gray-500);">Click to view value chain, KPIs, Porter's Five Forces &amp; key metrics</p>
-      <span class="tag tag-sector" style="margin-top:0.75rem;">View Overview →</span>
-    </div>
-  `).join('');
+/* ── Parse raw industry text into named sections ── */
+function parseIndustry(rawText) {
+  const text = rawText.replace(/\\n/g,'\n').replace(/© [^\n]*/g,'').replace(/---PAGE \d+---/g,'').trim();
+  const lines = text.split('\n').map(l=>l.trim()).filter(l=>l.length>3);
+
+  const sections = {
+    valueChain: [], porters: [], revenue: [], costs: [],
+    kpi: [], pestel: [], terms: [], structure: [], other: []
+  };
+
+  let cur = 'other';
+  for (const line of lines) {
+    const ll = line.toLowerCase();
+    if (/value chain|inbound logistic|manufacturing|outbound|production|supply chain/i.test(line) && line.length < 60) { cur = 'valueChain'; continue; }
+    if (/porter|five force|bargain|threat of|rivalry|competitive/i.test(line) && line.length < 60) { cur = 'porters'; continue; }
+    if (/revenue driver|revenue model|revenue stream|revenue &/i.test(line) && line.length < 60) { cur = 'revenue'; continue; }
+    if (/cost driver|cost structure|key cost/i.test(line) && line.length < 60) { cur = 'costs'; continue; }
+    if (/key performance|kpi|performance indicator/i.test(line) && line.length < 60) { cur = 'kpi'; continue; }
+    if (/pestel|political|economic.*social|regulatory|environmental/i.test(line) && line.length < 60) { cur = 'pestel'; continue; }
+    if (/terminolog|glossary|good.to.know|jargon/i.test(line) && line.length < 60) { cur = 'terms'; continue; }
+    if (/industry structure|market structure|market segment/i.test(line) && line.length < 60) { cur = 'structure'; continue; }
+    if (line.length > 5) sections[cur].push(line);
+  }
+  return sections;
 }
 
-function openModal(i) {
-  const ind = INDUSTRIES[i];
-  const content = ind.content
-    .replace(/\\n/g, '\n')
-    .replace(/\n{3,}/g, '\n\n');
-  document.getElementById('modal-content').innerHTML = `
-    <h2 style="font-family:'Playfair Display',serif;color:var(--navy);margin-bottom:0.5rem;">${ind.icon} ${ind.name} Industry</h2>
-    <hr style="margin:1rem 0;border:none;border-top:1px solid var(--gray-300);">
-    <pre style="white-space:pre-wrap;font-family:'DM Sans',sans-serif;font-size:0.88rem;line-height:1.7;color:var(--gray-700);">${escapeHtml(content)}</pre>
-  `;
-  document.getElementById('sector-modal').classList.add('open');
-  document.body.style.overflow = 'hidden';
+function renderIndustrySections(sections) {
+  const sect = (label, cls, items) => {
+    if (!items || items.length === 0) return '';
+    const content = items.map(i=>`<p style="margin-bottom:.35rem;">• ${escHtml(i)}</p>`).join('');
+    return `<div class="ind-section">
+      <div class="ind-section-title ${cls}">${label}</div>
+      <div class="ind-body">${content}</div>
+    </div>`;
+  };
+  return [
+    sect('🏭 Value Chain', 'sect-vc', sections.valueChain),
+    sect('🏢 Market Structure & Segments', 'sect-pf', sections.structure),
+    sect('⚔️ Porter\'s Five Forces', 'sect-pf', sections.porters),
+    sect('💰 Revenue Drivers', 'sect-rev', sections.revenue),
+    sect('💸 Cost Drivers', 'sect-kpi', sections.costs),
+    sect('📊 Key Performance Indicators (KPIs)', 'sect-kpi', sections.kpi),
+    sect('🌍 PESTEL Analysis', 'sect-pestel', sections.pestel),
+    sect('📖 Key Industry Terminology', 'sect-terms', sections.terms),
+    sect('📌 Other Key Information', 'sect-terms', sections.other),
+  ].join('');
 }
 
-function closeModal() {
-  document.getElementById('sector-modal').classList.remove('open');
-  document.body.style.overflow = '';
+let searchQ = '';
+
+function getFiltered() {
+  if (!searchQ) return INDUSTRIES;
+  const q = searchQ.toLowerCase();
+  return INDUSTRIES.filter(ind => ind.name.toLowerCase().includes(q) || ind.content.toLowerCase().includes(q.slice(0,30)));
 }
 
-function escapeHtml(s) {
-  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+function renderIndustries() {
+  const filtered = getFiltered();
+  document.getElementById('industry-list').innerHTML = filtered.map((ind,i) => {
+    const sections = parseIndustry(ind.content);
+    const body = renderIndustrySections(sections);
+    return `
+    <div class="accordion-item" id="ind-${i}">
+      <div class="accordion-header" onclick="togI(this)">
+        <div style="display:flex;align-items:center;gap:.75rem;">
+          <span class="ind-icon-big">${ind.icon}</span>
+          <span style="font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--navy);">${escHtml(ind.name)} Industry</span>
+        </div>
+        <div style="display:flex;gap:.4rem;align-items:center;flex-shrink:0;">
+          <span class="tag tag-sector">Value Chain · KPIs · Porter's</span>
+          <span class="accordion-arrow" style="margin-left:.25rem;">▼</span>
+        </div>
+      </div>
+      <div class="accordion-body">
+        ${body || `<p style="color:var(--gray-500);">Detailed overview below.</p>`}
+        <div style="margin-top:1.5rem;padding:1.1rem;background:linear-gradient(135deg,var(--topmate-blue),#1e2d8f);border-radius:12px;color:white;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;">
+          <p style="font-weight:600;font-size:.9rem;margin:0;">Need a deep-dive on this sector for your interview?</p>
+          <a href="https://topmate.io/kunal_sadhukhan" target="_blank" class="btn-white" style="font-size:.82rem;padding:.5rem 1.1rem;">Book 1-on-1 on Topmate →</a>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
 }
 
-document.getElementById('sector-modal').addEventListener('click', function(e) {
-  if (e.target === this) closeModal();
+function togI(h){ h.parentElement.classList.toggle('open'); }
+function escHtml(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+document.getElementById('industry-search').addEventListener('input',function(){
+  searchQ = this.value.toLowerCase();
+  renderIndustries();
 });
-
-document.getElementById('industry-search').addEventListener('input', function() {
-  const q = this.value.toLowerCase();
-  const filtered = INDUSTRIES.filter(ind => ind.name.toLowerCase().includes(q) || ind.content.toLowerCase().includes(q));
-  renderIndustries(filtered);
-});
-
-renderIndustries(INDUSTRIES);
+renderIndustries();
 </script>
 <script src="chatbot.js"></script>
 </body>
