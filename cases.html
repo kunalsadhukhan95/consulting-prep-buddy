@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Case Interview Practice | Consulting Prep Buddy</title>
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html"><img src="logo.png" alt="Your Consulting Preparation Buddy" style="height:44px;width:auto;display:block;"></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="industry.html">Industry Sectors</a>
+      <a href="frameworks.html">Frameworks</a>
+      <a href="cases.html" class="active">Case Practice</a>
+      <a href="guesstimates.html">Guesstimates</a>
+      <a href="tips.html">Tips &amp; Tricks</a>
+      <a href="guidance.html">Personalized Guidance</a>
+      <a href="https://topmate.io/kunal_sadhukhan" target="_blank" class="nav-cta">📅 Book a Session</a>
+    </div>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <h1>Case Interview Practice</h1>
+  <p>100 detailed case interview transcripts across Profitability, Market Entry, Growth, Pricing, M&amp;A, Operations and more</p>
+</div>
+
+<section>
+<div class="section-inner">
+
+<div class="topmate-banner">
+  <div>
+    <h3>Practice Cases 1-on-1 with an Expert</h3>
+    <p>Get real-time feedback on your case approach, structure &amp; communication skills</p>
+  </div>
+  <a href="https://topmate.io/kunal_sadhukhan" target="_blank" class="btn-white">Book on Topmate →</a>
+</div>
+
+<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1rem;">
+  <p style="color:var(--gray-500);font-size:0.9rem;">Showing <span id="case-count">100</span> cases — click any card to read full transcript</p>
+  <input id="case-search" class="search-box" type="text" placeholder="🔍 Search cases..." style="margin:0;max-width:320px;">
+</div>
+
+<div class="filter-tabs" id="type-filters">
+  <div class="filter-tab active" data-type="All">All (100)</div>
+  <div class="filter-tab" data-type="Profitability">📉 Profitability</div>
+  <div class="filter-tab" data-type="Market Entry">🌐 Market Entry</div>
+  <div class="filter-tab" data-type="Growth">🚀 Growth</div>
+  <div class="filter-tab" data-type="Pricing">💰 Pricing</div>
+  <div class="filter-tab" data-type="Operations">⚙️ Operations</div>
+  <div class="filter-tab" data-type="M&A">🤝 M&amp;A</div>
+  <div class="filter-tab" data-type="Due Diligence">🔍 Due Diligence</div>
+  <div class="filter-tab" data-type="Unconventional">🎲 Unconventional</div>
+</div>
+
+<div id="cases-list"></div>
+
+<!-- Case Modal -->
+<div id="case-modal" class="modal-overlay">
+  <div class="modal-box" style="max-width:900px;">
+    <button class="modal-close" onclick="closeCaseModal()">✕</button>
+    <div id="case-modal-content"></div>
+  </div>
+</div>
+
+</div>
+</section>
+
+<div class="callout-banner">
+  <h2>Want personalised mock case practice?</h2>
+  <p>Book a 1-on-1 session for real-time feedback and guided case practice</p>
+  <a href="https://topmate.io/kunal_sadhukhan" target="_blank" class="btn-primary btn-gold" style="margin-top:0.5rem;">Book on Topmate →</a>
+</div>
+
+<footer>
+  <p>© 2025 Your Consulting Preparation Buddy &nbsp;|&nbsp; <a href="https://topmate.io/kunal_sadhukhan" target="_blank">Book a 1:1 Session on Topmate</a></p>
+</footer>
+
+<button id="chatbot-toggle">🎓</button>
+<div id="chatbot-window">
+  <div class="chat-header">
+    <div class="chat-header-icon">🎓</div>
+    <div class="chat-header-text"><h4>Consulting Prep Assistant</h4><p>Ask for help with any case</p></div>
+  </div>
+  <div class="chat-messages" id="chat-messages">
+    <div class="chat-msg bot">Hi! 👋 Ask about any case type. For live mock practice with real feedback, book a 1-on-1 session on Topmate!</div>
+  </div>
+  <div class="chat-input-area">
+    <input id="chat-input" class="chat-input" type="text" placeholder="e.g. How do I approach a profitability case?">
+    <button id="chat-send" class="chat-send">➤</button>
+  </div>
+</div>
+
+<script src="cases_data.js"></script>
+<script>
+const TYPE_ICONS = {
+  'Profitability': '📉', 'Market Entry': '🌐', 'Growth': '🚀', 'Pricing': '💰',
+  'Operations': '⚙️', 'M&A': '🤝', 'Due Diligence': '🔍', 'Unconventional': '🎲', 'GTM': '📣'
+};
+const DIFF_CLASS = { 'Easy': 'tag-easy', 'Moderate': 'tag-moderate', 'Hard': 'tag-hard', 'Challenging': 'tag-hard' };
+
+let activeType = 'All';
+let searchQuery = '';
+
+function getFiltered() {
+  return CASES.filter(c => {
+    const matchType = activeType === 'All' || c.type === activeType;
+    const matchSearch = !searchQuery || 
+      c.title.toLowerCase().includes(searchQuery) || 
+      c.type.toLowerCase().includes(searchQuery) ||
+      c.content.toLowerCase().includes(searchQuery.slice(0,30));
+    return matchType && matchSearch;
+  });
+}
+
+function renderCases() {
+  const filtered = getFiltered();
+  document.getElementById('case-count').textContent = filtered.length;
+  
+  const list = document.getElementById('cases-list');
+  list.innerHTML = filtered.map((c, i) => `
+    <div class="accordion-item" id="case-${c.id}">
+      <div class="accordion-header" onclick="openCaseModal(${c.id})">
+        <div style="display:flex;align-items:center;gap:0.75rem;flex-wrap:wrap;">
+          <span style="font-size:1.1rem;">${TYPE_ICONS[c.type] || '📋'}</span>
+          <span><strong>#${c.id}</strong> ${escHtml(c.title.substring(0,70))}${c.title.length>70?'...':''}</span>
+        </div>
+        <div style="display:flex;gap:0.5rem;align-items:center;flex-shrink:0;">
+          <span class="tag ${DIFF_CLASS[c.difficulty]||'tag-moderate'}">${c.difficulty}</span>
+          <span class="tag tag-sector">${c.type}</span>
+          <span style="color:var(--indigo);font-size:0.8rem;font-weight:600;">READ →</span>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function openCaseModal(id) {
+  const c = CASES.find(x => x.id === id);
+  if (!c) return;
+  const content = c.content.replace(/\\n/g, '\n');
+  document.getElementById('case-modal-content').innerHTML = `
+    <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-bottom:1rem;">
+      <span class="tag ${DIFF_CLASS[c.difficulty]||'tag-moderate'}">${c.difficulty}</span>
+      <span class="tag tag-sector">${TYPE_ICONS[c.type]||''} ${c.type}</span>
+    </div>
+    <h2 style="font-family:'Playfair Display',serif;color:var(--navy);font-size:1.5rem;margin-bottom:1.25rem;">${escHtml(c.title)}</h2>
+    <hr style="margin-bottom:1.25rem;border:none;border-top:1px solid var(--gray-300);">
+    <pre style="white-space:pre-wrap;font-family:'DM Sans',sans-serif;font-size:0.88rem;line-height:1.8;color:var(--gray-700);">${escHtml(content)}</pre>
+    <div style="margin-top:2rem;padding:1.25rem;background:linear-gradient(135deg,var(--topmate-blue),#1e2d8f);border-radius:12px;color:white;">
+      <p style="margin-bottom:0.75rem;font-weight:600;">Want real-time feedback on this case type?</p>
+      <a href="https://topmate.io/kunal_sadhukhan" target="_blank" class="btn-white">Book a 1-on-1 Session on Topmate →</a>
+    </div>
+  `;
+  document.getElementById('case-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCaseModal() {
+  document.getElementById('case-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function escHtml(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+document.getElementById('case-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeCaseModal();
+});
+
+document.querySelectorAll('#type-filters .filter-tab').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('#type-filters .filter-tab').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+    activeType = this.dataset.type;
+    renderCases();
+  });
+});
+
+document.getElementById('case-search').addEventListener('input', function() {
+  searchQuery = this.value.toLowerCase();
+  renderCases();
+});
+
+renderCases();
+</script>
+<script src="chatbot.js"></script>
+</body>
+</html>
