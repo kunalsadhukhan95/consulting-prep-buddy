@@ -4,30 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Case Interview Practice | Consulting Prep Buddy</title>
+<link rel="icon" type="image/png" href="logo.png">
 <link rel="stylesheet" href="styles.css">
 <style>
-/* Dialogue Q&A styles */
-.dialogue-block { margin-bottom: 0; }
-.turn { display: flex; gap: 0.75rem; margin-bottom: 0.9rem; align-items: flex-start; }
-.turn-label {
-  font-size: 0.7rem; font-weight: 800; letter-spacing: 0.07em;
-  text-transform: uppercase; white-space: nowrap; min-width: 82px;
-  padding: 0.28rem 0.55rem; border-radius: 20px; margin-top: 0.1rem; flex-shrink: 0;
-}
-.turn-label.interviewer { background: #2d3a8c1a; color: #2d3a8c; }
-.turn-label.candidate  { background: #16a34a1a; color: #15803d; }
-.turn-text { font-size: 0.9rem; line-height: 1.72; }
-.turn-text.interviewer { color: #1a1f3c; font-weight: 500; }
-.turn-text.candidate   { color: #15803d; }
-.case-problem {
-  background: linear-gradient(135deg,#f0f4ff,#e8f0ff);
-  border-left: 4px solid var(--indigo);
-  border-radius: 0 10px 10px 0;
-  padding: 1rem 1.25rem; margin-bottom: 1.25rem;
-  font-size: 0.9rem; color: var(--navy); font-weight: 500;
-}
-.case-meta { display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:1rem; }
-.accord-count { font-size:0.8rem; color:var(--gray-500); margin-bottom:1rem; }
+.dialogue-wrap{display:flex;flex-direction:column;gap:.55rem;}
+.dlg-block{display:flex;gap:.75rem;align-items:flex-start;}
+.dlg-label{flex-shrink:0;min-width:96px;max-width:96px;padding:.28rem .5rem;border-radius:20px;font-size:.67rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;text-align:center;margin-top:.18rem;line-height:1.3;}
+.dlg-label.interviewer{background:#dbeafe;color:#1e40af;border:1px solid #93c5fd;}
+.dlg-label.candidate{background:#dcfce7;color:#15803d;border:1px solid #86efac;}
+.dlg-text{flex:1;font-size:.875rem;line-height:1.78;padding:.55rem .85rem;border-radius:10px;}
+.dlg-text.interviewer{background:#eff6ff;color:#1e3a6e;font-weight:500;border-left:3px solid #3b82f6;}
+.dlg-text.candidate{background:#f0fdf4;color:#14532d;border-left:3px solid #22c55e;}
+.case-problem-box{background:linear-gradient(135deg,#f0f4ff,#e8f0fe);border:1px solid #c7d7fe;border-radius:12px;padding:.9rem 1.2rem;margin-bottom:1.4rem;font-size:.9rem;color:#1e3a6e;font-weight:500;line-height:1.65;}
+.legend-bar{display:flex;gap:1.5rem;flex-wrap:wrap;margin-bottom:1.2rem;padding:.55rem 1rem;background:#f8f9fc;border-radius:8px;font-size:.78rem;font-weight:700;border:1px solid var(--gray-300);}
+.legend-i{color:#1e40af;}.legend-c{color:#15803d;}
+.case-num{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;background:var(--indigo);color:white;border-radius:50%;font-size:.68rem;font-weight:800;flex-shrink:0;}
 </style>
 </head>
 <body>
@@ -46,21 +37,29 @@
     </div>
   </div>
 </nav>
+
 <div class="page-hero">
-  <h1>Case Interview Practice</h1>
-  <p>100 detailed case interview transcripts — click any case to expand and read the full Interviewer–Candidate dialogue</p>
+  <h1>💼 Case Interview Practice</h1>
+  <p>100 detailed case interview transcripts — click any case to expand the full Interviewer–Candidate dialogue</p>
 </div>
+
 <section>
 <div class="section-inner">
+
 <div class="topmate-banner">
-  <div><h3>Practice Cases 1-on-1 with an Expert</h3><p>Get real-time feedback on your case approach, structure &amp; communication skills</p></div>
+  <div><h3>🎯 Practice Cases 1-on-1 with an Expert</h3><p>Get real-time feedback on your case approach, structure &amp; communication skills</p></div>
   <a href="https://topmate.io/kunal_sadhukhan" target="_blank" class="btn-white">Book on Topmate →</a>
 </div>
 
 <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1rem;">
-  <p class="accord-count">Showing <span id="case-count">100</span> cases — click any row to expand and read</p>
-  <input id="case-search" class="search-box" type="text" placeholder="🔍 Search cases..." style="margin:0;max-width:320px;">
+  <p style="color:var(--gray-500);font-size:.9rem;">
+    Showing <strong id="case-count">100</strong> cases &nbsp;·&nbsp;
+    <span style="color:#1e40af;font-weight:700;">🎙 Interviewer (blue)</span>&nbsp;&nbsp;
+    <span style="color:#15803d;font-weight:700;">🧑‍💼 Candidate (green)</span>
+  </p>
+  <input id="case-search" class="search-box" type="text" placeholder="🔍 Search by title, type or keyword…" style="margin:0;max-width:340px;">
 </div>
+
 <div class="filter-tabs" id="type-filters">
   <div class="filter-tab active" data-type="All">All (100)</div>
   <div class="filter-tab" data-type="Profitability">📉 Profitability</div>
@@ -72,141 +71,53 @@
   <div class="filter-tab" data-type="Due Diligence">🔍 Due Diligence</div>
   <div class="filter-tab" data-type="Unconventional">🎲 Unconventional</div>
 </div>
+
 <div id="cases-list"></div>
 </div>
 </section>
+
 <div class="callout-banner">
   <h2>Want personalised mock case practice?</h2>
-  <p>Book a 1-on-1 session for real-time feedback and guided case practice</p>
-  <a href="https://topmate.io/kunal_sadhukhan" target="_blank" class="btn-primary btn-gold" style="margin-top:.5rem;">Book on Topmate →</a>
+  <p>Book a 1-on-1 session for real-time feedback on your case approach &amp; structure</p>
+  <a href="https://topmate.io/kunal_sadhukhan" target="_blank" class="btn-primary btn-gold" style="margin-top:.5rem;">📅 Book on Topmate →</a>
 </div>
-<footer><p>© 2025 Your Consulting Preparation Buddy &nbsp;|&nbsp; <a href="https://topmate.io/kunal_sadhukhan" target="_blank">Book a 1:1 Session on Topmate</a></p></footer>
+
+<footer><p>© 2025 Your Consulting Preparation Buddy &nbsp;|&nbsp; <a href="https://topmate.io/kunal_sadhukhan" target="_blank">📅 Book a 1:1 Session on Topmate</a></p></footer>
+
 <button id="chatbot-toggle">🎓</button>
 <div id="chatbot-window">
-  <div class="chat-header"><div class="chat-header-icon">🎓</div><div class="chat-header-text"><h4>Consulting Prep Assistant</h4><p>Ask for help with any case</p></div></div>
-  <div class="chat-messages" id="chat-messages"><div class="chat-msg bot">Hi! 👋 Ask about any case type. For live mock practice with real feedback, book a 1-on-1 session on Topmate!</div></div>
+  <div class="chat-header"><div class="chat-header-icon">🎓</div><div class="chat-header-text"><h4>Consulting Prep Assistant</h4><p>Ask for help with any case type</p></div></div>
+  <div class="chat-messages" id="chat-messages"><div class="chat-msg bot">Hi! 👋 Ask about any case type — profitability, market entry, growth, pricing and more!</div></div>
   <div class="chat-input-area"><input id="chat-input" class="chat-input" type="text" placeholder="e.g. How do I approach a profitability case?"><button id="chat-send" class="chat-send">➤</button></div>
 </div>
+
 <script src="cases_data.js"></script>
 <script>
 const TYPE_ICONS={'Profitability':'📉','Market Entry':'🌐','Growth':'🚀','Pricing':'💰','Operations':'⚙️','M&A':'🤝','Due Diligence':'🔍','Unconventional':'🎲','GTM':'📣'};
 const DIFF_CLASS={'Easy':'tag-easy','Moderate':'tag-moderate','Hard':'tag-hard','Challenging':'tag-hard'};
-
 let activeType='All', searchQ='';
 
-/* ── Smart dialogue parser ── */
-function parseDialogue(rawText) {
-  // Clean the text
-  let text = rawText
-    .replace(/\\n/g, '\n')
-    .replace(/Case Index \| Main Index[^\n]*/g, '')
-    .replace(/Case Facts & Notes[\s\S]*$/,'')
-    .replace(/Interviewee Notes[\s\S]{0,50}Case Facts[\s\S]*$/,'')
-    .replace(/Interviewee[\s\S]{0,30}Notes[\s\S]*$/,'')
-    .replace(/Key Learnings[\s\S]*$/,'')
-    .replace(/Recommendations[\s\S]*$/,'')
-    .replace(/\([Cc]\) Consult Club[^\n]*/g,'')
-    .replace(/© [^\n]*/g,'')
-    .replace(/---PAGE \d+---/g,'')
-    .trim();
-
-  // Extract problem statement (first lines before dialogue)
-  const lines = text.split('\n').map(l=>l.trim()).filter(l=>l.length>3);
-  let problem = '';
-  let dialogueLines = [];
-  let foundDialogue = false;
-
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i];
-    if (!problem && (line.includes('client') || line.includes('Client')) && line.length > 30) {
-      problem = line;
-    }
-    if (i > 0) dialogueLines.push(line);
-  }
-
-  if (!problem && lines.length > 0) problem = lines[0];
-
-  // Now parse dialogue lines into Interviewer / Candidate turns
-  // Heuristic rules:
-  // INTERVIEWER signals: short affirmative + question, direct questions, "Good.", "Yes.", "No.", "Correct.", "That's right."
-  // CANDIDATE signals: "I would", "I want", "I'd like", "Let me", long analytical sentences
-  
-  const interviewerPhrases = [
-    /^(yes|no|correct|right|good|great|okay|alright|sure|proceed|fair|exactly|that('s| is) (right|correct|fair|good|great)|well done|excellent|interesting|noted|understood|perfect)/i,
-    /^(can you|could you|what (is|are|do|would|can)|how (would|do|can|is)|why (would|do|is)|tell me|help me|please|walk me|give me|explain|describe|identify|analyze|find|suggest|think about)/i,
-    /^(so,? (you|the|it|we)|let's|let us|now,?|next,?|moving on|coming to|going back|returning to)/i,
-  ];
-  
-  const candidatePhrases = [
-    /^(i (would|will|want|need|think|believe|feel|suggest|recommend|see|understand|know|have|am|can|could|shall|may|might))/i,
-    /^(let me|to (begin|start|answer|address|understand|summarize|recap|conclude|analyze))/i,
-    /^(first(ly)?|second(ly)?|third(ly)?|the (first|second|third|key|main|primary|major)|my (approach|recommendation|analysis|structure|hypothesis|view|thought|suggestion))/i,
-    /^(based on|given (that|the|this)|since (the|we|our|it)|this (means|indicates|suggests|implies)|therefore|hence|thus)/i,
-  ];
-
-  const turns = [];
-  let currentRole = null;
-  let currentText = '';
-
-  const flushTurn = () => {
-    if (currentText.trim().length > 5) {
-      turns.push({ role: currentRole || 'candidate', text: currentText.trim() });
-    }
-    currentText = '';
-  };
-
-  for (const line of dialogueLines) {
-    if (!line || line.length < 4) continue;
-    
-    let detectedRole = null;
-    const lowerLine = line.toLowerCase();
-    
-    // Check interviewer signals
-    for (const pattern of interviewerPhrases) {
-      if (pattern.test(line)) { detectedRole = 'interviewer'; break; }
-    }
-    
-    // Check candidate signals (override if stronger match)
-    if (!detectedRole || detectedRole === 'interviewer') {
-      for (const pattern of candidatePhrases) {
-        if (pattern.test(line)) { detectedRole = 'candidate'; break; }
-      }
-    }
-    
-    // Length heuristic: very short lines tend to be interviewer responses
-    if (!detectedRole) {
-      if (line.length < 60 && line.endsWith('?')) detectedRole = 'interviewer';
-      else if (line.length > 120) detectedRole = 'candidate';
-      else detectedRole = currentRole || 'candidate';
-    }
-
-    if (detectedRole !== currentRole && currentText) {
-      flushTurn();
-      currentRole = detectedRole;
-      currentText = line + ' ';
-    } else {
-      currentRole = detectedRole;
-      currentText += line + ' ';
-    }
-  }
-  flushTurn();
-
-  return { problem, turns };
+function getBlocks(c) {
+  try { return JSON.parse(c.blocks); } catch(e) { return []; }
 }
 
-function renderDialogue(turns) {
-  if (!turns || turns.length === 0) return '<p style="color:var(--gray-500);font-size:.9rem;">Detailed transcript available in expanded view.</p>';
-  return turns.map(t => `
-    <div class="turn">
-      <span class="turn-label ${t.role}">${t.role === 'interviewer' ? '🎙 Interviewer' : '🧑‍💼 Candidate'}</span>
-      <div class="turn-text ${t.role}">${escHtml(t.text)}</div>
-    </div>`).join('');
+function renderDialogue(blocks) {
+  if (!blocks || blocks.length === 0) return '<p style="color:var(--gray-500);padding:.5rem 0;">Transcript content available — try expanding again.</p>';
+  return '<div class="dialogue-wrap">' + blocks.map(b => {
+    const role = b.role || 'interviewer';
+    const icon = role === 'interviewer' ? '🎙' : '🧑‍💼';
+    const label = role === 'interviewer' ? 'Interviewer' : 'Candidate';
+    return `<div class="dlg-block">
+      <div class="dlg-label ${role}">${icon}<br>${label}</div>
+      <div class="dlg-text ${role}">${escHtml(b.text)}</div>
+    </div>`;
+  }).join('') + '</div>';
 }
 
 function getFiltered() {
   return CASES.filter(c => {
-    const matchType = activeType === 'All' || c.type === activeType;
-    const matchSearch = !searchQ || c.title.toLowerCase().includes(searchQ) || c.type.toLowerCase().includes(searchQ) || c.content.toLowerCase().includes(searchQ.slice(0,25));
+    const matchType = activeType==='All' || c.type===activeType;
+    const matchSearch = !searchQ || c.title.toLowerCase().includes(searchQ) || c.type.toLowerCase().includes(searchQ) || (c.problem && c.problem.toLowerCase().includes(searchQ));
     return matchType && matchSearch;
   });
 }
@@ -215,49 +126,48 @@ function renderCases() {
   const filtered = getFiltered();
   document.getElementById('case-count').textContent = filtered.length;
   document.getElementById('cases-list').innerHTML = filtered.map(c => {
-    const parsed = parseDialogue(c.content);
-    const problemHtml = parsed.problem ? `<div class="case-problem">📋 <strong>Case Problem:</strong> ${escHtml(parsed.problem)}</div>` : '';
-    const dialogueHtml = renderDialogue(parsed.turns);
-    return `
-    <div class="accordion-item" id="case-${c.id}">
+    const blocks = getBlocks(c);
+    const problemHtml = c.problem ? `<div class="case-problem-box"><strong>📋 Case Problem:</strong> ${escHtml(c.problem)}</div>` : '';
+    const dialogueHtml = renderDialogue(blocks);
+    return `<div class="accordion-item" id="case-${c.id}">
       <div class="accordion-header" onclick="togCase(this)">
-        <div style="display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;">
-          <span style="font-size:1.05rem;">${TYPE_ICONS[c.type]||'📋'}</span>
-          <span><strong>#${c.id}</strong> ${escHtml(c.title.substring(0,65))}${c.title.length>65?'…':''}</span>
+        <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;flex:1;min-width:0;">
+          <span class="case-num">${c.id}</span>
+          <span style="font-size:.95rem;">${TYPE_ICONS[c.type]||'📋'}</span>
+          <span style="font-weight:600;color:var(--navy);font-size:.9rem;flex:1;min-width:0;">${escHtml(c.title.substring(0,65))}${c.title.length>65?'…':''}</span>
         </div>
         <div style="display:flex;gap:.4rem;align-items:center;flex-shrink:0;">
           <span class="tag ${DIFF_CLASS[c.difficulty]||'tag-moderate'}">${c.difficulty}</span>
-          <span class="tag tag-sector">${c.type}</span>
-          <span class="accordion-arrow" style="margin-left:.25rem;">▼</span>
+          <span class="tag tag-sector" style="font-size:.67rem;">${c.type}</span>
+          <span class="accordion-arrow" style="margin-left:.2rem;">▼</span>
         </div>
       </div>
       <div class="accordion-body">
-        <div class="case-meta">
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem;">
           <span class="tag ${DIFF_CLASS[c.difficulty]||'tag-moderate'}">${c.difficulty}</span>
           <span class="tag tag-sector">${TYPE_ICONS[c.type]||''} ${c.type}</span>
         </div>
         ${problemHtml}
-        <div style="display:flex;gap:1rem;margin-bottom:1rem;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;">
-          <span style="color:#2d3a8c;">🎙 Interviewer</span>
-          <span style="color:#15803d;">🧑‍💼 Candidate</span>
+        <div class="legend-bar">
+          <span class="legend-i">🎙 <strong>Interviewer</strong> — questions &amp; responses shown in blue</span>
+          <span class="legend-c">🧑‍💼 <strong>Candidate</strong> — structured analysis shown in green</span>
         </div>
-        <div class="dialogue-block">${dialogueHtml}</div>
-
+        ${dialogueHtml}
       </div>
     </div>`;
   }).join('');
 }
 
-function togCase(header) { header.parentElement.classList.toggle('open'); }
+function togCase(header){ header.parentElement.classList.toggle('open'); }
 function escHtml(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
 document.querySelectorAll('#type-filters .filter-tab').forEach(btn => {
-  btn.addEventListener('click',function(){
+  btn.addEventListener('click', function(){
     document.querySelectorAll('#type-filters .filter-tab').forEach(b=>b.classList.remove('active'));
     this.classList.add('active'); activeType=this.dataset.type; renderCases();
   });
 });
-document.getElementById('case-search').addEventListener('input',function(){ searchQ=this.value.toLowerCase(); renderCases(); });
+document.getElementById('case-search').addEventListener('input', function(){ searchQ=this.value.toLowerCase().trim(); renderCases(); });
 renderCases();
 </script>
 <script src="chatbot.js"></script>

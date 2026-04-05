@@ -3,26 +3,65 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Know Industry Sectors | Consulting Prep Buddy</title>
+<title>Industry Sector Insights | Consulting Prep Buddy</title>
+<link rel="icon" type="image/png" href="logo.png">
 <link rel="stylesheet" href="styles.css">
 <style>
-.ind-section { margin-bottom: 1.1rem; }
-.ind-section-title {
-  font-size: 0.75rem; font-weight: 800; letter-spacing: 0.08em;
-  text-transform: uppercase; padding: 0.25rem 0.7rem;
-  border-radius: 20px; display: inline-block; margin-bottom: 0.55rem;
+/* ── Section label (matches cases/guesses style) ── */
+.ind-section-label {
+  font-size:.72rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;
+  padding:.25rem .7rem;border-radius:20px;display:inline-block;margin:.9rem 0 .45rem;
 }
-.sect-vc    { background: #ede9fe; color: #4c1d95; }
-.sect-pf    { background: #dbeafe; color: #1e40af; }
-.sect-rev   { background: #dcfce7; color: #166534; }
-.sect-kpi   { background: #fef9ec; color: #92400e; }
-.sect-pestel{ background: #fce7f3; color: #9d174d; }
-.sect-terms { background: #f0fdf4; color: #14532d; }
-.ind-body   { font-size: 0.88rem; line-height: 1.75; color: var(--gray-700); }
-.ind-icon-big { font-size: 2rem; margin-right: 0.75rem; }
+.sec-vc    { background:#ede9fe;color:#4c1d95; }
+.sec-mkt   { background:#dbeafe;color:#1e40af; }
+.sec-pf    { background:#e0f2fe;color:#0c4a6e; }
+.sec-rev   { background:#dcfce7;color:#15803d; }
+.sec-cost  { background:#fef3c7;color:#92400e; }
+.sec-kpi   { background:#fff7ed;color:#9a3412; }
+.sec-pestel{ background:#fce7f3;color:#9d174d; }
+.sec-terms { background:#f0fdf4;color:#14532d; }
+.sec-growth{ background:#f0f9ff;color:#0369a1; }
+
+/* ── Bullet lines ── */
+.ind-bullet {
+  font-size:.875rem;line-height:1.75;color:var(--gray-700);
+  padding-left:1.1rem;position:relative;margin-bottom:.3rem;display:block;
+}
+.ind-bullet::before { content:"•"; position:absolute; left:0; color:var(--indigo); font-weight:700; }
+.ind-text { font-size:.875rem;line-height:1.72;color:var(--gray-700);margin-bottom:.3rem;display:block; }
+
+/* ── Porter's force line ── */
+.porter-line {
+  font-size:.875rem;line-height:1.72;color:#1e3a6e;
+  background:#eff6ff;border-left:3px solid #3b82f6;
+  padding:.4rem .75rem;border-radius:0 8px 8px 0;
+  margin-bottom:.35rem;display:block;
+}
+.porter-force { font-weight:700;color:#1e40af; }
+
+/* ── KPI / Term line ── */
+.kpi-line {
+  font-size:.875rem;line-height:1.7;color:#14532d;
+  background:#f0fdf4;border-left:3px solid #22c55e;
+  padding:.35rem .75rem;border-radius:0 8px 8px 0;
+  margin-bottom:.3rem;display:block;
+}
+.kpi-name { font-weight:700;color:#15803d; }
+
+/* ── PESTEL line ── */
+.pestel-line {
+  font-size:.875rem;line-height:1.7;color:#9d174d;
+  background:#fce7f3;border-left:3px solid #ec4899;
+  padding:.35rem .75rem;border-radius:0 8px 8px 0;
+  margin-bottom:.3rem;display:block;
+}
+.pestel-area { font-weight:700; }
+
+.case-num{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;background:var(--indigo);color:white;border-radius:50%;font-size:.68rem;font-weight:800;flex-shrink:0;}
 </style>
 </head>
 <body>
+
 <nav>
   <div class="nav-inner">
     <a class="nav-logo" href="index.html"><img src="logo.png" alt="Your Consulting Preparation Buddy" style="height:44px;width:auto;display:block;"></a>
@@ -38,123 +77,316 @@
     </div>
   </div>
 </nav>
+
 <div class="page-hero">
-  <h1>Know Industry Sectors</h1>
-  <p>18 major sectors — click any sector to expand value chain, Porter's Five Forces, KPIs &amp; key terminology</p>
+  <h1>🏭 Know Industry Sectors</h1>
+  <p>18 major sectors — click any to expand value chain, Porter's Five Forces, KPIs, PESTEL &amp; key terminology</p>
 </div>
+
 <section>
 <div class="section-inner">
+
 <div class="topmate-banner">
-  <div><h3>Need Sector-Specific Interview Prep?</h3><p>Get personalised guidance on industry knowledge &amp; case interviews from an expert</p></div>
+  <div><h3>🎯 Need Sector-Specific Interview Prep?</h3><p>Get personalised guidance on industry knowledge &amp; case interviews from an expert</p></div>
   <a href="https://topmate.io/kunal_sadhukhan" target="_blank" class="btn-white">Book on Topmate →</a>
 </div>
-<input id="industry-search" class="search-box" type="text" placeholder="🔍 Search industries (e.g. Telecom, Pharma, Retail...)">
+
+<input id="industry-search" class="search-box" type="text" placeholder="🔍 Search industries (e.g. Telecom, Pharma, Retail…)">
 <div id="industry-list"></div>
 </div>
 </section>
+
 <div class="callout-banner">
   <h2>Ready to practice with industry-specific cases?</h2>
   <p>Apply your sector knowledge in real case interview scenarios</p>
   <a href="cases.html" class="btn-primary btn-gold" style="margin-top:.5rem;">Go to Case Practice →</a>
 </div>
-<footer><p>© 2025 Your Consulting Preparation Buddy &nbsp;|&nbsp; <a href="https://topmate.io/kunal_sadhukhan" target="_blank">Book a 1:1 Session on Topmate</a></p></footer>
+
+<footer><p>© 2025 Your Consulting Preparation Buddy &nbsp;|&nbsp; <a href="https://topmate.io/kunal_sadhukhan" target="_blank">📅 Book a 1:1 Session on Topmate</a></p></footer>
+
 <button id="chatbot-toggle">🎓</button>
 <div id="chatbot-window">
   <div class="chat-header"><div class="chat-header-icon">🎓</div><div class="chat-header-text"><h4>Consulting Prep Assistant</h4><p>Ask about any industry sector</p></div></div>
-  <div class="chat-messages" id="chat-messages"><div class="chat-msg bot">Hi! 👋 Ask about any industry sector — Telecom, Pharma, Retail, Banking and more!</div></div>
+  <div class="chat-messages" id="chat-messages"><div class="chat-msg bot">Hi! 👋 Ask about any industry — Telecom, Pharma, Retail, Banking and more. I'll walk you through the key insights!</div></div>
   <div class="chat-input-area"><input id="chat-input" class="chat-input" type="text" placeholder="e.g. What are key KPIs in Telecom?"><button id="chat-send" class="chat-send">➤</button></div>
 </div>
+
 <script src="industry_data.js"></script>
 <script>
-/* ── Parse raw industry text into named sections ── */
-function parseIndustry(rawText) {
-  const text = rawText.replace(/\\n/g,'\n').replace(/© [^\n]*/g,'').replace(/---PAGE \d+---/g,'').trim();
-  const lines = text.split('\n').map(l=>l.trim()).filter(l=>l.length>3);
+/* ════════════════════════════════════════════════════════
+   INDUSTRY CONTENT PARSER
+   Handles the two-column PDF extraction format.
+   Each line may have LEFT_COL content + RIGHT_COL content merged.
+   ════════════════════════════════════════════════════════ */
+
+const ROTATED_CHARS = new Set(['n','i','a','h','C','e','u','l','V','a']);
+
+function splitAtBullets(line) {
+  // Split "text1 • text2 • text3" into ["text1","text2","text3"]
+  return line.split(/\s•\s/).map(s => s.replace(/^•\s*/,'').trim()).filter(s => s.length > 2);
+}
+
+function isPorters(s) {
+  const sl = s.toLowerCase();
+  return sl.includes('bargaining power') || sl.includes('threat of new') ||
+         sl.includes('threat of sub') || sl.includes('competitive rival') ||
+         sl.includes('industry rival');
+}
+
+function extractPorters(s) {
+  const sl = s.toLowerCase();
+  const labels = [
+    [/.*bargaining power of suppliers?\s*[–-]\s*/i, 'Bargaining power of suppliers'],
+    [/.*bargaining power of buyers?\s*[–-]\s*/i, 'Bargaining power of buyers'],
+    [/.*threat of new entrants?\s*[–-]\s*/i, 'Threat of new entrants'],
+    [/.*threat of substitutes?\s*[–-]\s*/i, 'Threat of substitutes'],
+    [/.*(competitive|industry) rivalr[y]?\s*[–-]\s*/i, 'Competitive rivalry'],
+  ];
+  for (const [pat, label] of labels) {
+    if (pat.test(s)) {
+      let desc = s.replace(pat, '').trim();
+      // Cut at multiple spaces (merged right column)
+      desc = desc.split(/\s{4,}/)[0].trim();
+      // Remove trailing artifacts
+      desc = desc.replace(/\s*(board purchases\)|switching costs and undifferentiated product)$/, '').trim();
+      if (desc.length > 3) return { label, desc };
+    }
+  }
+  return null;
+}
+
+function isPestel(s) {
+  return /^(political|economic|social|technolog|environmental|legal)\s*[–:\-]/i.test(s.trim());
+}
+
+function isKpiOrTerm(s) {
+  // "MetricName: definition" or "ACRONYM – definition"
+  return /^[A-Z][A-Za-z /()&-]{3,35}[:\s–-]+[A-Z]/.test(s) && s.length < 130;
+}
+
+function isCost(s) {
+  return /\(\d+%\)/.test(s) || /\b(cost|expense|capex|salary|depreciation|lease)\b/i.test(s);
+}
+
+function isRevenue(s) {
+  return /\b(revenue|income|earnings|subscription fee|delivery charge|commission|tariff)\b/i.test(s) &&
+         !/(bargain|threat|rivalr|kpi|metric|driver)/i.test(s);
+}
+
+function isNoise(s) {
+  if (s.length < 3) return true;
+  if (/^\d{1,4}$/.test(s)) return true;
+  if (ROTATED_CHARS.has(s)) return true;
+  if (/^(INDEX|Industry overview|Industry structures|Industry dynamics|Revenue & cost drivers|Industry terminologies|Porters five forces|Revenue drivers|Key performance indicators|PESTEL analysis|Good-to-know terminologies|Prep book cases|Growth drivers & challenges|Prevalent business models|Click on box|Deep-dive)$/i.test(s)) return true;
+  if (/^(1\/2|2\/2)$/.test(s)) return true;
+  return false;
+}
+
+function parseIndustry(rawContent) {
+  const text = rawContent.replace(/\\n/g, '\n');
+  const lines = text.split('\n');
 
   const sections = {
-    valueChain: [], porters: [], revenue: [], costs: [],
-    kpi: [], pestel: [], terms: [], structure: [], other: []
+    valueChain: [],
+    market: [],
+    porters: [],
+    revenue: [],
+    costs: [],
+    kpis: [],
+    pestel: [],
+    terms: [],
   };
 
-  let cur = 'other';
-  for (const line of lines) {
+  let curSection = 'market';
+  const seenPorters = new Set();
+
+  for (const rawLine of lines) {
+    const line = rawLine.trim();
+    if (!line || isNoise(line)) continue;
+
+    // Detect section header lines
     const ll = line.toLowerCase();
-    if (/value chain|inbound logistic|manufacturing|outbound|production|supply chain/i.test(line) && line.length < 60) { cur = 'valueChain'; continue; }
-    if (/porter|five force|bargain|threat of|rivalry|competitive/i.test(line) && line.length < 60) { cur = 'porters'; continue; }
-    if (/revenue driver|revenue model|revenue stream|revenue &/i.test(line) && line.length < 60) { cur = 'revenue'; continue; }
-    if (/cost driver|cost structure|key cost/i.test(line) && line.length < 60) { cur = 'costs'; continue; }
-    if (/key performance|kpi|performance indicator/i.test(line) && line.length < 60) { cur = 'kpi'; continue; }
-    if (/pestel|political|economic.*social|regulatory|environmental/i.test(line) && line.length < 60) { cur = 'pestel'; continue; }
-    if (/terminolog|glossary|good.to.know|jargon/i.test(line) && line.length < 60) { cur = 'terms'; continue; }
-    if (/industry structure|market structure|market segment/i.test(line) && line.length < 60) { cur = 'structure'; continue; }
-    if (line.length > 5) sections[cur].push(line);
+    if (/^revenue drivers?$/.test(ll)) { curSection = 'revenue'; continue; }
+    if (/^cost drivers?$/.test(ll)) { curSection = 'costs'; continue; }
+    if (/^key performance|^kpis?$/.test(ll)) { curSection = 'kpis'; continue; }
+    if (/^pestel|^pestle/.test(ll)) { curSection = 'pestel'; continue; }
+    if (/^good.to.know|^terminolog|^glossary/.test(ll)) { curSection = 'terms'; continue; }
+    if (/^(market segment|indian market structure)/.test(ll)) { curSection = 'market'; continue; }
+    if (/^(network planning|inbound logistic|value chain|supply chain)/.test(ll)) { curSection = 'valueChain'; continue; }
+
+    // Remove single rotated-char prefix
+    const cleanLine = line.replace(/^[niahCeulV]\s/, '').trim();
+    if (!cleanLine) continue;
+
+    // Split at bullet separators
+    const segs = splitAtBullets(cleanLine);
+
+    for (const seg of segs) {
+      if (!seg || isNoise(seg)) continue;
+
+      // ── Porter's Five Forces ──
+      if (isPorters(seg)) {
+        const p = extractPorters(seg);
+        if (p && !seenPorters.has(p.label)) {
+          seenPorters.add(p.label);
+          sections.porters.push(p);
+        }
+        continue;
+      }
+
+      // ── PESTEL ──
+      if (isPestel(seg)) {
+        sections.pestel.push(seg);
+        continue;
+      }
+
+      // ── KPI / Term (metric:definition) ──
+      if (isKpiOrTerm(seg)) {
+        // Decide KPI vs Term
+        if (/\b(rate|ratio|margin|factor|time|cost per|revenue per|load|utilization|turnover|churn|arpu|csat|mttr|aso|nps)\b/i.test(seg)) {
+          sections.kpis.push(seg);
+        } else {
+          sections.terms.push(seg);
+        }
+        continue;
+      }
+
+      // ── Revenue ──
+      if (isRevenue(seg) && seg.length < 70) {
+        sections.revenue.push(seg);
+        continue;
+      }
+
+      // ── Costs ──
+      if (isCost(seg) && seg.length < 80) {
+        sections.costs.push(seg);
+        continue;
+      }
+
+      // ── Context-based assignment ──
+      if (seg.length > 8) {
+        if (curSection === 'revenue') sections.revenue.push(seg);
+        else if (curSection === 'costs') sections.costs.push(seg);
+        else if (curSection === 'kpis') sections.kpis.push(seg);
+        else if (curSection === 'pestel') sections.pestel.push(seg);
+        else if (curSection === 'terms') sections.terms.push(seg);
+        else if (curSection === 'valueChain') sections.valueChain.push(seg);
+        else sections.market.push(seg);
+      }
+    }
+  }
+
+  // Deduplicate each section and cap
+  for (const key of Object.keys(sections)) {
+    const seen = new Set();
+    sections[key] = sections[key]
+      .filter(item => {
+        const k = item.toString().substring(0,35).toLowerCase();
+        if (seen.has(k)) return false;
+        seen.add(k);
+        return true;
+      })
+      .slice(0, 10);
   }
   return sections;
 }
 
-function renderIndustrySections(sections) {
-  const sect = (label, cls, items) => {
-    if (!items || items.length === 0) return '';
-    const content = items.map(i=>`<p style="margin-bottom:.35rem;">• ${escHtml(i)}</p>`).join('');
-    return `<div class="ind-section">
-      <div class="ind-section-title ${cls}">${label}</div>
-      <div class="ind-body">${content}</div>
-    </div>`;
-  };
-  return [
-    sect('🏭 Value Chain', 'sect-vc', sections.valueChain),
-    sect('🏢 Market Structure & Segments', 'sect-pf', sections.structure),
-    sect('⚔️ Porter\'s Five Forces', 'sect-pf', sections.porters),
-    sect('💰 Revenue Drivers', 'sect-rev', sections.revenue),
-    sect('💸 Cost Drivers', 'sect-kpi', sections.costs),
-    sect('📊 Key Performance Indicators (KPIs)', 'sect-kpi', sections.kpi),
-    sect('🌍 PESTEL Analysis', 'sect-pestel', sections.pestel),
-    sect('📖 Key Industry Terminology', 'sect-terms', sections.terms),
-    sect('📌 Other Key Information', 'sect-terms', sections.other),
-  ].join('');
+/* ── Render one section ── */
+function renderSection(label, cssClass, items, renderFn) {
+  if (!items || items.length === 0) return '';
+  const itemsHtml = items.map(renderFn).join('');
+  return `<span class="ind-section-label ${cssClass}">${label}</span>${itemsHtml}`;
 }
 
+function renderBullet(item) {
+  return `<span class="ind-bullet">${escHtml(item)}</span>`;
+}
+
+function renderPorter(p) {
+  return `<div class="porter-line"><span class="porter-force">${escHtml(p.label)} – </span>${escHtml(p.desc)}</div>`;
+}
+
+function renderKpi(item) {
+  const colonIdx = item.search(/[:\s–-]+/);
+  if (colonIdx > 2) {
+    const name = item.substring(0, colonIdx).trim();
+    const def = item.substring(colonIdx).replace(/^[\s:–-]+/, '').trim();
+    return `<div class="kpi-line"><span class="kpi-name">${escHtml(name)}:</span> ${escHtml(def)}</div>`;
+  }
+  return `<span class="ind-bullet">${escHtml(item)}</span>`;
+}
+
+function renderPestel(item) {
+  const m = item.match(/^(political|economic|social|technolog\w*|environmental|legal)[:\s–-]+/i);
+  if (m) {
+    const area = m[0].replace(/[:\s–-]+$/, '');
+    const rest = item.substring(m[0].length).trim();
+    return `<div class="pestel-line"><span class="pestel-area">${escHtml(area)}:</span> ${escHtml(rest)}</div>`;
+  }
+  return `<div class="pestel-line">${escHtml(item)}</div>`;
+}
+
+function renderIndustryContent(raw) {
+  const secs = parseIndustry(raw);
+  let html = '';
+
+  html += renderSection('🏭 Value Chain', 'sec-vc', secs.valueChain, renderBullet);
+  html += renderSection('🏢 Market Structure & Segments', 'sec-mkt', secs.market.slice(0,6), renderBullet);
+  html += renderSection('⚔️ Porter\'s Five Forces', 'sec-pf', secs.porters, renderPorter);
+  html += renderSection('💰 Revenue Drivers', 'sec-rev', secs.revenue, renderBullet);
+  html += renderSection('💸 Cost Drivers', 'sec-cost', secs.costs, renderBullet);
+  html += renderSection('📊 Key KPIs', 'sec-kpi', secs.kpis, renderKpi);
+  html += renderSection('🌍 PESTEL Analysis', 'sec-pestel', secs.pestel, renderPestel);
+  html += renderSection('📖 Key Terminology', 'sec-terms', secs.terms, renderKpi);
+
+  return html || '<p style="color:var(--gray-500);font-size:.88rem;">Detailed content available — see source casebook.</p>';
+}
+
+/* ── Filter & render list ── */
 let searchQ = '';
 
 function getFiltered() {
   if (!searchQ) return INDUSTRIES;
   const q = searchQ.toLowerCase();
-  return INDUSTRIES.filter(ind => ind.name.toLowerCase().includes(q) || ind.content.toLowerCase().includes(q.slice(0,30)));
+  return INDUSTRIES.filter(ind =>
+    ind.name.toLowerCase().includes(q) ||
+    ind.content.toLowerCase().includes(q.substring(0, 25))
+  );
 }
 
 function renderIndustries() {
   const filtered = getFiltered();
-  document.getElementById('industry-list').innerHTML = filtered.map((ind,i) => {
-    const sections = parseIndustry(ind.content);
-    const body = renderIndustrySections(sections);
-    return `
-    <div class="accordion-item" id="ind-${i}">
+  document.getElementById('industry-list').innerHTML = filtered.map((ind, i) => {
+    const bodyContent = renderIndustryContent(ind.content);
+    return `<div class="accordion-item" id="ind-${i}">
       <div class="accordion-header" onclick="togI(this)">
         <div style="display:flex;align-items:center;gap:.75rem;">
-          <span class="ind-icon-big">${ind.icon}</span>
-          <span style="font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--navy);">${escHtml(ind.name)} Industry</span>
+          <span style="font-size:1.75rem;">${ind.icon}</span>
+          <span style="font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--navy);">${escHtml(ind.name)}</span>
         </div>
         <div style="display:flex;gap:.4rem;align-items:center;flex-shrink:0;">
-          <span class="tag tag-sector">Value Chain · KPIs · Porter's</span>
+          <span class="tag tag-sector" style="font-size:.67rem;">Value Chain · KPIs · Porter's</span>
           <span class="accordion-arrow" style="margin-left:.25rem;">▼</span>
         </div>
       </div>
       <div class="accordion-body">
-        ${body || `<p style="color:var(--gray-500);">Detailed overview below.</p>`}
-        <div style="margin-top:1.5rem;padding:1.1rem;background:linear-gradient(135deg,var(--topmate-blue),#1e2d8f);border-radius:12px;color:white;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;">
+        ${bodyContent}
+        <div style="margin-top:1.5rem;padding:1rem 1.2rem;background:linear-gradient(135deg,#2d3a8c,#1e2d8f);border-radius:12px;color:white;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;">
           <p style="font-weight:600;font-size:.9rem;margin:0;">Need a deep-dive on this sector for your interview?</p>
-          <a href="https://topmate.io/kunal_sadhukhan" target="_blank" class="btn-white" style="font-size:.82rem;padding:.5rem 1.1rem;">Book 1-on-1 on Topmate →</a>
+          <a href="https://topmate.io/kunal_sadhukhan" target="_blank" class="btn-white" style="font-size:.82rem;padding:.45rem 1rem;">Book 1-on-1 on Topmate →</a>
         </div>
       </div>
     </div>`;
   }).join('');
 }
 
-function togI(h){ h.parentElement.classList.toggle('open'); }
-function escHtml(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function togI(h) { h.parentElement.classList.toggle('open'); }
+function escHtml(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
 
-document.getElementById('industry-search').addEventListener('input',function(){
-  searchQ = this.value.toLowerCase();
+document.getElementById('industry-search').addEventListener('input', function() {
+  searchQ = this.value.toLowerCase().trim();
   renderIndustries();
 });
 renderIndustries();
