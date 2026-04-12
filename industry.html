@@ -113,234 +113,57 @@
 
 <script src="industry_data.js"></script>
 <script>
-/* ════════════════════════════════════════════════════════
-   INDUSTRY CONTENT PARSER
-   Handles the two-column PDF extraction format.
-   Each line may have LEFT_COL content + RIGHT_COL content merged.
-   ════════════════════════════════════════════════════════ */
-
-const ROTATED_CHARS = new Set(['n','i','a','h','C','e','u','l','V','a']);
-
-function splitAtBullets(line) {
-  // Split "text1 • text2 • text3" into ["text1","text2","text3"]
-  return line.split(/\s•\s/).map(s => s.replace(/^•\s*/,'').trim()).filter(s => s.length > 2);
+function parseIndustry(raw) {
+  const text = raw.replace(/\\n/g,'\n');
+  const secs = {};
+  text.split('§§').forEach(chunk => {
+    const nl = chunk.indexOf('\n');
+    if (nl < 0) return;
+    const key = chunk.substring(0, nl).trim();
+    const body = chunk.substring(nl+1).trim();
+    secs[key] = body;
+  });
+  return secs;
 }
-
-function isPorters(s) {
-  const sl = s.toLowerCase();
-  return sl.includes('bargaining power') || sl.includes('threat of new') ||
-         sl.includes('threat of sub') || sl.includes('competitive rival') ||
-         sl.includes('industry rival');
-}
-
-function extractPorters(s) {
-  const sl = s.toLowerCase();
-  const labels = [
-    [/.*bargaining power of suppliers?\s*[–-]\s*/i, 'Bargaining power of suppliers'],
-    [/.*bargaining power of buyers?\s*[–-]\s*/i, 'Bargaining power of buyers'],
-    [/.*threat of new entrants?\s*[–-]\s*/i, 'Threat of new entrants'],
-    [/.*threat of substitutes?\s*[–-]\s*/i, 'Threat of substitutes'],
-    [/.*(competitive|industry) rivalr[y]?\s*[–-]\s*/i, 'Competitive rivalry'],
-  ];
-  for (const [pat, label] of labels) {
-    if (pat.test(s)) {
-      let desc = s.replace(pat, '').trim();
-      // Cut at multiple spaces (merged right column)
-      desc = desc.split(/\s{4,}/)[0].trim();
-      // Remove trailing artifacts
-      desc = desc.replace(/\s*(board purchases\)|switching costs and undifferentiated product)$/, '').trim();
-      if (desc.length > 3) return { label, desc };
-    }
-  }
-  return null;
-}
-
-function isPestel(s) {
-  return /^(political|economic|social|technolog|environmental|legal)\s*[–:\-]/i.test(s.trim());
-}
-
-function isKpiOrTerm(s) {
-  // "MetricName: definition" or "ACRONYM – definition"
-  return /^[A-Z][A-Za-z /()&-]{3,35}[:\s–-]+[A-Z]/.test(s) && s.length < 130;
-}
-
-function isCost(s) {
-  return /\(\d+%\)/.test(s) || /\b(cost|expense|capex|salary|depreciation|lease)\b/i.test(s);
-}
-
-function isRevenue(s) {
-  return /\b(revenue|income|earnings|subscription fee|delivery charge|commission|tariff)\b/i.test(s) &&
-         !/(bargain|threat|rivalr|kpi|metric|driver)/i.test(s);
-}
-
-function isNoise(s) {
-  if (s.length < 3) return true;
-  if (/^\d{1,4}$/.test(s)) return true;
-  if (ROTATED_CHARS.has(s)) return true;
-  if (/^(INDEX|Industry overview|Industry structures|Industry dynamics|Revenue & cost drivers|Industry terminologies|Porters five forces|Revenue drivers|Key performance indicators|PESTEL analysis|Good-to-know terminologies|Prep book cases|Growth drivers & challenges|Prevalent business models|Click on box|Deep-dive)$/i.test(s)) return true;
-  if (/^(1\/2|2\/2)$/.test(s)) return true;
-  return false;
-}
-
-function parseIndustry(rawContent) {
-  const text = rawContent.replace(/\\n/g, '\n');
-  const lines = text.split('\n');
-
-  const sections = {
-    valueChain: [],
-    market: [],
-    porters: [],
-    revenue: [],
-    costs: [],
-    kpis: [],
-    pestel: [],
-    terms: [],
-  };
-
-  let curSection = 'market';
-  const seenPorters = new Set();
-
-  for (const rawLine of lines) {
-    const line = rawLine.trim();
-    if (!line || isNoise(line)) continue;
-
-    // Detect section header lines
-    const ll = line.toLowerCase();
-    if (/^revenue drivers?$/.test(ll)) { curSection = 'revenue'; continue; }
-    if (/^cost drivers?$/.test(ll)) { curSection = 'costs'; continue; }
-    if (/^key performance|^kpis?$/.test(ll)) { curSection = 'kpis'; continue; }
-    if (/^pestel|^pestle/.test(ll)) { curSection = 'pestel'; continue; }
-    if (/^good.to.know|^terminolog|^glossary/.test(ll)) { curSection = 'terms'; continue; }
-    if (/^(market segment|indian market structure)/.test(ll)) { curSection = 'market'; continue; }
-    if (/^(network planning|inbound logistic|value chain|supply chain)/.test(ll)) { curSection = 'valueChain'; continue; }
-
-    // Remove single rotated-char prefix
-    const cleanLine = line.replace(/^[niahCeulV]\s/, '').trim();
-    if (!cleanLine) continue;
-
-    // Split at bullet separators
-    const segs = splitAtBullets(cleanLine);
-
-    for (const seg of segs) {
-      if (!seg || isNoise(seg)) continue;
-
-      // ── Porter's Five Forces ──
-      if (isPorters(seg)) {
-        const p = extractPorters(seg);
-        if (p && !seenPorters.has(p.label)) {
-          seenPorters.add(p.label);
-          sections.porters.push(p);
-        }
-        continue;
-      }
-
-      // ── PESTEL ──
-      if (isPestel(seg)) {
-        sections.pestel.push(seg);
-        continue;
-      }
-
-      // ── KPI / Term (metric:definition) ──
-      if (isKpiOrTerm(seg)) {
-        // Decide KPI vs Term
-        if (/\b(rate|ratio|margin|factor|time|cost per|revenue per|load|utilization|turnover|churn|arpu|csat|mttr|aso|nps)\b/i.test(seg)) {
-          sections.kpis.push(seg);
-        } else {
-          sections.terms.push(seg);
-        }
-        continue;
-      }
-
-      // ── Revenue ──
-      if (isRevenue(seg) && seg.length < 70) {
-        sections.revenue.push(seg);
-        continue;
-      }
-
-      // ── Costs ──
-      if (isCost(seg) && seg.length < 80) {
-        sections.costs.push(seg);
-        continue;
-      }
-
-      // ── Context-based assignment ──
-      if (seg.length > 8) {
-        if (curSection === 'revenue') sections.revenue.push(seg);
-        else if (curSection === 'costs') sections.costs.push(seg);
-        else if (curSection === 'kpis') sections.kpis.push(seg);
-        else if (curSection === 'pestel') sections.pestel.push(seg);
-        else if (curSection === 'terms') sections.terms.push(seg);
-        else if (curSection === 'valueChain') sections.valueChain.push(seg);
-        else sections.market.push(seg);
-      }
-    }
-  }
-
-  // Deduplicate each section and cap
-  for (const key of Object.keys(sections)) {
-    const seen = new Set();
-    sections[key] = sections[key]
-      .filter(item => {
-        const k = item.toString().substring(0,35).toLowerCase();
-        if (seen.has(k)) return false;
-        seen.add(k);
-        return true;
-      })
-      .slice(0, 10);
-  }
-  return sections;
-}
-
-/* ── Render one section ── */
-function renderSection(label, cssClass, items, renderFn) {
+function renderSection(labelHtml, cssClass, items, renderFn) {
   if (!items || items.length === 0) return '';
-  const itemsHtml = items.map(renderFn).join('');
-  return `<span class="ind-section-label ${cssClass}">${label}</span>${itemsHtml}`;
+  return `<span class="ind-section-label ${cssClass}">${labelHtml}</span>` + items.map(renderFn).join('');
 }
-
-function renderBullet(item) {
-  return `<span class="ind-bullet">${escHtml(item)}</span>`;
+function renderBullet(t) { return `<span class="ind-bullet">${escHtml(t)}</span>`; }
+function renderPorter(line) {
+  const [force, level, desc] = line.split('|');
+  if (!force) return '';
+  return `<div class="porter-line"><span class="porter-force">${escHtml(force)} – <span class="porter-level">${escHtml(level)}</span>:</span> ${escHtml(desc)}</div>`;
 }
-
-function renderPorter(p) {
-  return `<div class="porter-line"><span class="porter-force">${escHtml(p.label)} – </span>${escHtml(p.desc)}</div>`;
+function renderKpi(line) {
+  const pipe = line.indexOf('|');
+  if (pipe < 0) return renderBullet(line);
+  const name = line.substring(0, pipe).trim();
+  const def  = line.substring(pipe+1).trim();
+  return `<div class="kpi-line"><span class="kpi-name">${escHtml(name)}:</span> ${escHtml(def)}</div>`;
 }
-
-function renderKpi(item) {
-  const colonIdx = item.search(/[:\s–-]+/);
-  if (colonIdx > 2) {
-    const name = item.substring(0, colonIdx).trim();
-    const def = item.substring(colonIdx).replace(/^[\s:–-]+/, '').trim();
-    return `<div class="kpi-line"><span class="kpi-name">${escHtml(name)}:</span> ${escHtml(def)}</div>`;
-  }
-  return `<span class="ind-bullet">${escHtml(item)}</span>`;
+function renderPestel(line) {
+  const pipe = line.indexOf('|');
+  if (pipe < 0) return renderBullet(line);
+  const area = line.substring(0, pipe).trim();
+  const desc = line.substring(pipe+1).trim();
+  return `<div class="pestel-line"><span class="pestel-area">${escHtml(area)}:</span> ${escHtml(desc)}</div>`;
 }
-
-function renderPestel(item) {
-  const m = item.match(/^(political|economic|social|technolog\w*|environmental|legal)[:\s–-]+/i);
-  if (m) {
-    const area = m[0].replace(/[:\s–-]+$/, '');
-    const rest = item.substring(m[0].length).trim();
-    return `<div class="pestel-line"><span class="pestel-area">${escHtml(area)}:</span> ${escHtml(rest)}</div>`;
-  }
-  return `<div class="pestel-line">${escHtml(item)}</div>`;
-}
-
 function renderIndustryContent(raw) {
-  const secs = parseIndustry(raw);
+  const s = parseIndustry(raw);
+  const lines = key => s[key] ? s[key].split('\n').filter(l=>l.trim()) : [];
   let html = '';
-
-  html += renderSection('🏭 Value Chain', 'sec-vc', secs.valueChain, renderBullet);
-  html += renderSection('🏢 Market Structure & Segments', 'sec-mkt', secs.market.slice(0,6), renderBullet);
-  html += renderSection('⚔️ Porter\'s Five Forces', 'sec-pf', secs.porters, renderPorter);
-  html += renderSection('💰 Revenue Drivers', 'sec-rev', secs.revenue, renderBullet);
-  html += renderSection('💸 Cost Drivers', 'sec-cost', secs.costs, renderBullet);
-  html += renderSection('📊 Key KPIs', 'sec-kpi', secs.kpis, renderKpi);
-  html += renderSection('🌍 PESTEL Analysis', 'sec-pestel', secs.pestel, renderPestel);
-  html += renderSection('📖 Key Terminology', 'sec-terms', secs.terms, renderKpi);
-
-  return html || '<p style="color:var(--gray-500);font-size:.88rem;">Detailed content available — see source casebook.</p>';
+  html += renderSection('🏭 Value Chain','sec-vc', lines('VALUE_CHAIN'), renderBullet);
+  html += renderSection('🏢 Market Structure & Segments','sec-mkt', lines('MARKET_STRUCTURE'), renderBullet);
+  html += renderSection("⚔️ Porter's Five Forces",'sec-pf', lines('PORTERS'), renderPorter);
+  html += renderSection('💰 Revenue Drivers','sec-rev', lines('REVENUE'), renderBullet);
+  html += renderSection('💸 Cost Drivers','sec-cost', lines('COSTS'), renderBullet);
+  html += renderSection('📊 Key KPIs','sec-kpi', lines('KPIS'), renderKpi);
+  html += renderSection('🌍 PESTEL Analysis','sec-pestel', lines('PESTEL'), renderPestel);
+  html += renderSection('📖 Key Terminology','sec-terms', lines('TERMS'), renderKpi);
+  return html;
 }
+
 
 /* ── Filter & render list ── */
 let searchQ = '';
