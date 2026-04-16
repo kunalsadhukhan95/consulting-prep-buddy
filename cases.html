@@ -40,7 +40,7 @@
 
 <div class="page-hero">
   <h1>💼 Case Interview Practice</h1>
-  <p>100 detailed case interview transcripts — click any case to expand the full Interviewer–Candidate dialogue</p>
+  <p id="hero-subtitle">Loading cases…</p>
 </div>
 
 <section>
@@ -53,7 +53,7 @@
 
 <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1rem;">
   <p style="color:var(--gray-500);font-size:.9rem;">
-    Showing <strong id="case-count">100</strong> cases &nbsp;·&nbsp;
+    Showing <strong id="case-count">0</strong> cases &nbsp;·&nbsp;
     <span style="color:#1e40af;font-weight:700;">🎙 Interviewer (blue)</span>&nbsp;&nbsp;
     <span style="color:#15803d;font-weight:700;">🧑‍💼 Candidate (green)</span>
   </p>
@@ -61,14 +61,15 @@
 </div>
 
 <div class="filter-tabs" id="type-filters">
-  <div class="filter-tab active" data-type="All">All (100)</div>
+  <div class="filter-tab active" data-type="All">All</div>
   <div class="filter-tab" data-type="Profitability">📉 Profitability</div>
   <div class="filter-tab" data-type="Market Entry">🌐 Market Entry</div>
-  <div class="filter-tab" data-type="Growth">🚀 Growth</div>
+  <div class="filter-tab" data-type="Growth Strategy">🚀 Growth</div>
   <div class="filter-tab" data-type="Pricing">💰 Pricing</div>
   <div class="filter-tab" data-type="Operations">⚙️ Operations</div>
   <div class="filter-tab" data-type="M&A">🤝 M&amp;A</div>
   <div class="filter-tab" data-type="Due Diligence">🔍 Due Diligence</div>
+  <div class="filter-tab" data-type="GTM Strategy">📣 GTM</div>
   <div class="filter-tab" data-type="Unconventional">🎲 Unconventional</div>
 </div>
 
@@ -93,82 +94,133 @@
 
 <script src="cases_data.js"></script>
 <script>
-const TYPE_ICONS={'Profitability':'📉','Market Entry':'🌐','Growth':'🚀','Pricing':'💰','Operations':'⚙️','M&A':'🤝','Due Diligence':'🔍','Unconventional':'🎲','GTM':'📣'};
-const DIFF_CLASS={'Easy':'tag-easy','Moderate':'tag-moderate','Hard':'tag-hard','Challenging':'tag-hard'};
-let activeType='All', searchQ='';
+/* ── ROOT CAUSE FIX: Read c.dialogue [{s,t}] and convert to [{role,text}] ── */
+const TYPE_ICONS = {
+  'Profitability':'📉','Market Entry':'🌐','Growth Strategy':'🚀',
+  'Pricing':'💰','Operations':'⚙️','M&A':'🤝','Due Diligence':'🔍',
+  'GTM Strategy':'📣','Unconventional':'🎲'
+};
+const DIFF_CLASS = {'Easy':'tag-easy','Moderate':'tag-moderate','Hard':'tag-hard'};
 
-function getBlocks(c) {
-  try { return JSON.parse(c.blocks); } catch(e) { return []; }
+let activeType = 'All', searchQ = '';
+
+/* Convert new dialogue format {s:'I'|'C', t:'...'} to display blocks */
+function dialogueToBlocks(dialogue) {
+  if (!dialogue || !Array.isArray(dialogue)) return [];
+  return dialogue.map(function(d) {
+    var key = Object.keys(d)[0]; /* 'I' or 'C' or 's' */
+    var role, text;
+    if (key === 's') {
+      role = d.s === 'I' ? 'interviewer' : 'candidate';
+      text = d.t || '';
+    } else {
+      role = key === 'I' ? 'interviewer' : 'candidate';
+      text = d[key] || '';
+    }
+    return { role: role, text: text };
+  });
 }
 
 function renderDialogue(blocks) {
-  if (!blocks || blocks.length === 0) return '<p style="color:var(--gray-500);padding:.5rem 0;">Transcript content available — try expanding again.</p>';
-  return '<div class="dialogue-wrap">' + blocks.map(b => {
-    const role = b.role || 'interviewer';
-    const icon = role === 'interviewer' ? '🎙' : '🧑‍💼';
-    const label = role === 'interviewer' ? 'Interviewer' : 'Candidate';
-    return `<div class="dlg-block">
-      <div class="dlg-label ${role}">${icon}<br>${label}</div>
-      <div class="dlg-text ${role}">${escHtml(b.text)}</div>
-    </div>`;
+  if (!blocks || blocks.length === 0) {
+    return '<p style="color:var(--gray-500);padding:.5rem 0;">No dialogue content available.</p>';
+  }
+  return '<div class="dialogue-wrap">' + blocks.map(function(b) {
+    var icon  = b.role === 'interviewer' ? '🎙' : '🧑‍💼';
+    var label = b.role === 'interviewer' ? 'Interviewer' : 'Candidate';
+    return '<div class="dlg-block">' +
+      '<div class="dlg-label ' + b.role + '">' + icon + '<br>' + label + '</div>' +
+      '<div class="dlg-text ' + b.role + '">' + escHtml(b.text) + '</div>' +
+      '</div>';
   }).join('') + '</div>';
 }
 
 function getFiltered() {
-  return CASES.filter(c => {
-    const matchType = activeType==='All' || c.type===activeType;
-    const matchSearch = !searchQ || c.title.toLowerCase().includes(searchQ) || c.type.toLowerCase().includes(searchQ) || (c.problem && c.problem.toLowerCase().includes(searchQ));
+  return CASES.filter(function(c) {
+    var matchType   = activeType === 'All' || c.type === activeType;
+    var matchSearch = !searchQ ||
+      c.title.toLowerCase().includes(searchQ) ||
+      (c.type || '').toLowerCase().includes(searchQ) ||
+      (c.problem || '').toLowerCase().includes(searchQ) ||
+      (c.sector || '').toLowerCase().includes(searchQ);
     return matchType && matchSearch;
   });
 }
 
 function renderCases() {
-  const filtered = getFiltered();
+  var filtered = getFiltered();
   document.getElementById('case-count').textContent = filtered.length;
-  document.getElementById('cases-list').innerHTML = filtered.map(c => {
-    const blocks = getBlocks(c);
-    const problemHtml = c.problem ? `<div class="case-problem-box"><strong>📋 Case Problem:</strong> ${escHtml(c.problem)}</div>` : '';
-    const dialogueHtml = renderDialogue(blocks);
-    return `<div class="accordion-item" id="case-${c.id}">
-      <div class="accordion-header" onclick="togCase(this)">
-        <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;flex:1;min-width:0;">
-          <span class="case-num">${c.id}</span>
-          <span style="font-size:.95rem;">${TYPE_ICONS[c.type]||'📋'}</span>
-          <span style="font-weight:600;color:var(--navy);font-size:.9rem;flex:1;min-width:0;">${escHtml(c.title.substring(0,65))}${c.title.length>65?'…':''}</span>
-        </div>
-        <div style="display:flex;gap:.4rem;align-items:center;flex-shrink:0;">
-          <span class="tag ${DIFF_CLASS[c.difficulty]||'tag-moderate'}">${c.difficulty}</span>
-          <span class="tag tag-sector" style="font-size:.67rem;">${c.type}</span>
-          <span class="accordion-arrow" style="margin-left:.2rem;">▼</span>
-        </div>
-      </div>
-      <div class="accordion-body">
-        <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem;">
-          <span class="tag ${DIFF_CLASS[c.difficulty]||'tag-moderate'}">${c.difficulty}</span>
-          <span class="tag tag-sector">${TYPE_ICONS[c.type]||''} ${c.type}</span>
-        </div>
-        ${problemHtml}
-        <div class="legend-bar">
-          <span class="legend-i">🎙 <strong>Interviewer</strong> — questions &amp; responses shown in blue</span>
-          <span class="legend-c">🧑‍💼 <strong>Candidate</strong> — structured analysis shown in green</span>
-        </div>
-        ${dialogueHtml}
-      </div>
-    </div>`;
+
+  document.getElementById('cases-list').innerHTML = filtered.map(function(c) {
+    var blocks       = dialogueToBlocks(c.dialogue);
+    var problemHtml  = c.problem
+      ? '<div class="case-problem-box"><strong>📋 Case Problem:</strong> ' + escHtml(c.problem) + '</div>'
+      : '';
+    var dialogueHtml = renderDialogue(blocks);
+    var diffClass    = DIFF_CLASS[c.difficulty] || 'tag-moderate';
+    var icon         = TYPE_ICONS[c.type] || '📋';
+    var titleShort   = c.title.length > 65 ? escHtml(c.title.substring(0,65)) + '…' : escHtml(c.title);
+
+    return '<div class="accordion-item" id="case-' + c.id + '">' +
+      '<div class="accordion-header" onclick="togCase(this)">' +
+        '<div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;flex:1;min-width:0;">' +
+          '<span class="case-num">' + c.id + '</span>' +
+          '<span style="font-size:.95rem;">' + icon + '</span>' +
+          '<span style="font-weight:600;color:var(--navy);font-size:.9rem;flex:1;min-width:0;">' + titleShort + '</span>' +
+        '</div>' +
+        '<div style="display:flex;gap:.4rem;align-items:center;flex-shrink:0;">' +
+          '<span class="tag ' + diffClass + '">' + escHtml(c.difficulty) + '</span>' +
+          '<span class="tag tag-sector" style="font-size:.67rem;">' + escHtml(c.type) + '</span>' +
+          '<span class="accordion-arrow" style="margin-left:.2rem;">▼</span>' +
+        '</div>' +
+      '</div>' +
+      '<div class="accordion-body">' +
+        '<div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem;">' +
+          '<span class="tag ' + diffClass + '">' + escHtml(c.difficulty) + '</span>' +
+          '<span class="tag tag-sector">' + icon + ' ' + escHtml(c.type) + '</span>' +
+          (c.sector ? '<span class="tag tag-sector" style="background:#f3f4f6;color:#374151;">' + escHtml(c.sector) + '</span>' : '') +
+        '</div>' +
+        problemHtml +
+        '<div class="legend-bar">' +
+          '<span class="legend-i">🎙 <strong>Interviewer</strong> — questions &amp; responses shown in blue</span>' +
+          '<span class="legend-c">🧑‍💼 <strong>Candidate</strong> — structured analysis shown in green</span>' +
+        '</div>' +
+        dialogueHtml +
+      '</div>' +
+    '</div>';
   }).join('');
 }
 
-function togCase(header){ header.parentElement.classList.toggle('open'); }
-function escHtml(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function togCase(header) { header.parentElement.classList.toggle('open'); }
+function escHtml(s) {
+  return String(s)
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;');
+}
 
-document.querySelectorAll('#type-filters .filter-tab').forEach(btn => {
-  btn.addEventListener('click', function(){
-    document.querySelectorAll('#type-filters .filter-tab').forEach(b=>b.classList.remove('active'));
-    this.classList.add('active'); activeType=this.dataset.type; renderCases();
+/* ── Init: set dynamic counts in hero and filter All tab ── */
+document.addEventListener('DOMContentLoaded', function() {
+  var total = CASES.length;
+  document.getElementById('hero-subtitle').textContent =
+    total + ' detailed case interview transcripts — click any case to expand the full Interviewer–Candidate dialogue';
+  document.querySelector('[data-type="All"]').textContent = 'All (' + total + ')';
+  renderCases();
+});
+
+document.querySelectorAll('#type-filters .filter-tab').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('#type-filters .filter-tab').forEach(function(b){ b.classList.remove('active'); });
+    this.classList.add('active');
+    activeType = this.dataset.type;
+    renderCases();
   });
 });
-document.getElementById('case-search').addEventListener('input', function(){ searchQ=this.value.toLowerCase().trim(); renderCases(); });
-renderCases();
+document.getElementById('case-search').addEventListener('input', function() {
+  searchQ = this.value.toLowerCase().trim();
+  renderCases();
+});
 </script>
 <script src="chatbot.js"></script>
 </body>
